@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <h1>hello world!!!</h1>
-  </div>
+  <MainContent></MainContent>
 </template>
 
-<script setup></script>
+<script setup>
+import MainContent from './components/MainContent.vue';
+
+</script>
 
 <style scoped>
 * {
