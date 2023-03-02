@@ -1,11 +1,11 @@
 import { useAppStore } from '../../stores/appStore';
 import { createRoute } from './createRoute';
-import { pinia } from '../../stores/index'
+import { pinia } from '../../stores/index';
 
 const appStore = useAppStore(pinia);
 
 const verifyIsAuthenticated = (to, from, next) => {
-  appStore.isLogged ? next({ path: '/app' }) : next()
+  appStore.isLogged ? next({ path: '/app' }) : next();
 };
 
 const registerRoute = createRoute(
