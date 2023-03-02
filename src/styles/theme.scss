@@ -1,6 +1,6 @@
 :root {
   --text:       #{$black};
-  --background: ${$white-soft};
+  --background: #{$white-soft};
 }
 
 @media (prefers-color-scheme: dark) {}
