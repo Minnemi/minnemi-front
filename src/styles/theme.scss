@@ -1,0 +1,6 @@
+:root {
+  --text:       #{$black};
+  --background: ${$white-soft};
+}
+
+@media (prefers-color-scheme: dark) {}
