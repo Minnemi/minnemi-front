@@ -1,7 +1,7 @@
-import { appRoute } from "./modules/appRoute";
-import { loginRoute } from "./modules/loginRoute";
+import { appRoute } from './modules/appRoute';
+import { loginRoute } from './modules/loginRoute';
 
-export const useRoutes = () => [
+const useRoutes = () => [
   {
     path: '/',
     redirect: '/login',
@@ -9,3 +9,5 @@ export const useRoutes = () => [
   appRoute,
   loginRoute,
 ];
+
+export { useRoutes };

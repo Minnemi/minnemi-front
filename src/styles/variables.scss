@@ -1,10 +1,11 @@
-$white:       var(--white);
-$white-soft:  var(--white-soft);
-$white-mute:  var(--white-mute);
-$black:       var(--black);
-$black-soft:  var(--black-soft);
-$black-mute:  var(--black-mute);
-$gray:        var(--gray);
+$white:      #fff;
+$white-soft: #f8f8f8;
+$white-mute: #f2f2f2;
+$black:      #171717;
+$black-soft: #222;
+$black-mute: #282828;
+$gray:       #777;
 
+// CSS to SCSS variables
 $text:        var(--text);
 $background:  var(--background);
