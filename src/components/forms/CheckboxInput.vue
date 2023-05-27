@@ -2,6 +2,7 @@
   <label :for="id" class="checkbox">
     <input
       :id="id"
+      :name="name"
       type="checkbox"
       class="checkbox-input"
     />
