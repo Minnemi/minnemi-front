@@ -1,6 +1,33 @@
 :root {
-  --text:       #{$black};
-  --background: #{$white-soft};
+  --red-100:    #DE2C46;
+  --green-700:  #20BF6B;
+  --light-100:  #FFFFFF;
+  --gray-100:   #FDFDFD;
+  --gray-200:   #D8DEE9;
+  --gray-300:   #ACB5C5;
+  --gray-400:   #808C9A;
+  --gray-500:   #2C3340;
+  --gray-600:   #191F28;
+  --gray-700:   #0E1218;
+  --indigo-100: #EAEBFC;
+  --indigo-200: #CCCCEB;
+  --indigo-300: #A5A7E3;
+  --indigo-400: #7477D7;
+  --indigo-500: #24266A;
+  --indigo-600: #141540;
+  --indigo-700: #0D0E2B;
 }
 
-@media (prefers-color-scheme: dark) {}
+[data-theme="light"] {
+  @include theme-light;
+}
+
+[data-theme="dark"] {
+  @include theme-dark;
+  color-scheme: dark;
+}
+
+[data-theme=""] {
+  @include theme-minnemi;
+  color-scheme: dark;
+}
