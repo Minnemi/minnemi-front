@@ -5,6 +5,16 @@
   --input-background-color:     var(--indigo-500);
   --elements-background-color:  var(--indigo-600);
   --page-background-color:      var(--indigo-700);
+
+  --login-field-color:                    var(--indigo-400);
+  --login-field-color-hover:              var(--indigo-500);
+  --login-field-color-active:             var(--indigo-500);
+  --login-field-border-color:             var(--indigo-500);
+  --login-field-border-color-hover:       var(--indigo-400);
+  --login-field-border-color-active:      var(--indigo-300);
+  --login-field-background-color:         var(--indigo-500);
+  --login-field-background-color-hover:   var(--indigo-400);
+  --login-field-background-color-active:  var(--indigo-300);
 }
 
 @mixin theme-light {
@@ -14,6 +24,16 @@
   --input-background-color:     var(--light-100);
   --elements-background-color:  var(--light-100);
   --page-background-color:      var(--gray-100);
+
+  --login-field-color:                    var(--indigo-300);
+  --login-field-color-hover:              var(--indigo-500);
+  --login-field-color-active:             var(--indigo-300);
+  --login-field-border-color:             var(--indigo-300);
+  --login-field-border-color-hover:       var(--indigo-200);
+  --login-field-border-color-active:      var(--indigo-200);
+  --login-field-background-color:         transparent;
+  --login-field-background-color-hover:   var(--indigo-300);
+  --login-field-background-color-active:  var(--indigo-500);
 }
 
 @mixin theme-dark {
@@ -23,4 +43,14 @@
   --input-background-color:     var(--gray-500);
   --elements-background-color:  var(--gray-600);
   --page-background-color:      var(--gray-700);
+
+  --login-field-color:                    var(--gray-400);
+  --login-field-color-hover:              var(--gray-500);
+  --login-field-color-active:             var(--gray-500);
+  --login-field-border-color:             var(--gray-500);
+  --login-field-border-color-hover:       var(--gray-400);
+  --login-field-border-color-active:      var(--gray-300);
+  --login-field-background-color:         var(--gray-500);
+  --login-field-background-color-hover:   var(--gray-400);
+  --login-field-background-color-active:  var(--gray-300);
 }
