@@ -59,11 +59,12 @@ onMounted(() => {
   padding: .5rem .75rem;
   width: min-content;
   max-width: 100%;
+  font-weight: 600;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
   border-radius: 5px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   overflow: hidden;
 
   transition: background-color .2s ease, border-color .2s ease;
@@ -128,5 +129,23 @@ onMounted(() => {
   display: none;
   opacity: 0;
   pointer-events: none;
+}
+
+.login-social {
+  color: var(--login-field-color);
+  border-color: var(--login-field-border-color);
+  background-color: var(--login-field-background-color);
+
+  &:hover {
+    color: var(--login-field-color-hover);
+    border-color: var(--login-field-border-color-hover);
+    background-color: var(--login-field-background-color-hover);
+  }
+
+  &:active {
+    color: var(--login-field-color-active);
+    border-color: var(--login-field-border-color-active);
+    background-color: var(--login-field-background-color-active);
+  }
 }
 </style>
