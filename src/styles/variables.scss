@@ -5,6 +5,12 @@
   --input-background-color:     var(--indigo-500);
   --elements-background-color:  var(--indigo-600);
   --page-background-color:      var(--indigo-700);
+
+  --checkbox-mark-color:                var(--gray-100);
+  --checkbox-border-color:              var(--indigo-500);
+  --checkbox-background-color:          var(--indigo-500);
+  --checkbox-border-color-checked:      var(--indigo-700);
+  --checkbox-background-color-checked:  var(--indigo-700);
 }
 
 @mixin theme-light {
@@ -14,6 +20,12 @@
   --input-background-color:     var(--light-100);
   --elements-background-color:  var(--light-100);
   --page-background-color:      var(--gray-100);
+
+  --checkbox-mark-color:                var(--gray-100);
+  --checkbox-border-color:              var(--indigo-300);
+  --checkbox-background-color:          var(--indigo-100);
+  --checkbox-border-color-checked:      var(--indigo-500);
+  --checkbox-background-color-checked:  var(--indigo-500);
 }
 
 @mixin theme-dark {
@@ -23,4 +35,10 @@
   --input-background-color:     var(--gray-500);
   --elements-background-color:  var(--gray-600);
   --page-background-color:      var(--gray-700);
+
+  --checkbox-mark-color:                var(--gray-100);
+  --checkbox-border-color:              var(--gray-500);
+  --checkbox-background-color:          var(--gray-500);
+  --checkbox-border-color-checked:      var(--gray-700);
+  --checkbox-background-color-checked:  var(--gray-700);
 }
