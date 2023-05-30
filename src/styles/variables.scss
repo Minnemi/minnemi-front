@@ -1,10 +1,26 @@
-$white:       var(--white);
-$white-soft:  var(--white-soft);
-$white-mute:  var(--white-mute);
-$black:       var(--black);
-$black-soft:  var(--black-soft);
-$black-mute:  var(--black-mute);
-$gray:        var(--gray);
+@mixin theme-minnemi {
+  --text-principal:             var(--indigo-300);
+  --text-secondary:             var(--indigo-400);
+  --border-color:               var(--indigo-500);
+  --input-background-color:     var(--indigo-500);
+  --elements-background-color:  var(--indigo-600);
+  --page-background-color:      var(--indigo-700);
+}
 
-$text:        var(--text);
-$background:  var(--background);
+@mixin theme-light {
+  --text-principal:             var(--indigo-500);
+  --text-secondary:             var(--indigo-300);
+  --border-color:               var(--indigo-300);
+  --input-background-color:     var(--light-100);
+  --elements-background-color:  var(--light-100);
+  --page-background-color:      var(--gray-100);
+}
+
+@mixin theme-dark {
+  --text-principal:             var(--gray-300);
+  --text-secondary:             var(--gray-400);
+  --border-color:               var(--gray-500);
+  --input-background-color:     var(--gray-500);
+  --elements-background-color:  var(--gray-600);
+  --page-background-color:      var(--gray-700);
+}

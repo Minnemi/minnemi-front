@@ -1,4 +1,4 @@
-@import 'colors.scss';
+@import 'theme.scss';
 
 *,
 *::before,
@@ -14,8 +14,8 @@ body {
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   text-rendering: optimizeLegibility;
-  color: $text;
-  background-color: $background;
+  color: var(--text-principal);
+  background-color: var(--page-background-color);
   transition: color .25s, background-color .25s;
 }
 
@@ -28,8 +28,4 @@ button {
   outline: none;
   background: none;
   transition: color .25s;
-}
-
-a:hover {
-  color: $gray;
 }
