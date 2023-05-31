@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { computed, reactive } from 'vue';
 
-export const useAppStore = defineStore('app', () => {
+const useAppStore = defineStore('app', () => {
   const state = reactive({
     loggedIn: false,
   });
@@ -16,3 +16,5 @@ export const useAppStore = defineStore('app', () => {
     setLogged,
   };
 });
+
+export { useAppStore };
