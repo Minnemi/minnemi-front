@@ -18,7 +18,8 @@ body {
   font-weight: normal;
   color: var(--text-principal);
   background-color: var(--page-background-color);
-  transition: color .25s, background-color .25s;
+  transition: color .25s ease, background-color .25s ease;
+  height: 100vh;
 }
 
 a,
