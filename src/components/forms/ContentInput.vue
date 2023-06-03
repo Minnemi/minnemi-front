@@ -21,7 +21,7 @@ const props = defineProps({
     default: 'textarea',
   },
   label: String,
-  input: Object,
+  attributes: Object,
 });
 
 function insertAttributesIntoInputElement(attributes) {
@@ -43,7 +43,7 @@ function handleInput() {
 }
 
 onMounted(() => {
-  insertAttributesIntoInputElement(props.input);
+  insertAttributesIntoInputElement(props.attributes);
 });
 </script>
 

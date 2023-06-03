@@ -33,7 +33,7 @@ const props = defineProps({
     default: 'text',
   },
   label: String,
-  input: {
+  attributes: {
     type: Object,
     default() {
       return { type: 'text' };
@@ -68,7 +68,7 @@ function handleInput() {
 }
 
 onMounted(() => {
-  insertAttributesIntoInputElement(props.input);
+  insertAttributesIntoInputElement(props.attributes);
 });
 </script>
 
