@@ -35,7 +35,7 @@ function validation() {
     return errorMessage.value = '';
   }
 
-  errorMessage.value = 'Some examples of errors';
+  errorMessage.value = textarea.value.validationMessage;
 }
 
 function handleInput() {

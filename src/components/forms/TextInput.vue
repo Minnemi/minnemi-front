@@ -60,7 +60,7 @@ function validation() {
     return errorMessage.value = '';
   }
 
-  errorMessage.value = 'Some examples of errors';
+  errorMessage.value = input.value.validationMessage;
 }
 
 function handleInput() {
@@ -149,6 +149,7 @@ onMounted(() => {
 }
 
 .message {
+  padding: 0 .5rem;
   width: 100%;
   font-size: .8rem;
   color: var(--red-200);
