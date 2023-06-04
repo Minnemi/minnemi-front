@@ -4,7 +4,7 @@
       {{ label }}
     </div>
 
-    <textarea ref="textarea" class="textarea" @input="handleInput"></textarea>
+    <textarea ref="textareaRef" class="textarea" @input="handleInput"></textarea>
 
     <div class="message" :data-message="errorMessage"></div>
   </label>
@@ -13,7 +13,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-const textarea = ref(null);
+const textareaRef = ref(null);
 const errorMessage = ref('');
 const props = defineProps({
   validityType: {
@@ -26,16 +26,18 @@ const props = defineProps({
 
 function insertAttributesIntoInputElement(attributes) {
   for (const attr in attributes) {
-    textarea.value.setAttribute(attr, attributes[attr]);
+    textareaRef.value.setAttribute(attr, attributes[attr]);
   }
 }
 
 function validation() {
-  if (textarea.value.checkValidity()) {
+  if (textareaRef.value.checkValidity()) {
+    textareaRef.value.classList.remove('error');
     return errorMessage.value = '';
   }
 
-  errorMessage.value = textarea.value.validationMessage;
+  textareaRef.value.classList.add('error');
+  errorMessage.value = textareaRef.value.validationMessage;
 }
 
 function handleInput() {
@@ -75,12 +77,17 @@ onMounted(() => {
   border: 2px solid var(--login-field-border-color);
   background-color: var(--login-field-background-color);
 
+  &.error {
+    outline: solid var(--red-200);
+  }
+
   &::placeholder {
     color: var(--login-field-color);
   }
 }
 
 .message {
+  padding: 0 .5rem;
   width: 100%;
   font-size: .8rem;
   color: var(--red-200);

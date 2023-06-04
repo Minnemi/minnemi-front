@@ -4,8 +4,8 @@
       {{ label }}
     </div>
 
-    <div class="input">
-      <input ref="input" class="input-field" @input="handleInput"/>
+    <div ref="inputBoxRef" class="input">
+      <input ref="inputRef" class="input-field" @input="handleInput"/>
 
       <button
         type="button"
@@ -25,7 +25,8 @@
 import { ref, onMounted } from 'vue';
 import SvgIcon from '@jamescoyle/vue-icon';
 
-const input = ref(null);
+const inputBoxRef = ref(null);
+const inputRef = ref(null);
 const errorMessage = ref('');
 const props = defineProps({
   validityType: {
@@ -47,20 +48,22 @@ const props = defineProps({
 
 function insertAttributesIntoInputElement(attributes) {
   for (const attr in attributes) {
-    input.value.setAttribute(attr, attributes[attr]);
+    inputRef.value.setAttribute(attr, attributes[attr]);
   }
 }
 
 function handleClick() {
-  input.value.type = input.value.type === 'password' ? 'text' : 'password';
+  inputRef.value.type = inputRef.value.type === 'password' ? 'text' : 'password';
 }
 
 function validation() {
-  if (input.value.checkValidity()) {
+  if (inputRef.value.checkValidity()) {
+    inputBoxRef.value.classList.remove('error');
     return errorMessage.value = '';
   }
 
-  errorMessage.value = input.value.validationMessage;
+  inputBoxRef.value.classList.add('error');
+  errorMessage.value = inputRef.value.validationMessage;
 }
 
 function handleInput() {
@@ -96,6 +99,10 @@ onMounted(() => {
   border: 2px solid var(--login-field-border-color);
   background-color: var(--login-field-background-color);
 
+  &.error {
+    border-color: var(--red-200);
+  }
+
   &-field,
   &-button {
     border-radius: 5px;
@@ -130,8 +137,8 @@ onMounted(() => {
 
   &-button:disabled {
     padding: .5rem 0;
-    width: 0;
-    border: none;
+    width: 1px;
+    opacity: 0;
   }
 
   &-field[type='password'] + &-button:not(disabled) {
