@@ -16,10 +16,6 @@ import { ref, onMounted } from 'vue';
 const textareaRef = ref(null);
 const errorMessage = ref('');
 const props = defineProps({
-  validityType: {
-    type: String,
-    default: 'textarea',
-  },
   label: String,
   attributes: Object,
 });
@@ -33,7 +29,8 @@ function insertAttributesIntoInputElement(attributes) {
 function validation() {
   if (textareaRef.value.checkValidity()) {
     textareaRef.value.classList.remove('error');
-    return errorMessage.value = '';
+    errorMessage.value = '';
+    return;
   }
 
   textareaRef.value.classList.add('error');

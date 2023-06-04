@@ -10,7 +10,8 @@
       <button
         type="button"
         class="input-button"
-        :disabled="Boolean(!icon)"
+        :disabled="Boolean(!enableButton)"
+        :data-hidden="Boolean(!icon)"
         @click="handleClick"
       >
         <svg-icon type="mdi" :path="icon" />
@@ -29,10 +30,6 @@ const inputBoxRef = ref(null);
 const inputRef = ref(null);
 const errorMessage = ref('');
 const props = defineProps({
-  validityType: {
-    type: String,
-    default: 'text',
-  },
   label: String,
   attributes: {
     type: Object,
@@ -43,6 +40,10 @@ const props = defineProps({
   icon: {
     type: String,
     default: '',
+  },
+  enableButton: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -59,7 +60,8 @@ function handleClick() {
 function validation() {
   if (inputRef.value.checkValidity()) {
     inputBoxRef.value.classList.remove('error');
-    return errorMessage.value = '';
+    errorMessage.value = '';
+    return;
   }
 
   inputBoxRef.value.classList.add('error');
@@ -106,7 +108,7 @@ onMounted(() => {
   &-field,
   &-button {
     border-radius: 5px;
-    background-color: var(--login-field-background-color) red;
+    background-color: var(--login-field-background-color);
   }
 
   &-field {
@@ -133,24 +135,29 @@ onMounted(() => {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     transition: background-color .2s, color .2s;
-  }
 
-  &-button:disabled {
-    padding: .5rem 0;
-    width: 1px;
-    opacity: 0;
-  }
-
-  &-field[type='password'] + &-button:not(disabled) {
-    &:hover {
-      color: var(--login-field-color-hover);
-      border-color: var(--login-field-border-color-hover);
-      background-color: var(--login-field-background-color-hover);
+    &[data-hidden=true] {
+      padding: .5rem 0;
+      width: 1px;
+      opacity: 0;
     }
 
-    &:active {
-      border-color: var(--login-field-border-color-active);
-      background-color: var(--login-field-background-color-active);
+    &:disabled {
+      pointer-events: none;
+    }
+
+    &:not(:disabled) {
+      &:hover {
+        color: var(--login-field-color-hover);
+        border-color: var(--login-field-border-color-hover);
+        background-color: var(--login-field-background-color-hover);
+      }
+
+      &:active {
+        color: var(--login-field-color-active);
+        border-color: var(--login-field-border-color-active);
+        background-color: var(--login-field-background-color-active);
+      }
     }
   }
 }
