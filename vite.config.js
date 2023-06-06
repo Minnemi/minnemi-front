@@ -14,7 +14,8 @@ export default defineConfig({
     alias: {
       '@': fullPath('./src'),
       '@components': fullPath('./src/components'),
-      '@forms': fullPath('./src/components/forms'),
+      '@@forms': fullPath('./src/components/forms'),
+      '@@utils': fullPath('./src/components/utils'),
     }
   },
   css: {
