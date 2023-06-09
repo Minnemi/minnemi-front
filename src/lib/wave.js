@@ -49,7 +49,7 @@ Wave.prototype.draw = function(context) {
   context.beginPath();
   context.fillStyle = gradient;
 
-  if (this.points.length) return;
+  if (this.points.length < 1) return;
 
   let prevX = this.points[0].x;
   let prevY = this.points[0].y;
