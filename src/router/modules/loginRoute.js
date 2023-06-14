@@ -1,6 +1,6 @@
-import { useAppStore } from '../../stores/appStore';
+import { useAppStore } from '@/stores/appStore';
 import { createRoute } from './createRoute';
-import { pinia } from '../../stores/index';
+import { pinia } from '@/stores/';
 
 const appStore = useAppStore(pinia);
 
@@ -10,23 +10,23 @@ const verifyIsAuthenticated = (to, from, next) => {
 
 const registerRoute = createRoute(
   '/login/register',
-  import('../../views/login/RegisterView.vue'),
+  import('@views/login/RegisterView.vue'),
   'login',
 );
 
 const signRoute = createRoute(
   '/login/sign-in',
-  import('../../views/login/SignView.vue'),
+  import('@views/login/SignView.vue'),
   'login',
 );
 
 const loginRoute = createRoute(
   '/login',
-  import('../../views/login/LoginView.vue'),
+  import('@views/login/LoginView.vue'),
   'app',
   {
     children: [registerRoute, signRoute],
-    redirect: '/login/sign-in',
+    redirect: '/auth/sign-in',
     beforeEnter: verifyIsAuthenticated,
   },
 );
