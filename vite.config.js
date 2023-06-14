@@ -13,6 +13,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fullPath('./src'),
+      '@views': fullPath('./src/views'),
       '@components': fullPath('./src/components'),
       '@@forms': fullPath('./src/components/forms'),
       '@@utils': fullPath('./src/components/utils'),
