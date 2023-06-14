@@ -114,7 +114,8 @@ WaveGroup.prototype.draw = function(context) {
 function Main(enableAnim = false) {
   this.enableAnim = enableAnim;
   this.anchor = document.body;
-  this.canvas = document.createElement('canvas');
+  this.canvas = document.getElementById('g-wave-canvas') || document.createElement('canvas');
+  this.canvas.id = 'g-wave-canvas';
   this.canvas.classList.add('g-wave-background');
   this.context = this.canvas.getContext('2d');
   this.anchor.appendChild(this.canvas);
