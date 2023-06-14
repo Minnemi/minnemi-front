@@ -5,7 +5,7 @@ import { createRoute } from './createRoute';
 const appStore = useAppStore(pinia);
 
 const verifyIsNotAuthenticated = (to, from, next) => {
-  !appStore.isLogged ? next({ path: '/login' }) : next();
+  !appStore.isLogged ? next({ path: '/auth' }) : next();
 };
 
 const appRoute = createRoute(

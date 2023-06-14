@@ -9,20 +9,20 @@ const verifyIsAuthenticated = (to, from, next) => {
 };
 
 const registerRoute = createRoute(
-  '/login/register',
-  import('@views/login/RegisterView.vue'),
-  'login',
+  '/auth/register',
+  import('@views/auth/RegisterView.vue'),
+  'auth',
 );
 
 const signRoute = createRoute(
-  '/login/sign-in',
-  import('@views/login/SignView.vue'),
-  'login',
+  '/auth/sign-in',
+  import('@views/auth/SignView.vue'),
+  'auth',
 );
 
-const loginRoute = createRoute(
-  '/login',
-  import('@views/login/LoginView.vue'),
+const authRoute = createRoute(
+  '/auth',
+  import('@views/auth/AuthView.vue'),
   'app',
   {
     children: [registerRoute, signRoute],
@@ -31,4 +31,4 @@ const loginRoute = createRoute(
   },
 );
 
-export { loginRoute };
+export { authRoute };

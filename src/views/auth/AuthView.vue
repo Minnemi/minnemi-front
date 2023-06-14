@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <RouterView name="login"></RouterView>
+    <RouterView name="auth"></RouterView>
   </section>
 </template>
 
