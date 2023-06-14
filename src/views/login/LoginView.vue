@@ -1,13 +1,27 @@
 <template>
-  <section>
-    <h1>login</h1>
-    <RouterLink to="/login/register">registrar</RouterLink>
-    <br>
-    <RouterLink to="/login/sign-in">entrar</RouterLink>
+  <section class="container">
     <RouterView name="login"></RouterView>
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import { onMounted } from 'vue';
+import Wave from '@@lib/wave.js';
 
-<style lang="scss" scoped></style>
+onMounted(() => {
+  new Wave(true);
+});
+</script>
+
+<style scoped lang="scss">
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  padding: 3rem 0;
+  width: 100%;
+  min-height: 100vh;
+}
+</style>
