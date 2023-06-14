@@ -1,5 +1,5 @@
 <template>
-  <form class="form" autocomplete="off" autocapitalize="true">
+  <form class="form" method="post" autocomplete="off" autocapitalize="true">
     <div class="header">
       <h2 class="title">{{ title }}</h2>
       <p class="description">{{ description }}</p>
