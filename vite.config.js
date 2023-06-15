@@ -18,6 +18,7 @@ export default defineConfig({
       '@@forms': fullPath('./src/components/forms'),
       '@@utils': fullPath('./src/components/utils'),
       '@@lib': fullPath('./src/lib'),
+      '@@shared': fullPath('./src/shared'),
     }
   },
   css: {
