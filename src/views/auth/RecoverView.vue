@@ -17,6 +17,14 @@
         Enviar
       </ButtonComponent>
     </nav>
+
+    <hr />
+
+    <nav class="extra-options">
+      <RouterLink to="/auth/sign-in" class="link">
+        Lembrou sua senha? <span>Acessar conta</span>
+      </RouterLink>
+    </nav>
   </WrapperForm>
 </template>
 
@@ -41,5 +49,21 @@ import attributes from '@@shared/commonInputFieldsAttributes';
 
 .fields {
   gap: .5rem;
+}
+
+.extra-options {
+  font-size: small;
+  text-align: center;
+}
+
+.link {
+  span {
+    font-weight: 600;
+    color: var(--red-200);
+  }
+
+  &:hover span {
+    text-decoration: underline;
+  }
 }
 </style>
