@@ -76,8 +76,6 @@ import attributes from '@@shared/commonInputFieldsAttributes';
 }
 
 .link {
-  color: var(--light-100);
-
   span {
     font-weight: 600;
     color: var(--red-200);

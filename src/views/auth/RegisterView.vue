@@ -105,8 +105,6 @@ import attributes from '@@shared/commonInputFieldsAttributes';
 
 .link,
 .warn {
-  color: var(--light-100);
-
   span {
     font-weight: 600;
   }
