@@ -1,5 +1,5 @@
 <template>
-  <form class="form" method="post" autocomplete="off" autocapitalize="true">
+  <form class="form" :class="styles" method="post" autocomplete="off">
     <div class="header">
       <h2 class="title">{{ title }}</h2>
       <p class="description">{{ description }}</p>
@@ -18,6 +18,10 @@ defineProps({
     required: true
   },
   description: String,
+  styles: {
+    type: String,
+    default: ''
+  },
 });
 </script>
 
@@ -39,6 +43,10 @@ defineProps({
   background-color: var(--elements-background-color);
 
   animation: g-show-expand .3s both normal;
+
+  &.expand {
+    width: 600px;
+  }
 }
 
 @keyframes g-show-expand {
