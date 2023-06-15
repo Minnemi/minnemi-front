@@ -12,7 +12,7 @@
         Entrar com o Google
       </ButtonComponent>
 
-      <small class="slipt">ou</small>
+      <small class="split">ou</small>
     </nav>
 
     <section class="fields">
@@ -133,7 +133,7 @@ import attributes from '@@shared/commonInputFieldsAttributes';
   }
 }
 
-.slipt {
+.split {
   text-align: center;
 }
 </style>
