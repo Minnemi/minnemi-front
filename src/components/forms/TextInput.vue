@@ -45,7 +45,51 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  focus: Boolean,
+  resetFieldOnInput: String,
+  compareFieldName: Object,
 });
+
+function handleClick() {
+  inputRef.value.type = inputRef.value.type === 'password' ? 'text' : 'password';
+}
+
+function resetField() {
+  if (props.resetFieldOnInput) {
+    const fieldToReset = document.getElementsByName(props.resetFieldOnInput)[0];
+
+    if (fieldToReset) {
+      fieldToReset.value = fieldToReset.defaultValue;
+    }
+  }
+}
+
+function validation() {
+  if (props.compareFieldName) {
+    const compareFieldValue = document.getElementsByName(props.compareFieldName.name)[0].value;
+    let message = '';
+
+    if (compareFieldValue !== inputRef.value.value) {
+      message = `Este campo deve conter o mesmo valor do campo "${props.compareFieldName.label}""`;
+    }
+
+    inputRef.value.setCustomValidity(message);
+  }
+
+  if (!inputRef.value.checkValidity()) {
+    inputBoxRef.value.classList.add('error');
+    errorMessage.value = inputRef.value.validationMessage;
+    return;
+  }
+
+  inputBoxRef.value.classList.remove('error');
+  errorMessage.value = '';
+}
+
+function handleInput() {
+  resetField();
+  validation();
+}
 
 function insertAttributesIntoInputElement(attributes) {
   for (const attr in attributes) {
@@ -53,27 +97,15 @@ function insertAttributesIntoInputElement(attributes) {
   }
 }
 
-function handleClick() {
-  inputRef.value.type = inputRef.value.type === 'password' ? 'text' : 'password';
-}
-
-function validation() {
-  if (inputRef.value.checkValidity()) {
-    inputBoxRef.value.classList.remove('error');
-    errorMessage.value = '';
-    return;
+function autoFocus(enable) {
+  if (enable) {
+    inputRef.value.focus();
   }
-
-  inputBoxRef.value.classList.add('error');
-  errorMessage.value = inputRef.value.validationMessage;
-}
-
-function handleInput() {
-  validation();
 }
 
 onMounted(() => {
   insertAttributesIntoInputElement(props.attributes);
+  autoFocus(props.focus);
 });
 </script>
 
