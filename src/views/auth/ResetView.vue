@@ -9,6 +9,8 @@
         :attributes="attributes.password"
         :icon="mdiEye"
         :enableButton="true"
+        :resetFieldOnInput="attributes.confirmPassword.name"
+        :focus="true"
       />
 
       <TextInput
@@ -16,6 +18,10 @@
         :attributes="attributes.confirmPassword"
         :icon="mdiEye"
         :enableButton="true"
+        :compareField="{
+          label: 'Nova senha',
+          name: attributes.password.name,
+        }"
       />
     </section>
 

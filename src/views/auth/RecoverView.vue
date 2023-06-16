@@ -9,6 +9,7 @@
         label="E-mail"
         :attributes="attributes.email"
         :icon="mdiEmail"
+        :focus="true"
       />
     </section>
 

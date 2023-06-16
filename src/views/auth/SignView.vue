@@ -7,6 +7,7 @@
       <TextInput
         label="Nome de usuário"
         :attributes="attributes.username"
+        :focus="true"
       />
 
       <TextInput

@@ -19,6 +19,7 @@
       <TextInput
         label="Nome completo"
         :attributes="attributes.fullname"
+        :focus="true"
       />
 
       <TextInput
@@ -36,6 +37,7 @@
         :attributes="attributes.password"
         :icon="mdiEye"
         :enableButton="true"
+        :resetFieldOnInput="attributes.confirmPassword.name"
       />
 
       <TextInput
@@ -43,6 +45,10 @@
         :attributes="attributes.confirmPassword"
         :icon="mdiEye"
         :enableButton="true"
+        :compareField="{
+          label: 'Senha',
+          name: attributes.password.name,
+        }"
       />
     </section>
 
@@ -53,11 +59,11 @@
 
       <p class="warn">
         Ao criar uma conta, você concorda com os nossos
-        <RouterLink to="/policy/use">
+        <RouterLink to="/policies/usage">
           <span>Termos de uso</span>
         </RouterLink>
         e
-        <RouterLink to="/policy/privacy">
+        <RouterLink to="/policies/privacy">
           <span>Políticas de Privacidade</span>
         </RouterLink>
       </p>
