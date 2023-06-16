@@ -47,7 +47,7 @@ const props = defineProps({
   },
   focus: Boolean,
   resetFieldOnInput: String,
-  compareFieldName: Object,
+  compareField: Object,
 });
 
 function handleClick() {
@@ -65,12 +65,12 @@ function resetField() {
 }
 
 function validation() {
-  if (props.compareFieldName) {
-    const compareFieldValue = document.getElementsByName(props.compareFieldName.name)[0].value;
+  if (props.compareField) {
+    const compareFieldValue = document.getElementsByName(props.compareField.name)[0].value;
     let message = '';
 
     if (compareFieldValue !== inputRef.value.value) {
-      message = `Este campo deve conter o mesmo valor do campo "${props.compareFieldName.label}""`;
+      message = `Este campo deve conter o mesmo valor do campo "${props.compareField.label}""`;
     }
 
     inputRef.value.setCustomValidity(message);
