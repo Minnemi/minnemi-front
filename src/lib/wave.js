@@ -17,7 +17,7 @@ function Wave(index, {totalPoints, speed, gradColor}) {
   this.index = index;
   this.totalPoints = totalPoints;
   this.color = gradColor;
-  this.speed = speed;
+  this.speed = speed / 1000;
   this.points = [];
 }
 
@@ -43,13 +43,11 @@ Wave.prototype.draw = function(context) {
   const gradient = context.createLinearGradient(0, 0, this.stageWidth, 0);
 
   for (let i = 0; i < this.color.length; i++) {
-    gradient.addColorStop((1 / this.color.length) * i, this.color[i]);
+    gradient.addColorStop(this.color[i].offset, this.color[i].color);
   }
 
   context.beginPath();
   context.fillStyle = gradient;
-
-  if (this.points.length < 1) return;
 
   let prevX = this.points[0].x;
   let prevY = this.points[0].y;
@@ -80,21 +78,39 @@ Wave.prototype.draw = function(context) {
 function WaveGroup() {
   this.wavesConfig = [
     {
+      speed: 3,
       totalPoints: 7,
-      gradColor: ['rgba(222, 44, 70, 0.9)', 'rgb(44, 47, 142, 0.9)'],
-      speed: 0.003,
+      gradColor: [
+        {
+          offset: 0,
+          color: 'rgba(222, 44, 70, 0.9)',
+        },
+        {
+          offset: 1,
+          color: 'rgb(44, 47, 142, 0.9)'
+        }
+      ],
     },
     {
+      speed: 1,
       totalPoints: 10,
-      gradColor: ['rgba(222, 44, 70, 0.5)', 'rgb(44, 47, 142, 0.5)'],
-      speed: 0.001,
+      gradColor: [
+        {
+          offset: 0,
+          color: 'rgba(222, 44, 70, 0.5)',
+        },
+        {
+          offset: 1,
+          color: 'rgb(44, 47, 142, 0.5)',
+        },
+      ],
     },
   ];
   this.totalWaves = this.wavesConfig.length;
   this.waves = [];
 
   for (let i = 0; i < this.totalWaves; i++) {
-    const wave = new Wave(i, this.wavesConfig[i] || this.wavesConfig[0]);
+    const wave = new Wave(i, this.wavesConfig[i]);
     this.waves[i] = wave;
   }
 }
@@ -114,7 +130,8 @@ WaveGroup.prototype.draw = function(context) {
 function Main(enableAnim = false) {
   this.enableAnim = enableAnim;
   this.anchor = document.body;
-  this.canvas = document.createElement('canvas');
+  this.canvas = document.getElementById('g-wave-canvas') || document.createElement('canvas');
+  this.canvas.id = 'g-wave-canvas';
   this.canvas.classList.add('g-wave-background');
   this.context = this.canvas.getContext('2d');
   this.anchor.appendChild(this.canvas);

@@ -1,52 +1,36 @@
 <template>
-  <section class="container">
-    <form class="form">
-      <div class="header">
-        <h2 class="title">{{ title }}</h2>
-        <p class="description">{{ description }}</p>
-      </div>
+  <form class="form" :class="styles" method="post" autocomplete="off">
+    <div class="header">
+      <h2 class="title">{{ title }}</h2>
+      <p class="description">{{ description }}</p>
+    </div>
 
-      <div class="body">
-        <slot></slot>
-      </div>
-    </form>
-  </section>
+    <div class="body">
+      <slot></slot>
+    </div>
+  </form>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import Wave from '@@lib/wave';
-
 defineProps({
   title: {
     type: String,
     required: true
   },
   description: String,
-});
-
-onMounted(() => {
-  new Wave(true);
+  styles: {
+    type: String,
+    default: ''
+  },
 });
 </script>
 
 <style scoped lang="scss">
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  padding: 3rem 0;
-  width: 100%;
-  min-height: 100vh;
-}
-
 .form,
 .body {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1.5rem;
 }
 
 .form {
@@ -57,6 +41,21 @@ onMounted(() => {
   border-radius: 12px;
   border: 2px solid var(--border-color);
   background-color: var(--elements-background-color);
+
+  animation: g-show-expand .3s both normal;
+
+  &.expand {
+    width: 600px;
+  }
+}
+
+@keyframes g-show-expand {
+  50% {
+    transform: scale(1.01);
+  }
+  0%, 100% {
+    transform: scale(1);
+  }
 }
 
 .header {

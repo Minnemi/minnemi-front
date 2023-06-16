@@ -1,13 +1,13 @@
 import { appRoute } from './modules/appRoute';
-import { loginRoute } from './modules/loginRoute';
+import { authRoute } from './modules/authRoute';
 
 const useRoutes = () => [
   {
     path: '/',
-    redirect: '/login',
+    redirect: '/auth',
   },
   appRoute,
-  loginRoute,
+  authRoute,
 ];
 
 export { useRoutes };

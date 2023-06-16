@@ -32,6 +32,14 @@ button {
   transition: color .25s;
 }
 
+hr {
+  margin: 0 auto;
+  max-width: 70%;
+  width: 100%;
+  border-style: solid;
+  border-color: var(--border-color);
+}
+
 .g-wave-background {
   position: fixed;
   z-index: -1;
