@@ -2,6 +2,7 @@
   <WrapperForm
     title="Criar nova conta"
     description="Comece hoje a escrever seu futuro"
+    @submit.prevent="handleSubmit"
   >
     <nav class="actions">
       <ButtonComponent styles="fill login-social font-normal" full-width>
@@ -86,6 +87,11 @@ import ButtonComponent from '@components/ButtonComponent.vue';
 import GoogleBrand from '@@utils/GoogleBrandIcon.vue';
 import { mdiEye } from '@mdi/js';
 import attributes from '@@shared/commonInputFieldsAttributes';
+
+function handleSubmit({ target: form }) {
+  const { fullname, username, email, password, confirm_password } = Object.fromEntries(new FormData(form));
+  console.log('data', { fullname, username, email, password, confirm_password });
+}
 </script>
 
 <style scoped lang="scss">

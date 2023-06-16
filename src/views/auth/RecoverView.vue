@@ -3,6 +3,7 @@
     title="Esqueceu sua senha?"
     description="Insira seu e-mail para receber o link de alteração"
     styles="expand"
+    @submit.prevent="handleSubmit"
   >
     <section class="fields">
       <TextInput
@@ -35,6 +36,11 @@ import TextInput from '@@forms/TextInput.vue';
 import ButtonComponent from '@components/ButtonComponent.vue';
 import { mdiEmail } from '@mdi/js';
 import attributes from '@@shared/commonInputFieldsAttributes';
+
+function handleSubmit({ target: form }) {
+  const { email } = Object.fromEntries(new FormData(form));
+  console.log('data', { email });
+}
 </script>
 
 <style scoped lang="scss">

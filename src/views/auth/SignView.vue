@@ -2,6 +2,7 @@
   <WrapperForm
     title="Acessa conta"
     description="comece hoje a escrever seu futuro"
+    @submit.prevent="handleSubmit"
   >
     <section class="fields">
       <TextInput
@@ -53,6 +54,11 @@ import ButtonComponent from '@components/ButtonComponent.vue';
 import GoogleBrand from '@@utils/GoogleBrandIcon.vue';
 import { mdiEye } from '@mdi/js';
 import attributes from '@@shared/commonInputFieldsAttributes';
+
+function handleSubmit({ target: form }) {
+  const { username, password } = Object.fromEntries(new FormData(form));
+  console.log('data', { username, password });
+}
 </script>
 
 <style scoped lang="scss">

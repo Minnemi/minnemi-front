@@ -2,6 +2,7 @@
   <WrapperForm
     title="Crie uma nova senha"
     description="Digite uma nova senha e volte a tela de acesso"
+    @submit.prevent="handleSubmit"
   >
     <section class="fields">
       <TextInput
@@ -47,6 +48,11 @@ import TextInput from '@@forms/TextInput.vue';
 import ButtonComponent from '@components/ButtonComponent.vue';
 import { mdiEye } from '@mdi/js';
 import attributes from '@@shared/commonInputFieldsAttributes';
+
+function handleSubmit({ target: form }) {
+  const { password, confirm_password } = Object.fromEntries(new FormData(form));
+  console.log('data', { password, confirm_password });
+}
 </script>
 
 <style scoped lang="scss">
