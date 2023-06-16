@@ -5,12 +5,14 @@ const fullname = {
   minLength: 3,
   maxLength: 35,
   required: true,
+  pattern: '[a-zA-ZÀ-ÿ ]+',
 };
 
 const username = {
   ...fullname,
-  placeholder: 'ada_lovelace 201',
+  placeholder: 'ada_lovelace_201',
   name: 'username',
+  pattern: '[a-zA-Z0-9_]+',
 };
 
 const email = {
