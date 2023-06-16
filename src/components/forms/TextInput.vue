@@ -58,8 +58,9 @@ function resetField() {
   if (props.resetFieldOnInput) {
     const fieldToReset = document.getElementsByName(props.resetFieldOnInput)[0];
 
-    if (fieldToReset) {
+    if (fieldToReset && fieldToReset.value !== fieldToReset.defaultValue) {
       fieldToReset.value = fieldToReset.defaultValue;
+      fieldToReset.dispatchEvent(new Event('input'));
     }
   }
 }
