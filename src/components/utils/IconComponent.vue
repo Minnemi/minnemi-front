@@ -3,11 +3,14 @@
 </template>
 
 <script setup>
-import SvgIcon from "@jamescoyle/vue-icon";
+import SvgIcon from '@jamescoyle/vue-icon';
 
 defineProps({
   path: String,
-  size: Number,
+  size: {
+    type: [String, Number],
+    default: 32,
+  },
   color: String,
 });
 </script>
