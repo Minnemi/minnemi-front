@@ -5,17 +5,17 @@
 </template>
 
 <script setup>
-import { mdiPalette } from '@mdi/js'
-import IconComponent from '../utils/IconComponent.vue'
+import { mdiPalette } from '@mdi/js';
+import IconComponent from '../utils/IconComponent.vue';
 import { onMounted, reactive } from 'vue';
 import { useAppStore } from '../../stores/appStore';
 
-const appStore = useAppStore()
+const appStore = useAppStore();
 
 const state = reactive({
   themeSelected: null,
-  themes: ['minnemi', 'light', 'dark']
-})
+  themes: ['minnemi', 'light', 'dark'],
+});
 
 const changeTheme = () => {
   state.themeSelected++;
@@ -25,18 +25,16 @@ const changeTheme = () => {
   }
 
   appStore.setTheme(state.themes[state.themeSelected]);
-}
+};
 
-onMounted(() => state.themeSelected = state.themes.indexOf(appStore.getTheme))
+onMounted(
+  () => (state.themeSelected = state.themes.indexOf(appStore.getTheme)),
+);
 </script>
 
 <style module></style>
 
 <style scoped>
-button {
-  transition: all .7s ease;
-}
-
 button:hover {
   color: var(--red-200);
 }
