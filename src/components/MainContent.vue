@@ -1,12 +1,9 @@
 <template>
   <main>
     <RouterView name="app"></RouterView>
-    <ChangeThemeComponent></ChangeThemeComponent>
   </main>
 </template>
 
-<script setup>
-import ChangeThemeComponent from './utils/ChangeThemeComponent.vue';
-</script>
+<script setup></script>
 
 <style scoped></style>
