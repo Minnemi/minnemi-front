@@ -73,17 +73,33 @@ onMounted(() => {
   }
 }
 
-.text-start {
-  justify-content: flex-start;
-}
+.text {
+  &-start {
+    justify-content: flex-start;
+  }
 
-.text-end {
-  justify-content: flex-end;
+  &-end {
+    justify-content: flex-end;
+  }
 }
 
 .small {
   padding: .25rem 1rem;
   font-size: .75rem;
+}
+
+.font {
+  &-small {
+    font-size: .75rem;
+  }
+
+  &-normal {
+    font-size: 1rem;
+  }
+
+  &-large {
+    font-size: 1.25rem;
+  }
 }
 
 .rounded {

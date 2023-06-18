@@ -21,6 +21,8 @@
   --checkbox-background-color:          var(--indigo-500);
   --checkbox-border-color-checked:      var(--indigo-700);
   --checkbox-background-color-checked:  var(--indigo-700);
+
+  --default-user-picture: url('/images/default-user-picture-indigo.svg');
 }
 
 @mixin theme-light {
@@ -30,7 +32,6 @@
   --input-background-color:     var(--light-100);
   --elements-background-color:  var(--light-100);
   --page-background-color:      var(--gray-100);
-
 
   --login-field-color:                    var(--indigo-300);
   --login-field-color-hover:              var(--indigo-500);
@@ -47,6 +48,8 @@
   --checkbox-background-color:          var(--indigo-100);
   --checkbox-border-color-checked:      var(--indigo-500);
   --checkbox-background-color-checked:  var(--indigo-500);
+
+  --default-user-picture: url('/images/default-user-picture-indigo.svg');
 }
 
 @mixin theme-dark {
@@ -56,7 +59,6 @@
   --input-background-color:     var(--gray-500);
   --elements-background-color:  var(--gray-600);
   --page-background-color:      var(--gray-700);
-
 
   --login-field-color:                    var(--gray-400);
   --login-field-color-hover:              var(--gray-500);
@@ -73,4 +75,6 @@
   --checkbox-background-color:          var(--gray-500);
   --checkbox-border-color-checked:      var(--gray-700);
   --checkbox-background-color-checked:  var(--gray-700);
+
+  --default-user-picture: url('/images/default-user-picture-gray.svg');
 }
