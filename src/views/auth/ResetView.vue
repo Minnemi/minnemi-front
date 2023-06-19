@@ -45,7 +45,7 @@
 <script setup>
 import WrapperForm from '@@forms/WrapperForm.vue';
 import TextInput from '@@forms/TextInput.vue';
-import ButtonComponent from '@components/ButtonComponent.vue';
+import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import { mdiEye } from '@mdi/js';
 import attributes from '@@shared/commonInputFieldsAttributes';
 

@@ -1,11 +1,5 @@
 <template>
-  <button
-    ref="button"
-    :type="type || 'button'"
-    class="button"
-    :class="styles"
-    :onclick="onclick"
-  >
+  <button ref="button" :type="type || 'button'" class="button" :class="styles">
     <slot name="start"></slot>
 
     <span class="text">
@@ -25,7 +19,6 @@ const props = defineProps({
   styles: String,
   width: String,
   fullWidth: Boolean,
-  onclick: () => {},
 });
 
 function setButtonStyles() {

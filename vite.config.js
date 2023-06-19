@@ -19,6 +19,7 @@ export default defineConfig({
       '@@utils': fullPath('./src/components/utils'),
       '@@lib': fullPath('./src/lib'),
       '@@shared': fullPath('./src/shared'),
+      '@@stores': fullPath('./src/stores'),
     }
   },
   css: {
