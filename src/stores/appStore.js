@@ -1,4 +1,4 @@
-import { useBase64, useColorMode, useLocalStorage } from '@vueuse/core';
+import { useColorMode, useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import { computed, watch } from 'vue';
 
@@ -21,7 +21,7 @@ export const useAppStore = defineStore('app', () => {
     modes: {
       minnemi: 'minnemi',
     },
-    storageKey: null
+    storageKey: null,
   });
 
   watch(getTheme, (theme) => (colorMode.value = theme));
