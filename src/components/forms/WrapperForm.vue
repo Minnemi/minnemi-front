@@ -26,12 +26,13 @@ defineProps({
   },
 });
 
-function validateFirstField() {
-  const input = document.querySelector('input[required]') || null;
+function dispatch(input) {
+  input && input.dispatchEvent(new Event('input'));
+}
 
-  if (input) {
-    input.dispatchEvent(new Event('input'));
-  }
+function validateFirstField() {
+  const inputs = document.querySelectorAll('input[required]') || [];
+  inputs.forEach(input => dispatch(input));
 }
 
 onMounted(() => {
