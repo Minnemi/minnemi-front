@@ -1,7 +1,7 @@
 const patternsDescription = {
   fullname: 'caracteres minúsculos, maiúsculos e letras com acentos',
   username: 'caracteres minúsculos, maiúsculos e números, use "_" ao invés de espaço em branco " "',
-  email: 'um formato de e-mail válido (ex: email@exaple.com).',
+  email: 'um formato de e-mail válido (ex: email@exaple.com)',
   password: 'caracteres minúsculos, maiúsculos e símbolos',
 };
 
