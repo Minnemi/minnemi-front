@@ -39,6 +39,7 @@ const password = {
   placeholder: '********',
   minLength: 8,
   maxLength: 35,
+  pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\W).*$',
   required: true,
   'data-accepted-chars': patternsDescription.password,
 };
