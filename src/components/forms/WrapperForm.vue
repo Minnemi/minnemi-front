@@ -28,6 +28,7 @@ defineProps({
 
 function dispatch(input) {
   input && input.dispatchEvent(new Event('input'));
+  input && (input.title = '');
 }
 
 function validateRequiredFields() {

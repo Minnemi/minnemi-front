@@ -33,6 +33,11 @@ button {
   transition: color .25s;
 }
 
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
 hr {
   margin: 0 auto;
   max-width: 70%;
