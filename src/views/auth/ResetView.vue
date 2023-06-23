@@ -57,7 +57,7 @@
 
     <template v-slot:extra>
       <ButtonComponent @click="closeNotify">
-        <u>Fechar agora</u> ou fechar em {{ notifyTimer }}s ou
+        <u>Fechar agora</u>. Fechar em {{ notifyTimer }}s
       </ButtonComponent>
     </template>
   </NotifyComponent>

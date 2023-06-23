@@ -43,7 +43,8 @@
 
     <template v-slot:message>
       <span v-if="notifyType === 'success'">
-        E-mail enviado para "{{ notifyEmail }}". Confira sua caixa de entrada e spam.
+        E-mail enviado para "{{ notifyEmail }}".
+        Confira sua caixa de entrada e spam.
       </span>
 
       <span v-if="notifyType === 'error'">
@@ -54,7 +55,7 @@
 
     <template v-slot:extra>
       <ButtonComponent @click="closeNotify">
-        <u>Fechar agora</u> ou fechar em {{ notifyTimer }}s ou
+        <u>Fechar agora</u>. Fechar em {{ notifyTimer }}s
       </ButtonComponent>
     </template>
   </NotifyComponent>
