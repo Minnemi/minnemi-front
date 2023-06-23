@@ -69,14 +69,18 @@ function resetField() {
 function execCheckValidity(msg = '') {
   inputRef.value.setCustomValidity(msg);
 
+  const buttonSubmitForm = document.querySelector('[data-submit-form]') || null;
+
   if (!inputRef.value.checkValidity()) {
     inputBoxRef.value.classList.add('error');
     errorMessage.value = inputRef.value.validationMessage;
+    buttonSubmitForm && buttonSubmitForm.setAttribute('disabled', true);
     return;
   }
 
   inputBoxRef.value.classList.remove('error');
   errorMessage.value = '';
+  buttonSubmitForm && buttonSubmitForm.removeAttribute('disabled');
 }
 
 function validation() {
