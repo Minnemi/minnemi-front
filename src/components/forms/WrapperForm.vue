@@ -1,5 +1,5 @@
 <template>
-  <form class="form" :class="styles" method="post" autocomplete="off" @keyup="handleClick">
+  <form class="form" :class="styles" method="post" autocomplete="off">
     <div class="header">
       <h2 class="title">{{ title }}</h2>
       <p class="description">{{ description }}</p>
