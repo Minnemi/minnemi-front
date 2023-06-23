@@ -12,6 +12,8 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
+
 defineProps({
   title: {
     type: String,
@@ -22,6 +24,18 @@ defineProps({
     type: String,
     default: ''
   },
+});
+
+function validateFirstField() {
+  const input = document.querySelector('input[required]') || null;
+
+  if (input) {
+    input.dispatchEvent(new Event('input'));
+  }
+}
+
+onMounted(() => {
+  validateFirstField();
 });
 </script>
 
