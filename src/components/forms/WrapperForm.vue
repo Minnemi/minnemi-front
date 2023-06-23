@@ -1,5 +1,5 @@
 <template>
-  <form class="form" :class="styles" method="post" autocomplete="off">
+  <form class="form" :class="styles" method="post" autocomplete="off" @keyup="handleClick">
     <div class="header">
       <h2 class="title">{{ title }}</h2>
       <p class="description">{{ description }}</p>
@@ -30,13 +30,17 @@ function dispatch(input) {
   input && input.dispatchEvent(new Event('input'));
 }
 
-function validateFirstField() {
+function validateRequiredFields() {
   const inputs = document.querySelectorAll('input[required]') || [];
   inputs.forEach(input => dispatch(input));
 }
 
+function handleClick() {
+  validateRequiredFields();
+}
+
 onMounted(() => {
-  validateFirstField();
+  validateRequiredFields();
 });
 </script>
 
