@@ -13,10 +13,10 @@ Point.prototype.update = function() {
   this.y = this.fixedY + (Math.sin(this.currentPoint) * this.max);
 };
 
-function Wave(index, {totalPoints, speed, gradColor}) {
+function Wave(index, {totalPoints, speed, solidColor, gradColor}) {
   this.index = index;
   this.totalPoints = totalPoints;
-  this.color = gradColor;
+  this.color = solidColor || gradColor;
   this.speed = speed / 1000;
   this.points = [];
 }
@@ -40,14 +40,19 @@ Wave.prototype.init = function(speed) {
 };
 
 Wave.prototype.draw = function(context) {
-  const gradient = context.createLinearGradient(0, 0, this.stageWidth, 0);
-
-  for (let i = 0; i < this.color.length; i++) {
-    gradient.addColorStop(this.color[i].offset, this.color[i].color);
-  }
+  let gradientColor;
 
   context.beginPath();
-  context.fillStyle = gradient;
+
+  if (Array.isArray(this.color)) {
+    gradientColor = context.createLinearGradient(0, 0, this.stageWidth, 0);
+
+    for (let i = 0; i < this.color.length; i++) {
+      gradientColor.addColorStop(this.color[i].offset, this.color[i].color);
+    }
+  }
+
+  context.fillStyle = gradientColor || this.color;
 
   let prevX = this.points[0].x;
   let prevY = this.points[0].y;
@@ -75,8 +80,8 @@ Wave.prototype.draw = function(context) {
   context.closePath();
 };
 
-function WaveGroup() {
-  this.wavesConfig = [
+function WaveGroup(receivedConfigs) {
+  this.wavesConfig = receivedConfigs || [
     {
       speed: 3,
       totalPoints: 7,
@@ -126,8 +131,26 @@ WaveGroup.prototype.draw = function(context) {
 /**
  *
  * @param {Boolean} enableAnim
+ * Ativa ou desativa a animcação da onda
+ * @param {{
+ *  speed: number,
+ *  totalPoints: number,
+ *  solidColor: string,
+ *  solidColor?: string,
+ *  gradColor?: [
+ *    {
+ *      offset: number,
+ *      color: string,
+ *    },
+ *    {
+ *      offset: number,
+ *      color: string,
+ *    }
+ *  ],
+ * }} config
+ * Se "solidColor" e "gradientColor" existirem, "gradientColor" sobrescreve o valor de "solidColor"
  */
-function Main(enableAnim = false) {
+function Main(enableAnim = false, config = null) {
   this.enableAnim = enableAnim;
   this.anchor = document.body;
   this.canvas = document.getElementById('g-wave-canvas') || document.createElement('canvas');
@@ -136,7 +159,7 @@ function Main(enableAnim = false) {
   this.context = this.canvas.getContext('2d');
   this.anchor.appendChild(this.canvas);
 
-  this.wavegroup = new WaveGroup();
+  this.wavegroup = new WaveGroup(config);
 
   window.addEventListener('resize', this.resize.bind(this));
   this.resize();
