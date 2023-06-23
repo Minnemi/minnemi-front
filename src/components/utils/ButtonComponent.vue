@@ -61,11 +61,6 @@ onMounted(() => {
   overflow: hidden;
 
   transition: background-color .2s ease, border-color .2s ease;
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: .5;
-  }
 }
 
 .simple {

@@ -35,10 +35,6 @@ function validateRequiredFields() {
   inputs.forEach(input => dispatch(input));
 }
 
-function handleClick() {
-  validateRequiredFields();
-}
-
 onMounted(() => {
   validateRequiredFields();
 });
