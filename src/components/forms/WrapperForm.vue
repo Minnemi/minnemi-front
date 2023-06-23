@@ -49,15 +49,6 @@ defineProps({
   }
 }
 
-@keyframes g-show-expand {
-  50% {
-    transform: scale(1.01);
-  }
-  0%, 100% {
-    transform: scale(1);
-  }
-}
-
 .header {
   text-align: center;
 }
