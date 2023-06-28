@@ -54,7 +54,7 @@
     </section>
 
     <nav class="actions">
-      <ButtonComponent type="submit" styles="fill font-normal" full-width>
+      <ButtonComponent type="submit" data-submit-form disabled styles="fill font-normal" full-width>
         Criar conta
       </ButtonComponent>
 
@@ -78,6 +78,27 @@
       </RouterLink>
     </nav>
   </WrapperForm>
+
+  <NotifyComponent v-if="notifyType === 'success' || notifyType === 'error'">
+    <template v-slot:title>
+      <div v-if="notifyType === 'error'" class="notifyTitle">
+        <svg-icon type="mdi" size="2rem" :path="mdiAlertCircle" />
+        Erro ao tentar criar conta!
+      </div>
+    </template>
+
+    <template v-slot:message>
+      <span v-if="notifyType === 'error'">
+        {{ notifyError }}
+      </span>
+    </template>
+
+    <template v-slot:extra>
+      <ButtonComponent @click="closeNotify">
+        <u>Fechar agora</u>. Fechar em {{ notifyTimer }}s
+      </ButtonComponent>
+    </template>
+  </NotifyComponent>
 </template>
 
 <script setup>
@@ -85,12 +106,42 @@ import WrapperForm from '@@forms/WrapperForm.vue';
 import TextInput from '@@forms/TextInput.vue';
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import GoogleBrand from '@@utils/GoogleBrandIcon.vue';
-import { mdiEye } from '@mdi/js';
+import NotifyComponent from '@@utils/NotifyComponent.vue';
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiEye, mdiAlertCircle } from '@mdi/js';
 import attributes from '@@shared/commonInputFieldsAttributes';
+import { ref } from 'vue';
+
+const notifyType = ref('');
+const notifyError = ref('');
+const notifyTimer = ref(7);
+const notifyInterval = ref(setInterval);
+
+function closeNotify() {
+  clearInterval(notifyInterval.value);
+  notifyTimer.value = 7;
+  notifyType.value = 'close';
+}
 
 function handleSubmit({ target: form }) {
   const { fullname, username, email, password, confirm_password } = Object.fromEntries(new FormData(form));
-  console.log('data', { fullname, username, email, password, confirm_password });
+  console.log('Dados que serão enviados ao servidor:', { fullname, username, email, password, confirm_password });
+
+  try {
+    throw new Error('Erro ao tentar se conectar com o servidor');
+  } catch (error) {
+    notifyType.value = 'error';
+    notifyError.value = error.message;
+    notifyTimer.value += 5;
+  }
+
+  notifyInterval.value = setInterval(() => {
+    notifyTimer.value -= 1;
+
+    if (notifyTimer.value <= 0) {
+      closeNotify();
+    }
+  }, 1000);
 }
 </script>
 
@@ -147,5 +198,12 @@ function handleSubmit({ target: form }) {
 
 .split {
   text-align: center;
+}
+
+.notifyTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 </style>

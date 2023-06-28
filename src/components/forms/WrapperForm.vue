@@ -12,6 +12,8 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
+
 defineProps({
   title: {
     type: String,
@@ -22,6 +24,20 @@ defineProps({
     type: String,
     default: ''
   },
+});
+
+function dispatch(input) {
+  input && input.dispatchEvent(new Event('input'));
+  input && (input.title = '');
+}
+
+function validateRequiredFields() {
+  const inputs = document.querySelectorAll('input[required]') || [];
+  inputs.forEach(input => dispatch(input));
+}
+
+onMounted(() => {
+  validateRequiredFields();
 });
 </script>
 
@@ -46,15 +62,6 @@ defineProps({
 
   &.expand {
     width: 600px;
-  }
-}
-
-@keyframes g-show-expand {
-  50% {
-    transform: scale(1.01);
-  }
-  0%, 100% {
-    transform: scale(1);
   }
 }
 

@@ -1,3 +1,10 @@
+const patternsDescription = {
+  fullname: 'caracteres minúsculos, maiúsculos e letras com acentos',
+  username: 'caracteres minúsculos, maiúsculos e números, use "_" ao invés de espaço em branco " "',
+  email: 'um formato de e-mail válido (ex: email@exaple.com)',
+  password: 'caracteres minúsculos, maiúsculos e símbolos',
+};
+
 const fullname = {
   type: 'text',
   name: 'fullname',
@@ -6,6 +13,7 @@ const fullname = {
   maxLength: 35,
   required: true,
   pattern: '[a-zA-ZÀ-ÿ ]+',
+  'data-accepted-chars': patternsDescription.fullname,
 };
 
 const username = {
@@ -13,6 +21,7 @@ const username = {
   placeholder: 'ada_lovelace_201',
   name: 'username',
   pattern: '[a-zA-Z0-9_]+',
+  'data-accepted-chars': patternsDescription.username,
 };
 
 const email = {
@@ -21,6 +30,7 @@ const email = {
   placeholder: 'adalovelace201@gmail.com',
   minLength: 3,
   required: true,
+  'data-accepted-chars': patternsDescription.email,
 };
 
 const password = {
@@ -29,7 +39,9 @@ const password = {
   placeholder: '********',
   minLength: 8,
   maxLength: 35,
+  pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\W).*$',
   required: true,
+  'data-accepted-chars': patternsDescription.password,
 };
 
 const confirmPassword = {

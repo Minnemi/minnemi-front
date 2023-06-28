@@ -33,6 +33,11 @@ button {
   transition: color .25s;
 }
 
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
 hr {
   margin: 0 auto;
   max-width: 70%;
@@ -50,4 +55,22 @@ hr {
   max-width: 100%;
   width: 100%;
   height: 300px;
+}
+
+@keyframes g-show-expand {
+  50% {
+    transform: scale(1.01);
+  }
+  0%, 100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes g-show-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
