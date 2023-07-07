@@ -10,7 +10,6 @@
         :attributes="attributes.password"
         :icon="mdiEye"
         :enableButton="true"
-        :resetFieldOnInput="attributes.confirmPassword.name"
         :focus="true"
       />
 
@@ -27,7 +26,7 @@
     </section>
 
     <nav class="actions">
-      <ButtonComponent type="submit" data-submit-form disabled styles="fill font-normal" full-width>
+      <ButtonComponent type="submit" data-submit-form styles="fill font-normal" full-width>
         Alterar
       </ButtonComponent>
     </nav>

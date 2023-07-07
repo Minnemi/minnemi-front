@@ -15,7 +15,7 @@
     </section>
 
     <nav class="actions">
-      <ButtonComponent type="submit" data-submit-form disabled styles="fill font-normal" full-width>
+      <ButtonComponent type="submit" data-submit-form styles="fill font-normal" full-width>
         Enviar
       </ButtonComponent>
     </nav>
