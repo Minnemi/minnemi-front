@@ -1,7 +1,7 @@
 <template>
   <label class="label">
     <div class="describe">
-      {{ label }}
+      {{ label }} <span v-if="attributes.required">*</span>
     </div>
 
     <textarea ref="textareaRef" class="textarea" @input="handleInput"></textarea>
@@ -11,38 +11,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 
 const textareaRef = ref(null);
 const errorMessage = ref('');
-const props = defineProps({
+defineProps({
   label: String,
   attributes: Object,
-});
-
-function insertAttributesIntoInputElement(attributes) {
-  for (const attr in attributes) {
-    textareaRef.value.setAttribute(attr, attributes[attr]);
-  }
-}
-
-function validation() {
-  if (textareaRef.value.checkValidity()) {
-    textareaRef.value.classList.remove('error');
-    errorMessage.value = '';
-    return;
-  }
-
-  textareaRef.value.classList.add('error');
-  errorMessage.value = textareaRef.value.validationMessage;
-}
-
-function handleInput() {
-  validation();
-}
-
-onMounted(() => {
-  insertAttributesIntoInputElement(props.attributes);
 });
 </script>
 
@@ -74,16 +49,13 @@ onMounted(() => {
   border: 2px solid var(--login-field-border-color);
   background-color: var(--login-field-background-color);
 
-  &.error {
-    outline: solid var(--red-200);
-  }
-
   &::placeholder {
     color: var(--login-field-color);
   }
 }
 
 .message {
+  display: none;
   padding: 0 .5rem;
   width: 100%;
   font-size: .8rem;
