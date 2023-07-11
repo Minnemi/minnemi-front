@@ -1,7 +1,7 @@
 <template>
   <label class="label">
     <div class="describe">
-      {{ label }}
+      {{ label }} <span v-if="attributes.required">*</span>
     </div>
 
     <div ref="inputBoxRef" class="input">
@@ -10,6 +10,7 @@
         class="input-field"
         :data-compare-name="compareField?.name"
         :data-compare-label="compareField?.label"
+        @input="handleInput"
       />
 
       <button
@@ -30,6 +31,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import SvgIcon from '@jamescoyle/vue-icon';
+import { describeError } from '@@shared/inputErrorsMessages';
 
 const inputBoxRef = ref(null);
 const inputRef = ref(null);
@@ -70,9 +72,78 @@ function autoFocus(enable) {
   }
 }
 
+function resetMessageError() {
+  if (inputRef.value.required) {
+    return inputRef.value.setCustomValidity(describeError.required());
+  }
+
+  return inputRef.value.setCustomValidity('');
+}
+
+function execCheckValidity(msg = '') {
+  inputRef.value.setCustomValidity(msg);
+
+  if (!inputRef.value.checkValidity()) {
+    inputBoxRef.value.classList.add('error');
+    errorMessage.value = inputRef.value.validationMessage;
+    return;
+  }
+
+  inputBoxRef.value.classList.remove('error');
+  errorMessage.value = '';
+}
+
+function validation() {
+  if (props.compareField) {
+    const compareFieldValue = document.getElementsByName(
+      props.compareField.name,
+    )[0].value;
+
+    let msg;
+
+    if (compareFieldValue !== inputRef.value.value) {
+      msg = describeError.mustBeEquals(props.compareField.label);
+    }
+
+    return execCheckValidity(msg);
+  }
+
+  const validity = inputRef.value.validity;
+
+  if (
+    validity.patternMismatch ||
+    validity.typeMismatch
+  ) {
+    const msg = describeError.pattern(inputRef.value.dataset.acceptedChars);
+    return execCheckValidity(msg);
+  }
+
+  if (validity.valueMissing) {
+    const msg = describeError.required();
+    return execCheckValidity(msg);
+  }
+
+  if (validity.tooShort) {
+    const msg = describeError.minLength(inputRef.value.minLength);
+    return execCheckValidity(msg);
+  }
+
+  if (validity.tooLong) {
+    const msg = describeError.maxLength(inputRef.value.maxLength);
+    return execCheckValidity(msg);
+  }
+
+  execCheckValidity('');
+}
+
+function handleInput() {
+  validation();
+}
+
 onMounted(() => {
   insertAttributesIntoInputElement(props.attributes);
   autoFocus(props.focus);
+  resetMessageError();
 });
 </script>
 
@@ -99,10 +170,6 @@ onMounted(() => {
   border-radius: 9px;
   border: 2px solid var(--login-field-border-color);
   background-color: var(--login-field-background-color);
-
-  &.error {
-    border-color: var(--red-200);
-  }
 
   &-field,
   &-button {
@@ -162,6 +229,7 @@ onMounted(() => {
 }
 
 .message {
+  display: none;
   padding: 0 0.5rem;
   width: 100%;
   font-size: 0.8rem;
