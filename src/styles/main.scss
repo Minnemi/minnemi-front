@@ -57,6 +57,14 @@ hr {
   height: 300px;
 }
 
+.g-form-error .error {
+  border-color: var(--red-200)!important;
+
+  ~ .message {
+    display: block;
+  }
+}
+
 @keyframes g-show-expand {
   50% {
     transform: scale(1.01);

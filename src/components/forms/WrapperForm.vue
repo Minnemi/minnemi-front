@@ -1,5 +1,12 @@
 <template>
-  <form class="form" :class="styles" method="post" autocomplete="off">
+  <form
+    ref="formElement"
+    class="form"
+    :class="styles"
+    method="post"
+    autocomplete="off"
+    @submit.prevent="handleSubmit"
+  >
     <div class="header">
       <h2 class="title">{{ title }}</h2>
       <p class="description">{{ description }}</p>
@@ -12,8 +19,9 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 
+const formElement = ref(null);
 defineProps({
   title: {
     type: String,
@@ -26,18 +34,24 @@ defineProps({
   },
 });
 
-function dispatch(input) {
-  input && input.dispatchEvent(new Event('input'));
-  input && (input.title = '');
+function handleSubmit(event) {
+  console.log(event);
 }
 
-function validateRequiredFields() {
-  const inputs = document.querySelectorAll('input[required]') || [];
-  inputs.forEach(input => dispatch(input));
+function triggerSubmitButton() {
+  if (!formElement.value) return;
+
+  const submitButton = formElement.value.querySelector('button[type=submit]');
+
+  if (!submitButton) return;
+
+  submitButton.addEventListener('click', () => {
+    formElement.value.classList.add('g-form-error');
+  });
 }
 
 onMounted(() => {
-  validateRequiredFields();
+  triggerSubmitButton();
 });
 </script>
 

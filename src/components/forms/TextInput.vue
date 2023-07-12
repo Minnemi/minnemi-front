@@ -1,11 +1,17 @@
 <template>
   <label class="label">
     <div class="describe">
-      {{ label }}
+      {{ label }} <span v-if="attributes.required">*</span>
     </div>
 
     <div ref="inputBoxRef" class="input">
-      <input ref="inputRef" class="input-field" @input="handleInput" />
+      <input
+        ref="inputRef"
+        class="input-field"
+        :data-compare-name="compareField?.name"
+        :data-compare-label="compareField?.label"
+        @input="handleInput"
+      />
 
       <button
         type="button"
@@ -25,7 +31,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import SvgIcon from '@jamescoyle/vue-icon';
-import { describeError } from '@@shared/inputErrorsMessages.js';
+import { describeError } from '@@shared/inputErrorsMessages';
 
 const inputBoxRef = ref(null);
 const inputRef = ref(null);
@@ -47,7 +53,6 @@ const props = defineProps({
     default: false,
   },
   focus: Boolean,
-  resetFieldOnInput: String,
   compareField: Object,
 });
 
@@ -55,32 +60,37 @@ function handleClick() {
   inputRef.value.type = inputRef.value.type === 'password' ? 'text' : 'password';
 }
 
-function resetField() {
-  if (props.resetFieldOnInput) {
-    const fieldToReset = document.getElementsByName(props.resetFieldOnInput)[0];
-
-    if (fieldToReset && fieldToReset.value !== fieldToReset.defaultValue) {
-      fieldToReset.value = fieldToReset.defaultValue;
-      fieldToReset.dispatchEvent(new Event('input'));
-    }
+function insertAttributesIntoInputElement(attributes) {
+  for (const attr in attributes) {
+    inputRef.value.setAttribute(attr, attributes[attr]);
   }
+}
+
+function autoFocus(enable) {
+  if (enable) {
+    inputRef.value.focus();
+  }
+}
+
+function resetMessageError() {
+  if (inputRef.value.required) {
+    return inputRef.value.setCustomValidity(describeError.required());
+  }
+
+  return inputRef.value.setCustomValidity('');
 }
 
 function execCheckValidity(msg = '') {
   inputRef.value.setCustomValidity(msg);
 
-  const buttonSubmitForm = document.querySelector('[data-submit-form]') || null;
-
   if (!inputRef.value.checkValidity()) {
     inputBoxRef.value.classList.add('error');
     errorMessage.value = inputRef.value.validationMessage;
-    buttonSubmitForm && buttonSubmitForm.setAttribute('disabled', true);
     return;
   }
 
   inputBoxRef.value.classList.remove('error');
   errorMessage.value = '';
-  buttonSubmitForm && buttonSubmitForm.removeAttribute('disabled');
 }
 
 function validation() {
@@ -127,25 +137,13 @@ function validation() {
 }
 
 function handleInput() {
-  resetField();
   validation();
-}
-
-function insertAttributesIntoInputElement(attributes) {
-  for (const attr in attributes) {
-    inputRef.value.setAttribute(attr, attributes[attr]);
-  }
-}
-
-function autoFocus(enable) {
-  if (enable) {
-    inputRef.value.focus();
-  }
 }
 
 onMounted(() => {
   insertAttributesIntoInputElement(props.attributes);
   autoFocus(props.focus);
+  resetMessageError();
 });
 </script>
 
@@ -172,10 +170,6 @@ onMounted(() => {
   border-radius: 9px;
   border: 2px solid var(--login-field-border-color);
   background-color: var(--login-field-background-color);
-
-  &.error {
-    border-color: var(--red-200);
-  }
 
   &-field,
   &-button {
@@ -235,6 +229,7 @@ onMounted(() => {
 }
 
 .message {
+  display: none;
   padding: 0 0.5rem;
   width: 100%;
   font-size: 0.8rem;
