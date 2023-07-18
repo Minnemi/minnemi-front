@@ -1,5 +1,5 @@
 <template>
-  <div
+  <aside
     class="sidebar"
     :class="{ 'sidebar--expanded': isSidebarExpanded }"
     @mouseenter="expandSidebar()"
@@ -16,19 +16,6 @@
       </div>
       <div class="sidebar-divisor"></div>
 
-      <ul v-if="!isSidebarExpanded">
-        <li>
-          <IconComponent class="sidebar-icon" :path="mdiEmail" :size="40" />
-        </li>
-      </ul>
-
-      <ul v-else>
-        <li>
-          <IconComponent class="sidebar-icon" :path="mdiEmail" :size="40" />
-          <span>Minhas Cartas</span>
-        </li>
-      </ul>
-
       <ButtonComponentVue fullWidth :styles="sidebarStatus + ' slidebar'">
         <template v-slot:start>
           <IconComponent class="sidebar-icon" :path="mdiEmail" :size="40" />
@@ -39,44 +26,31 @@
     </div>
     <!-- //sidebar footer -->
     <div>
-      <ul v-if="!isSidebarExpanded">
-        <li>
+      <ButtonComponentVue fullWidth :styles="sidebarStatus + ' slidebar'">
+        <template v-slot:start>
           <IconComponent
             class="sidebar-icon"
             :path="mdiBrightness7"
             :size="40"
           />
-        </li>
-        <li>
+        </template>
+
+        Alterar Tema
+      </ButtonComponentVue>
+
+      <ButtonComponentVue fullWidth :styles="sidebarStatus + ' slidebar'">
+        <template v-slot:start>
           <IconComponent
             class="sidebar-icon"
             :path="mdiLogoutVariant"
             :size="40"
           />
-        </li>
-      </ul>
+        </template>
 
-      <ul v-else>
-        <li>
-          <IconComponent
-            class="sidebar-icon"
-            :path="mdiBrightness7"
-            :size="40"
-          />
-          <span>Alterar Tema</span>
-        </li>
-        <li>
-          <IconComponent
-            class="sidebar-icon"
-            :path="mdiLogoutVariant"
-            :size="40"
-          />
-
-          <span>Sair</span>
-        </li>
-      </ul>
+        Logout
+      </ButtonComponentVue>
     </div>
-  </div>
+  </aside>
 </template>
 
 <script setup>
@@ -113,61 +87,11 @@ function closeExpandedSidebar() {
   height: 100vh;
   padding: 1rem 1rem;
 
-  background: white;
+  background: var(--elements-background-color);
 
   overflow: hidden;
 
   transition: all 0.3s ease;
-
-  ul {
-    margin-top: 1.5rem;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-
-    gap: 10px;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
-
-    padding: 0.4rem;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    span {
-      font-weight: 500;
-      color: var(--red-200);
-    }
-  }
-
-  &-icon {
-    width: 40px;
-    height: 40px;
-    max-width: 40px;
-    max-height: 40px;
-    /* color: var(--red-200); */
-  }
-
-  li:hover &-icon {
-    color: white;
-  }
-
-  li:hover {
-    background: var(--red-200);
-    span {
-      color: white;
-    }
-  }
 
   &-logo-container {
     display: flex;
@@ -192,6 +116,8 @@ function closeExpandedSidebar() {
     background-color: #a5a7e3;
 
     border-radius: 1px;
+
+    margin-bottom: 1rem;
   }
 
   &--expanded {

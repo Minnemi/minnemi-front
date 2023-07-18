@@ -9,18 +9,15 @@ const verifyIsNotAuthenticated = (to, from, next) => {
 };
 
 const writeLetterRoute = createRoute(
-  '/app/write-letter',
+  'write-letter',
   import('@views/macro/WriteLetterView.vue'),
   'app',
-  {
-    beforeEnter: verifyIsNotAuthenticated,
-  },
 );
 
 const appRoute = createRoute(
   '/app',
-  import('@views/macro/AppView.vue'),
-  'app',
+  import('@components/layouts/AppLayout.vue'),
+  'default',
 
   {
     children: [writeLetterRoute],

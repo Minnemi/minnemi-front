@@ -23,5 +23,9 @@ onMounted(() => {
   padding: 3rem 0;
   width: 100%;
   min-height: 100vh;
+
+  & > :nth-child(1) {
+    flex: 1;
+  }
 }
 </style>

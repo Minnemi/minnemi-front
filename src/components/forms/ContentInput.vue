@@ -4,7 +4,11 @@
       {{ label }} <span v-if="attributes.required">*</span>
     </div>
 
-    <textarea ref="textareaRef" class="textarea" @input="handleInput"></textarea>
+    <textarea
+      ref="textareaRef"
+      class="textarea"
+      @input="handleInput"
+    ></textarea>
 
     <div class="message" :data-message="errorMessage"></div>
   </label>
@@ -27,7 +31,7 @@ defineProps({
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  gap: .5rem;
+  gap: 0.5rem;
   color: var(--text-principal);
 }
 
@@ -52,13 +56,14 @@ defineProps({
   &::placeholder {
     color: var(--login-field-color);
   }
+  resize: none;
 }
 
 .message {
   display: none;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   width: 100%;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: var(--red-200);
 
   &::after {

@@ -1,9 +1,10 @@
 <template>
-  <RouterView name="app"></RouterView>
+  <DefaultLayout />
 </template>
 
 <script setup>
-import './styles/main.scss';
+import '@/styles/main.scss';
+import DefaultLayout from '@components/layouts/DefaultLayout.vue';
 </script>
 
-<style lang="scss" scoped></style>
+<style></style>
