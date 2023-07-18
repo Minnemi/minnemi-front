@@ -1,7 +1,7 @@
 <template>
   <WrapperForm
-    title="Criar nova conta"
-    description="Comece hoje a escrever seu futuro"
+    :title="$t('registerPage.title')"
+    :description="$t('registerPage.description')"
     @submit.prevent="handleSubmit"
   >
     <nav class="actions">
@@ -10,38 +10,40 @@
           <GoogleBrand />
         </template>
 
-        Entrar com o Google
+        {{ $t('registerPage.button.google') }}
       </ButtonComponent>
 
-      <small class="split">ou</small>
+      <small class="split">
+        {{ $t('registerPage.splitter') }}
+      </small>
     </nav>
 
     <section class="fields">
       <TextInput
-        label="Nome completo"
+        :label="$t('formsLabels.fullname')"
         :attributes="attributes.fullname"
         :focus="true"
       />
 
       <TextInput
-        label="Nome de usuário"
+        :label="$t('formsLabels.username')"
         :attributes="attributes.username"
       />
 
       <TextInput
-        label="E-mail"
+        :label="$t('formsLabels.email')"
         :attributes="attributes.email"
       />
 
       <TextInput
-        label="Senha"
+        :label="$t('formsLabels.password')"
         :attributes="attributes.password"
         :icon="mdiEye"
         :enableButton="true"
       />
 
       <TextInput
-        label="Confirmar senha"
+        :label="$t('formsLabels.confirmPassword')"
         :attributes="attributes.confirmPassword"
         :icon="mdiEye"
         :enableButton="true"
@@ -54,17 +56,21 @@
 
     <nav class="actions">
       <ButtonComponent type="submit" data-submit-form styles="fill font-normal" full-width>
-        Criar conta
+        {{ $t('registerPage.button.submit') }}
       </ButtonComponent>
 
       <p class="warn">
-        Ao criar uma conta, você concorda com os nossos
+        {{ $t('registerPage.terms.phrase') }}
         <RouterLink to="/policies/usage">
-          <span>Termos de uso</span>
+          <span>
+            {{ $t('registerPage.terms.use') }}
+          </span>
         </RouterLink>
-        e
+        {{ $t('registerPage.terms.splitter') }}
         <RouterLink to="/policies/privacy">
-          <span>Políticas de Privacidade</span>
+          <span>
+            {{ $t('registerPage.terms.privacy') }}
+          </span>
         </RouterLink>
       </p>
     </nav>
@@ -73,7 +79,10 @@
 
     <nav class="extra-options">
       <RouterLink to="/auth/sign-in" class="link">
-        Já tem uma conta? <span>Acessar conta</span>
+        {{ $t('registerPage.redirect.login.first') }}
+        <span>
+          {{ $t('registerPage.redirect.login.last') }}
+        </span>
       </RouterLink>
     </nav>
   </WrapperForm>
@@ -82,7 +91,7 @@
     <template v-slot:title>
       <div v-if="notifyType === 'error'" class="notifyTitle">
         <svg-icon type="mdi" size="2rem" :path="mdiAlertCircle" />
-        Erro ao tentar criar conta!
+        {{ $t('registerPage.errorModal.title') }}
       </div>
     </template>
 
@@ -94,7 +103,9 @@
 
     <template v-slot:extra>
       <ButtonComponent @click="closeNotify">
-        <u>Fechar agora</u>. Fechar em {{ notifyTimer }}s
+        <u>
+          {{ $t('registerPage.errorModal.close.now') }}
+        </u>. {{ $t('registerPage.errorModal.close.in') }} {{ notifyTimer }}s
       </ButtonComponent>
     </template>
   </NotifyComponent>

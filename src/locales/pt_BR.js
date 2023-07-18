@@ -31,4 +31,32 @@ export default {
       },
     },
   },
+  registerPage: {
+    title: 'Criar nova conta',
+    description: 'Comece hoje a escrever seu futuro',
+    splitter: 'ou',
+    button: {
+      submit: 'Criar conta',
+      google: 'Entrar com o Google',
+    },
+    terms: {
+      phrase: 'Ao criar uma conta, você concorda com os nossos',
+      splitter: 'e',
+      use: 'Termos de uso',
+      privacy: 'Políticas de privacidade',
+    },
+    redirect: {
+      login: {
+        first: 'Já tem uma conta?',
+        last: 'Acessar conta',
+      },
+    },
+    errorModal: {
+      title: 'Erro ao tentar criar conta!',
+      close: {
+        now: 'Fechar agora',
+        in: 'Fechar em',
+      },
+    },
+  },
 };
