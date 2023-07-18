@@ -1,18 +1,18 @@
 <template>
   <WrapperForm
-    title="Acessa conta"
-    description="comece hoje a escrever seu futuro"
+    :title="$t('loginPage.title')"
+    :description="$t('loginPage.description')"
     @submit.prevent="handleSubmit"
   >
     <section class="fields">
       <TextInput
-        label="Nome de usuário"
+        :label="$t('formsLabels.username')"
         :attributes="attributes.username"
         :focus="true"
       />
 
       <TextInput
-        label="Senha"
+        :label="$t('formsLabels.password')"
         :attributes="attributes.password"
         :icon="mdiEye"
         :enableButton="true"
@@ -21,7 +21,7 @@
 
     <nav class="actions">
       <ButtonComponent type="submit" data-submit-form styles="fill font-normal" full-width>
-        Acessar conta
+        {{ $t('loginPage.button.submit') }}
       </ButtonComponent>
 
       <ButtonComponent styles="fill login-social font-normal" full-width>
@@ -29,7 +29,7 @@
           <GoogleBrand />
         </template>
 
-        Entrar com o Google
+        {{ $t('loginPage.button.google') }}
       </ButtonComponent>
     </nav>
 
@@ -37,11 +37,13 @@
 
     <nav class="extra-options">
       <RouterLink to="/auth/recover" class="link">
-        Esqueceu sua senha? <span>Recuperar conta</span>
+        {{ $t('loginPage.redirect.recover.first') }}
+        <span>{{ $t('loginPage.redirect.recover.last') }}</span>
       </RouterLink>
 
       <RouterLink to="/auth/register" class="link">
-        Ainda não tem uma conta? <span>Crie uma conta</span>
+        {{ $t('loginPage.redirect.register.first') }}
+        <span>{{ $t('loginPage.redirect.register.last') }}</span>
       </RouterLink>
     </nav>
   </WrapperForm>
@@ -50,7 +52,7 @@
     <template v-slot:title>
       <div v-if="notifyType === 'error'" class="notifyTitle">
         <svg-icon type="mdi" size="2rem" :path="mdiAlertCircle" />
-        Erro ao tentar acessar conta!
+        {{ $t('loginPage.errorModal.title') }}
       </div>
     </template>
 
@@ -62,7 +64,8 @@
 
     <template v-slot:extra>
       <ButtonComponent @click="closeNotify">
-        <u>Fechar agora</u>. Fechar em {{ notifyTimer }}s
+        <u>{{ $t('loginPage.errorModal.close.now') }}</u>.
+        {{ $t('loginPage.errorModal.close.in') }} {{ notifyTimer }}s
       </ButtonComponent>
     </template>
   </NotifyComponent>
