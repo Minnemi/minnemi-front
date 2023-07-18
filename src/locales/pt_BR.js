@@ -6,6 +6,35 @@ export default {
     password: 'Senha',
     confirmPassword: 'Confirmar senha',
   },
+  recoverPage: {
+    title: 'Esqueceu sua senha?',
+    description: 'Insira seu e-mail para receber o link de alteração',
+    button: {
+      submit: 'Enviar',
+    },
+    redirect: {
+      login: {
+        first: 'Lembrou sua senha?',
+        last: 'Acessar conta',
+      },
+    },
+    modal: {
+      success: {
+        title: 'E-mail enviado com sucesso!',
+        description: 'E-mail enviado para',
+        details: 'Confira sua caixa de entrada e spam',
+      },
+      error: {
+        title: 'E-mail não enviado!',
+        description: 'Erro ao tentar enviar um e-mail para',
+        details: 'Detalhes',
+      },
+      close: {
+        now: 'Fechar agora',
+        in: 'Fechar em',
+      },
+    },
+  },
   loginPage: {
     title: 'Acessar conta',
     description: 'Comece hoje a escrever seu futuro',
