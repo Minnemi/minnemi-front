@@ -28,6 +28,14 @@
           <span>Minhas Cartas</span>
         </li>
       </ul>
+
+      <ButtonComponentVue fullWidth :styles="sidebarStatus + ' slidebar'">
+        <template v-slot:start>
+          <IconComponent class="sidebar-icon" :path="mdiEmail" :size="40" />
+        </template>
+
+        Minhas Cartas
+      </ButtonComponentVue>
     </div>
     <!-- //sidebar footer -->
     <div>
@@ -75,42 +83,41 @@
 import { mdiEmail, mdiLogoutVariant, mdiBrightness7 } from '@mdi/js';
 import { ref } from 'vue';
 
+import ButtonComponentVue from '../utils/ButtonComponent.vue';
 import IconComponent from '@@utils/IconComponent.vue';
 
 const isSidebarExpanded = ref(false);
+const sidebarStatus = ref('text-hidden');
 
 function expandSidebar() {
   isSidebarExpanded.value = true;
+  sidebarStatus.value = '';
 }
 
 function closeExpandedSidebar() {
   isSidebarExpanded.value = false;
+  sidebarStatus.value = 'text-hidden';
 }
 </script>
 
 <style scoped lang="scss">
 .sidebar {
-  position: fixed;
+  position: sticky;
   top: 0;
-  bottom: 0;
-  left: 0;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   width: 5.5rem;
+  min-height: 100vh;
+  height: 100vh;
   padding: 1rem 1rem;
 
   background: white;
 
   overflow: hidden;
 
-  transition: all 1s ease;
-
-  &-icon {
-    color: var(--red-200);
-  }
+  transition: all 0.3s ease;
 
   ul {
     margin-top: 1.5rem;
@@ -131,12 +138,9 @@ function closeExpandedSidebar() {
     width: 100%;
     gap: 10px;
 
-    padding: 0.4rem 0.4rem;
-
-    font-weight: 600;
+    padding: 0.4rem;
 
     border-radius: 10px;
-    box-sizing: border-box;
 
     cursor: pointer;
 
@@ -151,10 +155,13 @@ function closeExpandedSidebar() {
     height: 40px;
     max-width: 40px;
     max-height: 40px;
+    /* color: var(--red-200); */
   }
+
   li:hover &-icon {
     color: white;
   }
+
   li:hover {
     background: var(--red-200);
     span {
@@ -188,7 +195,7 @@ function closeExpandedSidebar() {
   }
 
   &--expanded {
-    min-width: 15rem;
+    width: 15rem;
     overflow: visible;
   }
 }

@@ -1,9 +1,8 @@
 <template>
-  <MainContent></MainContent>
+  <RouterView name="app"></RouterView>
 </template>
 
 <script setup>
-import MainContent from './components/MainContent.vue';
 import './styles/main.scss';
 </script>
 
