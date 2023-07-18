@@ -6,6 +6,26 @@ export default {
     password: 'Senha',
     confirmPassword: 'Confirmar senha',
   },
+  resetPasswordPage: {
+    title: 'Crie uma nova senha',
+    description: 'Digite uma nova senha e volte a tela de acesso',
+    button: {
+      submit: 'Alterar',
+    },
+    redirect: {
+      login: {
+        first: 'Lembrou sua senha?',
+        last: 'Acessar conta',
+      },
+    },
+    errorModal: {
+      title: 'Erro ao tentar resetar senha!',
+      close: {
+        now: 'Fechar agora',
+        in: 'Fechar em',
+      },
+    },
+  },
   recoverPage: {
     title: 'Esqueceu sua senha?',
     description: 'Insira seu e-mail para receber o link de alteração',
