@@ -1,80 +1,80 @@
 @mixin theme-minnemi {
-  --text-principal:             var(--indigo-300);
-  --text-secondary:             var(--indigo-400);
-  --border-color:               var(--indigo-500);
-  --input-background-color:     var(--indigo-500);
-  --elements-background-color:  var(--indigo-600);
-  --page-background-color:      var(--indigo-700);
+  --text-principal: var(--indigo-300);
+  --text-secondary: var(--indigo-400);
+  --border-color: var(--indigo-500);
+  --input-background-color: var(--indigo-500);
+  --elements-background-color: var(--indigo-600);
+  --page-background-color: var(--indigo-700);
 
-  --login-field-color:                    var(--indigo-400);
-  --login-field-color-hover:              var(--indigo-500);
-  --login-field-color-active:             var(--indigo-500);
-  --login-field-border-color:             var(--indigo-500);
-  --login-field-border-color-hover:       var(--indigo-400);
-  --login-field-border-color-active:      var(--indigo-300);
-  --login-field-background-color:         var(--indigo-500);
-  --login-field-background-color-hover:   var(--indigo-400);
-  --login-field-background-color-active:  var(--indigo-300);
+  --login-field-color: var(--indigo-400);
+  --login-field-color-hover: var(--indigo-500);
+  --login-field-color-active: var(--indigo-500);
+  --login-field-border-color: var(--indigo-500);
+  --login-field-border-color-hover: var(--indigo-400);
+  --login-field-border-color-active: var(--indigo-300);
+  --login-field-background-color: var(--indigo-500);
+  --login-field-background-color-hover: var(--indigo-400);
+  --login-field-background-color-active: var(--indigo-300);
 
-  --checkbox-mark-color:                var(--gray-100);
-  --checkbox-border-color:              var(--indigo-500);
-  --checkbox-background-color:          var(--indigo-500);
-  --checkbox-border-color-checked:      var(--indigo-700);
-  --checkbox-background-color-checked:  var(--indigo-700);
+  --checkbox-mark-color: var(--gray-100);
+  --checkbox-border-color: var(--indigo-500);
+  --checkbox-background-color: var(--indigo-500);
+  --checkbox-border-color-checked: var(--indigo-700);
+  --checkbox-background-color-checked: var(--indigo-700);
 
   --default-user-picture: url('/images/default-user-picture-indigo.svg');
 }
 
 @mixin theme-light {
-  --text-principal:             var(--indigo-500);
-  --text-secondary:             var(--indigo-300);
-  --border-color:               var(--indigo-300);
-  --input-background-color:     var(--light-100);
-  --elements-background-color:  var(--light-100);
-  --page-background-color:      var(--gray-100);
+  --text-principal: var(--indigo-500);
+  --text-secondary: var(--indigo-300);
+  --border-color: var(--indigo-300);
+  --input-background-color: var(--light-100);
+  --elements-background-color: var(--light-100);
+  --page-background-color: var(--gray-100);
 
-  --login-field-color:                    var(--indigo-300);
-  --login-field-color-hover:              var(--indigo-500);
-  --login-field-color-active:             var(--indigo-300);
-  --login-field-border-color:             var(--indigo-300);
-  --login-field-border-color-hover:       var(--indigo-200);
-  --login-field-border-color-active:      var(--indigo-200);
-  --login-field-background-color:         transparent;
-  --login-field-background-color-hover:   var(--indigo-300);
-  --login-field-background-color-active:  var(--indigo-500);
+  --login-field-color: var(--indigo-300);
+  --login-field-color-hover: var(--indigo-500);
+  --login-field-color-active: var(--indigo-300);
+  --login-field-border-color: var(--indigo-300);
+  --login-field-border-color-hover: var(--indigo-200);
+  --login-field-border-color-active: var(--indigo-200);
+  --login-field-background-color: transparent;
+  --login-field-background-color-hover: var(--indigo-300);
+  --login-field-background-color-active: var(--indigo-500);
 
-  --checkbox-mark-color:                var(--gray-100);
-  --checkbox-border-color:              var(--indigo-300);
-  --checkbox-background-color:          var(--indigo-100);
-  --checkbox-border-color-checked:      var(--indigo-500);
-  --checkbox-background-color-checked:  var(--indigo-500);
+  --checkbox-mark-color: var(--gray-100);
+  --checkbox-border-color: var(--indigo-300);
+  --checkbox-background-color: var(--indigo-100);
+  --checkbox-border-color-checked: var(--indigo-500);
+  --checkbox-background-color-checked: var(--indigo-500);
 
   --default-user-picture: url('/images/default-user-picture-indigo.svg');
 }
 
 @mixin theme-dark {
-  --text-principal:             var(--gray-300);
-  --text-secondary:             var(--gray-400);
-  --border-color:               var(--gray-500);
-  --input-background-color:     var(--gray-500);
-  --elements-background-color:  var(--gray-600);
-  --page-background-color:      var(--gray-700);
+  --text-principal: var(--gray-300);
+  --text-secondary: var(--gray-400);
+  --border-color: var(--gray-500);
+  --input-background-color: var(--gray-500);
+  --elements-background-color: var(--gray-600);
+  --page-background-color: var(--gray-700);
 
-  --login-field-color:                    var(--gray-400);
-  --login-field-color-hover:              var(--gray-500);
-  --login-field-color-active:             var(--gray-500);
-  --login-field-border-color:             var(--gray-500);
-  --login-field-border-color-hover:       var(--gray-400);
-  --login-field-border-color-active:      var(--gray-300);
-  --login-field-background-color:         var(--gray-500);
-  --login-field-background-color-hover:   var(--gray-400);
-  --login-field-background-color-active:  var(--gray-300);
+  --login-field-color: var(--gray-400);
+  --login-field-color-hover: var(--gray-500);
+  --login-field-color-active: var(--gray-500);
+  --login-field-border-color: var(--gray-500);
+  --login-field-border-color-hover: var(--gray-400);
+  --login-field-border-color-active: var(--gray-300);
+  --login-field-background-color: var(--gray-500);
+  --login-field-background-color-hover: var(--gray-400);
+  --login-field-background-color-active: var(--gray-300);
 
-  --checkbox-mark-color:                var(--gray-100);
-  --checkbox-border-color:              var(--gray-500);
-  --checkbox-background-color:          var(--gray-500);
-  --checkbox-border-color-checked:      var(--gray-700);
-  --checkbox-background-color-checked:  var(--gray-700);
+  --checkbox-mark-color: var(--gray-100);
+  --checkbox-border-color: var(--gray-500);
+  --checkbox-background-color: var(--gray-500);
+  --checkbox-border-color-checked: var(--gray-700);
+  --checkbox-background-color-checked: var(--gray-700);
 
   --default-user-picture: url('/images/default-user-picture-gray.svg');
 }

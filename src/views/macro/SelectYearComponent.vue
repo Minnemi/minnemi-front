@@ -52,9 +52,18 @@ function handleEmitValue(value) {
 
 <style lang="scss" scoped>
 .select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   position: relative;
   padding: 0.5rem 1.5rem;
   min-width: 300px;
+
+  & > :nth-child(1) {
+    flex: 1;
+  }
+
   &,
   &-options > * {
     padding: 0.7rem;
@@ -78,6 +87,7 @@ function handleEmitValue(value) {
 
     left: 0;
     right: 0;
+    top: 35px;
     margin-top: 0.6rem;
   }
   &-name {
@@ -85,16 +95,16 @@ function handleEmitValue(value) {
   }
   &-icon {
     color: var(--white);
-    position: absolute;
-
-    top: 0;
-    right: 0;
-
-    margin: 0.7rem;
   }
   &-icon--rotate {
     transform: rotate(180deg);
     transform-origin: center;
+  }
+}
+
+@media (max-width: 350px) {
+  .select {
+    font-size: 0.8rem;
   }
 }
 </style>

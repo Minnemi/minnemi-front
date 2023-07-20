@@ -10,7 +10,8 @@
           :attributes="{ placeholder: 'Titulo' }"
         />
       </header>
-      <div class="form-grid">
+
+      <div class="form-content">
         <TextArea :attributes="{ placeholder: 'Descrição' }" />
 
         <footer class="form-footer">
@@ -31,39 +32,61 @@
           </div>
         </footer>
       </div>
-      <div class="letter-tools">
-        <TextInput label="Fonte" :attributes="{ type: 'select' }" />
+
+      <div class="form-letter-tools">
+        <SelectFontComponent :data="['Arial', 'Poppins']" label="Fonte" />
 
         <TextInput label="Tamanho" :attributes="{ type: 'number' }" />
 
         <div class="letter-tools-grid">
-          <ButtonComponent styles="simples outline">
-            <IconComponent color="white" :path="mdiFormatBold"> </IconComponent>
+          <ButtonComponent styles="outline">
+            <template #start>
+              <IconComponent class="letter-tools-icon" :path="mdiFormatBold">
+              </IconComponent>
+            </template>
           </ButtonComponent>
 
           <ButtonComponent styles="outline">
-            <IconComponent color="white" :path="mdiFormatItalic">
-            </IconComponent>
+            <template #start>
+              <IconComponent class="letter-tools-icon" :path="mdiFormatItalic">
+              </IconComponent>
+            </template>
           </ButtonComponent>
 
           <ButtonComponent styles="outline">
-            <IconComponent color="white" :path="mdiFormatAlignJustify">
-            </IconComponent>
+            <template #start>
+              <IconComponent :path="mdiFormatAlignJustify"> </IconComponent>
+            </template>
           </ButtonComponent>
 
           <ButtonComponent styles="outline">
-            <IconComponent color="white" :path="mdiFormatAlignLeft">
-            </IconComponent>
+            <template #start>
+              <IconComponent
+                class="letter-tools-icon"
+                :path="mdiFormatAlignLeft"
+              >
+              </IconComponent>
+            </template>
           </ButtonComponent>
 
           <ButtonComponent styles="outline">
-            <IconComponent color="white" :path="mdiFormatAlignCenter">
-            </IconComponent>
+            <template #start>
+              <IconComponent
+                class="letter-tools-icon"
+                :path="mdiFormatAlignCenter"
+              >
+              </IconComponent>
+            </template>
           </ButtonComponent>
 
           <ButtonComponent styles="outline">
-            <IconComponent color="white" :path="mdiFormatAlignRight">
-            </IconComponent>
+            <template #start>
+              <IconComponent
+                class="letter-tools-icon"
+                :path="mdiFormatAlignRight"
+              >
+              </IconComponent>
+            </template>
           </ButtonComponent>
         </div>
       </div>
@@ -90,6 +113,8 @@ import TextArea from '@@forms/ContentInput.vue';
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
 
 import SelectComponent from './SelectYearComponent.vue';
+
+import SelectFontComponent from '@components/forms/SelectComponent.vue';
 
 import { ref } from 'vue';
 
@@ -147,20 +172,72 @@ strong {
       min-width: 120px;
     }
   }
+
+  &-letter-tools {
+    .letter-tools-grid {
+      margin-top: 1rem;
+
+      & * {
+        color: var(--text-principal);
+      }
+
+      display: grid;
+      gap: 0.7rem;
+      grid-template-columns: repeat(3, 1fr);
+
+      & > * {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    &-icon {
+      justify-self: center;
+    }
+  }
 }
 
-.letter-tools {
-  &-grid {
-    margin-top: 1rem;
+@media (max-width: 900px) {
+  .form {
+    grid-template-columns: 1fr;
 
-    display: grid;
-    gap: 0.7rem;
-    grid-template-columns: repeat(3, 1fr);
+    header {
+      order: 1;
+    }
+
+    &-content {
+      order: 3;
+    }
+    &-letter-tools {
+      order: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .letter-tools-grid {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+    }
+
+    &-footer-buttons {
+      flex-wrap: wrap;
+    }
+  }
+}
+@media (max-width: 380px) {
+  .form-footer-buttons {
+    flex-wrap: wrap;
 
     & > * {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      min-width: 100%;
+    }
+    & > :nth-child(2) {
+      flex-wrap: wrap;
+      * {
+        min-width: 100%;
+      }
     }
   }
 }

@@ -88,6 +88,7 @@ function closeExpandedSidebar() {
   padding: 1rem 1rem;
 
   background: var(--elements-background-color);
+  border-right: 1px solid var(--border-color);
 
   overflow: hidden;
 

@@ -4,18 +4,22 @@
       {{ label }} <span v-if="attributes.required">*</span>
     </div>
 
-    <div ref="inputBoxRef" class="input">
-      <input
-        ref="inputRef"
-        class="input-field"
+    <div ref="selectBoxRef" class="select">
+      <select
+        ref="selectRef"
+        class="select-field"
         :data-compare-name="compareField?.name"
         :data-compare-label="compareField?.label"
-        @input="handleInput"
-      />
+        @input="handleSelect"
+      >
+        <option v-for="(item, index) in data" :key="index" :value="item">
+          {{ item }}
+        </option>
+      </select>
 
       <button
         type="button"
-        class="input-button"
+        class="select-button"
         :disabled="Boolean(!enableButton)"
         :data-hidden="Boolean(!icon)"
         @click="handleClick"
@@ -33,11 +37,12 @@ import { ref, onMounted } from 'vue';
 import SvgIcon from '@jamescoyle/vue-icon';
 import { describeError } from '@@shared/inputErrorsMessages';
 
-const inputBoxRef = ref(null);
-const inputRef = ref(null);
+const selectBoxRef = ref(null);
+const selectRef = ref(null);
 const errorMessage = ref('');
 const props = defineProps({
   label: String,
+  data: Array,
   attributes: {
     type: Object,
     default() {
@@ -57,40 +62,40 @@ const props = defineProps({
 });
 
 function handleClick() {
-  inputRef.value.type =
-    inputRef.value.type === 'password' ? 'text' : 'password';
+  selectRef.value.type =
+    selectRef.value.type === 'password' ? 'text' : 'password';
 }
 
-function insertAttributesIntoInputElement(attributes) {
+function insertAttributesIntoselectElement(attributes) {
   for (const attr in attributes) {
-    inputRef.value.setAttribute(attr, attributes[attr]);
+    selectRef.value.setAttribute(attr, attributes[attr]);
   }
 }
 
 function autoFocus(enable) {
   if (enable) {
-    inputRef.value.focus();
+    selectRef.value.focus();
   }
 }
 
 function resetMessageError() {
-  if (inputRef.value.required) {
-    return inputRef.value.setCustomValidity(describeError.required());
+  if (selectRef.value.required) {
+    return selectRef.value.setCustomValidity(describeError.required());
   }
 
-  return inputRef.value.setCustomValidity('');
+  return selectRef.value.setCustomValidity('');
 }
 
 function execCheckValidity(msg = '') {
-  inputRef.value.setCustomValidity(msg);
+  selectRef.value.setCustomValidity(msg);
 
-  if (!inputRef.value.checkValidity()) {
-    inputBoxRef.value.classList.add('error');
-    errorMessage.value = inputRef.value.validationMessage;
+  if (!selectRef.value.checkValidity()) {
+    selectBoxRef.value.classList.add('error');
+    errorMessage.value = selectRef.value.validationMessage;
     return;
   }
 
-  inputBoxRef.value.classList.remove('error');
+  selectBoxRef.value.classList.remove('error');
   errorMessage.value = '';
 }
 
@@ -102,17 +107,17 @@ function validation() {
 
     let msg;
 
-    if (compareFieldValue !== inputRef.value.value) {
+    if (compareFieldValue !== selectRef.value.value) {
       msg = describeError.mustBeEquals(props.compareField.label);
     }
 
     return execCheckValidity(msg);
   }
 
-  const validity = inputRef.value.validity;
+  const validity = selectRef.value.validity;
 
   if (validity.patternMismatch || validity.typeMismatch) {
-    const msg = describeError.pattern(inputRef.value.dataset.acceptedChars);
+    const msg = describeError.pattern(selectRef.value.dataset.acceptedChars);
     return execCheckValidity(msg);
   }
 
@@ -122,24 +127,24 @@ function validation() {
   }
 
   if (validity.tooShort) {
-    const msg = describeError.minLength(inputRef.value.minLength);
+    const msg = describeError.minLength(selectRef.value.minLength);
     return execCheckValidity(msg);
   }
 
   if (validity.tooLong) {
-    const msg = describeError.maxLength(inputRef.value.maxLength);
+    const msg = describeError.maxLength(selectRef.value.maxLength);
     return execCheckValidity(msg);
   }
 
   execCheckValidity('');
 }
 
-function handleInput() {
+function handleSelect() {
   validation();
 }
 
 onMounted(() => {
-  insertAttributesIntoInputElement(props.attributes);
+  insertAttributesIntoselectElement(props.attributes);
   autoFocus(props.focus);
   resetMessageError();
 });
@@ -160,7 +165,7 @@ onMounted(() => {
   font-weight: 600;
 }
 
-.input {
+.select {
   position: relative;
   display: flex;
   align-items: center;
@@ -176,6 +181,9 @@ onMounted(() => {
   }
 
   &-field {
+    font-size: 1.1rem;
+    font-weight: bold;
+
     margin: 0 2px;
     padding: 0.5rem 1rem;
     width: 100%;

@@ -2,7 +2,7 @@
   <button ref="button" :type="type || 'button'" class="button" :class="styles">
     <slot name="start"></slot>
 
-    <span class="text">
+    <span class="text" v-if="$slots.default">
       <slot></slot>
     </span>
 
