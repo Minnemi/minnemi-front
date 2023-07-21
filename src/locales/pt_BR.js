@@ -6,6 +6,44 @@ export default {
     password: 'Senha',
     confirmPassword: 'Confirmar senha',
   },
+  errors: {
+    forms:  {
+      requiredField: 'Este campo é obrigatório ser preenchido.',
+      fullname: {
+        length: {
+          min: 'Este campo deve conter no mínimo 3 caracteres.',
+          max: 'Este campo deve conter no máximo 35 caracteres.',
+        },
+        pattern: 'Este campo deve conter caracteres minúsculos, maiúsculos e letras com acentos',
+      },
+      username: {
+        length: {
+          min: 'Este campo deve conter no mínimo 3 caracteres.',
+          max: 'Este campo deve conter no máximo 35 caracteres.',
+        },
+        pattern: 'Este campo deve conter caracteres minúsculos, maiúsculos e números, use "_" ao invés de espaço em branco " "',
+      },
+      email: {
+        length: {
+          min: 'Este campo deve conter no mínimo 3 caracteres.',
+        },
+        pattern: 'Este campo deve conter um formato de e-mail válido.',
+      },
+      password: {
+        length: {
+          min: 'Este campo deve conter no mínimo 8 caracteres.',
+        },
+        pattern: 'Este campo deve conter caracteres minúsculos, maiúsculos, números e símbolos com no mínimo 8 caracteres',
+      },
+      confirmPassword: {
+        length: {
+          min: 'Este campo deve conter no mínimo 8 caracteres.',
+        },
+        pattern: 'Este campo deve conter caracteres minúsculos, maiúsculos, números e símbolos com no mínimo 8 caracteres',
+        equals: 'Este campo deve conter o mesmo valor do campo Senha.',
+      },
+    },
+  },
   resetPasswordPage: {
     title: 'Crie uma nova senha',
     description: 'Digite uma nova senha e volte a tela de acesso',

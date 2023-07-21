@@ -5,7 +5,6 @@
     :class="styles"
     method="post"
     autocomplete="off"
-    @submit.prevent="handleSubmit"
   >
     <div class="header">
       <h2 class="title">{{ title }}</h2>
@@ -20,38 +19,81 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
+const $t = useI18n().t;
+import { formErrors } from '@@shared/formErrors';
 
 const formElement = ref(null);
+
 defineProps({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: String,
   styles: {
     type: String,
-    default: ''
+    default: '',
   },
 });
 
-function handleSubmit(event) {
-  console.log(event);
+function displayError(input, errorKey = '') {
+  const errorMessage = errorKey !== '' ? $t(errorKey) : '';
+  const errorBox =
+    input.parentNode.parentNode.querySelector('.input-error-box');
+
+  errorMessage === ''
+    ? input.parentNode?.classList.remove('error')
+    : input.parentNode?.classList.add('error');
+
+  input.setCustomValidity(errorMessage);
+  errorBox.innerText = errorMessage;
 }
 
-function triggerSubmitButton() {
-  if (!formElement.value) return;
+function validateField(input) {
+  const { name, value, validity } = input;
+  const compareLabelName = input.dataset?.compareLabel;
+  let errorKey = '';
 
-  const submitButton = formElement.value.querySelector('button[type=submit]');
+  if (compareLabelName) {
+    const compareValue = document.getElementsByName(compareLabelName)[0]?.value;
 
+    if (compareValue !== value) {
+      errorKey = formErrors.equals(name);
+    }
+  }
+
+  if (validity.patternMismatch || validity.typeMismatch) {
+    errorKey = formErrors.pattern(name);
+  }
+  else if (validity.valueMissing) {
+    errorKey = formErrors.required();
+  }
+  else if (validity.tooShort) {
+    errorKey = formErrors.minLength(name);
+  }
+  else if (validity.tooLong) {
+    errorKey = formErrors.maxLength(name);
+  }
+
+  displayError(input, errorKey);
+}
+
+function addTriggerSubmitButton() {
+  const form = formElement.value;
+  if (!form) return;
+
+  const submitButton = form.querySelector('button[type=submit]');
   if (!submitButton) return;
 
   submitButton.addEventListener('click', () => {
-    formElement.value.classList.add('g-form-error');
+    const fields = form.getElementsByTagName('input');
+    for (const input of fields) validateField(input);
   });
 }
 
 onMounted(() => {
-  triggerSubmitButton();
+  addTriggerSubmitButton();
 });
 </script>
 
@@ -72,10 +114,18 @@ onMounted(() => {
   border: 2px solid var(--border-color);
   background-color: var(--elements-background-color);
 
-  animation: g-show-expand .3s both normal;
+  animation: g-show-expand 0.3s both normal;
 
   &.expand {
     width: 600px;
+  }
+
+  .error {
+    border-color: var(--red-200) !important;
+
+    ~ .message {
+      display: block;
+    }
   }
 }
 

@@ -47,10 +47,7 @@
         :attributes="attributes.confirmPassword"
         :icon="mdiEye"
         :enableButton="true"
-        :compareField="{
-          label: 'Senha',
-          name: attributes.password.name,
-        }"
+        :compareField="attributes.password.name"
       />
     </section>
 
@@ -119,7 +116,7 @@ import GoogleBrand from '@@utils/GoogleBrandIcon.vue';
 import NotifyComponent from '@@utils/NotifyComponent.vue';
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiEye, mdiAlertCircle } from '@mdi/js';
-import attributes from '@@shared/commonInputFieldsAttributes';
+import attributes from '@@shared/formFieldsAttributes';
 import { ref } from 'vue';
 
 const notifyType = ref('');

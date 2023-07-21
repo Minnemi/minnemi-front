@@ -8,8 +8,7 @@
       <input
         ref="inputRef"
         class="input-field"
-        :data-compare-name="compareField?.name"
-        :data-compare-label="compareField?.label"
+        :data-compare-label="compareField"
         @input="handleInput"
       />
 
@@ -24,18 +23,16 @@
       </button>
     </div>
 
-    <div class="message" :data-message="errorMessage"></div>
+    <div class="message input-error-box"></div>
   </label>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import SvgIcon from '@jamescoyle/vue-icon';
-import { describeError } from '@@shared/inputErrorsMessages';
 
 const inputBoxRef = ref(null);
 const inputRef = ref(null);
-const errorMessage = ref('');
 const props = defineProps({
   label: String,
   attributes: {
@@ -53,12 +50,11 @@ const props = defineProps({
     default: false,
   },
   focus: Boolean,
-  compareField: Object,
+  compareField: {
+    type: String,
+    default: '',
+  },
 });
-
-function handleClick() {
-  inputRef.value.type = inputRef.value.type === 'password' ? 'text' : 'password';
-}
 
 function insertAttributesIntoInputElement(attributes) {
   for (const attr in attributes) {
@@ -72,78 +68,13 @@ function autoFocus(enable) {
   }
 }
 
-function resetMessageError() {
-  if (inputRef.value.required) {
-    return inputRef.value.setCustomValidity(describeError.required());
-  }
-
-  return inputRef.value.setCustomValidity('');
-}
-
-function execCheckValidity(msg = '') {
-  inputRef.value.setCustomValidity(msg);
-
-  if (!inputRef.value.checkValidity()) {
-    inputBoxRef.value.classList.add('error');
-    errorMessage.value = inputRef.value.validationMessage;
-    return;
-  }
-
-  inputBoxRef.value.classList.remove('error');
-  errorMessage.value = '';
-}
-
-function validation() {
-  if (props.compareField) {
-    const compareFieldValue = document.getElementsByName(
-      props.compareField.name,
-    )[0].value;
-
-    let msg;
-
-    if (compareFieldValue !== inputRef.value.value) {
-      msg = describeError.mustBeEquals(props.compareField.label);
-    }
-
-    return execCheckValidity(msg);
-  }
-
-  const validity = inputRef.value.validity;
-
-  if (
-    validity.patternMismatch ||
-    validity.typeMismatch
-  ) {
-    const msg = describeError.pattern(inputRef.value.dataset.acceptedChars);
-    return execCheckValidity(msg);
-  }
-
-  if (validity.valueMissing) {
-    const msg = describeError.required();
-    return execCheckValidity(msg);
-  }
-
-  if (validity.tooShort) {
-    const msg = describeError.minLength(inputRef.value.minLength);
-    return execCheckValidity(msg);
-  }
-
-  if (validity.tooLong) {
-    const msg = describeError.maxLength(inputRef.value.maxLength);
-    return execCheckValidity(msg);
-  }
-
-  execCheckValidity('');
-}
-
-function handleInput() {
-  validation();
+function handleClick() {
+  inputRef.value.type = inputRef.value.type === 'password' ? 'text' : 'password';
 }
 
 onMounted(() => {
   insertAttributesIntoInputElement(props.attributes);
   autoFocus(props.focus);
-  resetMessageError();
 });
 </script>
 
@@ -224,6 +155,14 @@ onMounted(() => {
         border-color: var(--login-field-border-color-active);
         background-color: var(--login-field-background-color-active);
       }
+    }
+  }
+
+  &.error {
+    border-color: var(--red-200);
+
+    ~ .message {
+      display: block;
     }
   }
 }

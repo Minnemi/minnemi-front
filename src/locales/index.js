@@ -1,6 +1,7 @@
 import { createI18n } from 'vue-i18n';
 
 const config = {
+  legacy: false,
   locale: 'pt_BR',
   fallbackLocale: 'pt_BR',
   messages: {
