@@ -1,4 +1,4 @@
-export default {
+export const pt_BR = {
   formsLabels: {
     fullname: 'Nome completo',
     username: 'Nome de usuário',
