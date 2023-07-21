@@ -119,14 +119,6 @@ onMounted(() => {
   &.expand {
     width: 600px;
   }
-
-  .error {
-    border-color: var(--red-200) !important;
-
-    ~ .message {
-      display: block;
-    }
-  }
 }
 
 .header {
