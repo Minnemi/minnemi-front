@@ -112,7 +112,7 @@ import TextArea from '@@forms/ContentInput.vue';
 
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
 
-import SelectComponent from './SelectYearComponent.vue';
+import SelectComponent from './components/SelectYearComponent.vue';
 
 import SelectFontComponent from '@components/forms/SelectComponent.vue';
 

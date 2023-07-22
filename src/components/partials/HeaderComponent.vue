@@ -3,7 +3,10 @@
     <AppContainer wFull class="header-container">
       <div>
         <strong>Olá hugo</strong>
-        <ButtonComponent styles="fill rounded small">
+        <ButtonComponent
+          @click="isPerfilOpen = true"
+          styles="fill rounded small"
+        >
           Ver Perfil
         </ButtonComponent>
       </div>
@@ -12,6 +15,7 @@
         src="https://images.unsplash.com/photo-1685659928694-6300f3eb01f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
       />
     </AppContainer>
+    <PerfilComponent v-if="isPerfilOpen" @close="isPerfilOpen = false" />
   </header>
 </template>
 
@@ -19,6 +23,11 @@
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import ProfilePicture from '@components/utils/ProfilePicture.vue';
 import AppContainer from '@components/wrappers/AppContainer.vue';
+import PerfilComponent from './PerfilComponent.vue';
+
+import { ref } from 'vue';
+
+const isPerfilOpen = ref(false);
 </script>
 
 <style lang="scss" scoped>

@@ -42,11 +42,17 @@ function handleLoadError() {
     no-repeat;
   background-size: cover;
   transition: width 0.2s, height 0.2s;
-  object-fit: cover;
+
+  img {
+    object-fit: cover;
+  }
 }
 
 .large {
   --size: 60px;
+}
+.extra-large {
+  --size: 120px;
 }
 .editable {
   --size: 100px;
