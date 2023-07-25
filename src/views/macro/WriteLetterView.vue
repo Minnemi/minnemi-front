@@ -7,12 +7,12 @@
         <TextInput
           class="form-title-input"
           v-model="titleText"
-          placeholder="Titulo"
+          :attributes="attributes.letterTitle"
         />
       </header>
 
       <div class="form-content">
-        <TextArea placeholder="Descrição"  />
+        <TextArea placeholder="Descrição" />
 
         <footer class="form-footer">
           <div>
@@ -36,7 +36,7 @@
       <div class="form-letter-tools">
         <SelectFontComponent :data="['Arial', 'Poppins']" label="Fonte" />
 
-        <TextInput label="Tamanho" type="number" value="0" />
+        <TextInput label="Tamanho" :attributes="attributes.fontSize" />
 
         <div class="letter-tools-grid">
           <ButtonComponent styles="outline">
@@ -118,6 +118,8 @@ import SelectFontComponent from '@components/forms/SelectComponent.vue';
 
 import { ref } from 'vue';
 
+import attributes from '@@shared/commonInputFieldsAttributes';
+
 const titleText = ref('');
 
 function handleSelectYearChange(value) {
@@ -175,9 +177,11 @@ strong {
   }
 
   &-letter-tools {
-    .letter-tools-grid {
-      margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
 
+    .letter-tools-grid {
       & * {
         color: var(--text-principal);
       }

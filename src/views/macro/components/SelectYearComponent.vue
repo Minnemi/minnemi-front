@@ -8,6 +8,8 @@
       <div role="option" @click="handleEmitValue(1)">1</div>
       <div role="option" @click="handleEmitValue(2)">2</div>
       <div role="option" @click="handleEmitValue(3)">3</div>
+      <div role="option" @click="handleEmitValue(4)">3</div>
+      <div role="option" @click="handleEmitValue(5)">3</div>
     </div>
 
     <IconComponent
@@ -82,6 +84,7 @@ function handleEmitValue(value) {
 
     cursor: pointer;
   }
+
   &-options {
     position: absolute;
 

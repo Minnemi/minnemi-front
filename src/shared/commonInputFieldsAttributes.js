@@ -1,8 +1,10 @@
 const patternsDescription = {
   fullname: 'caracteres minúsculos, maiúsculos e letras com acentos',
-  username: 'caracteres minúsculos, maiúsculos e números, use "_" ao invés de espaço em branco " "',
+  username:
+    'caracteres minúsculos, maiúsculos e números, use "_" ao invés de espaço em branco " "',
   email: 'um formato de e-mail válido (ex: email@exaple.com)',
-  password: 'caracteres minúsculos, maiúsculos, números e símbolos com no mínimo 8 caracteres',
+  password:
+    'caracteres minúsculos, maiúsculos, números e símbolos com no mínimo 8 caracteres',
 };
 
 const fullname = {
@@ -22,6 +24,26 @@ const username = {
   name: 'username',
   pattern: '[a-zA-Z0-9_]+',
   'data-accepted-chars': patternsDescription.username,
+};
+
+const fontSize = {
+  type: 'number',
+  name: 'font_size',
+  value: '16',
+  minLength: 0,
+  maxLength: 25,
+  required: true,
+};
+
+const letterTitle = {
+  type: 'text',
+  name: 'letter_title',
+  placeholder: 'Titulo',
+  minLength: 3,
+  maxLength: 35,
+  required: true,
+  pattern: '[a-zA-ZÀ-ÿ ]+',
+  'data-accepted-chars': patternsDescription.fullname,
 };
 
 const email = {
@@ -46,7 +68,7 @@ const password = {
 
 const confirmPassword = {
   ...password,
-  name: 'confirm_password'
+  name: 'confirm_password',
 };
 
 export default {
@@ -55,4 +77,6 @@ export default {
   email,
   password,
   confirmPassword,
+  fontSize,
+  letterTitle,
 };

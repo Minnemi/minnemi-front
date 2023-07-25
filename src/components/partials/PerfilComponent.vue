@@ -2,21 +2,18 @@
   <div class="perfil" @click.self="$emit('close')">
     <div class="perfil-content">
       <header>
-        <strong
-          >Olá,<br />
-          Hugo!</strong
-        >
+        <strong>Olá, Hugo!</strong>
         <div>
           <ProfilePicture
             mode="editable"
             src="https://images.unsplash.com/photo-1685659928694-6300f3eb01f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
           />
-          <ButtonComponent
+          <!-- <ButtonComponent
             @click="isPerfilOpen = true"
             styles="fill rounded small"
           >
             Alterar Foto
-          </ButtonComponent>
+          </ButtonComponent> -->
         </div>
       </header>
 
@@ -24,16 +21,23 @@
 
       <form class="perfil-form">
         <div>
-          <TextInput label="Nome" :attributes="{ type: 'text' }" />
-          <TextInput label="Sobrenome" :attributes="{ type: 'text' }" />
+          <TextInput label="Nome" :attributes="attributes.username" />
+          <TextInput label="Sobrenome" :attributes="attributes.username" />
 
           <div class="perfil-line-separator"></div>
 
-          <TextInput label="Email" :attributes="{ type: 'email' }" />
-          <TextInput label="Nova Senha" :attributes="{ type: 'password' }" />
+          <TextInput label="Email" :attributes="attributes.email" />
+          <TextInput
+            label="Nova Senha"
+            :attributes="attributes.password"
+            :icon="mdiEye"
+            :enableButton="true"
+          />
           <TextInput
             label="Confirme Nova Senha"
-            :attributes="{ type: 'password' }"
+            :attributes="attributes.password"
+            :icon="mdiEye"
+            :enableButton="true"
           />
         </div>
         <ButtonComponent class="perfil-save-btn" styles="fill large">
@@ -50,6 +54,10 @@
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import ProfilePicture from '@components/utils/ProfilePicture.vue';
 import TextInput from '@@forms/TextInput.vue';
+
+import attributes from '@@shared/commonInputFieldsAttributes';
+
+import { mdiEye } from '@mdi/js';
 </script>
 
 <style lang="scss" scoped>

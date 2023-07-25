@@ -21,7 +21,7 @@ import AppContainer from '@components/wrappers/AppContainer.vue';
 .container-app {
   position: relative;
   display: flex;
-  min-height: 100vh;
+  min-height: 130vh; // to select year component don't break sidebar
 
   & > :nth-child(2) {
     flex: 1;

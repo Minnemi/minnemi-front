@@ -4,7 +4,7 @@ import { computed, watch } from 'vue';
 
 export const useAppStore = defineStore('app', () => {
   const state = useLocalStorage('app', {
-    loggedIn: true,
+    loggedIn: false,
     theme: import.meta.env.VITE_APP_THEME,
   });
 
