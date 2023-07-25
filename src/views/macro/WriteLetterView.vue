@@ -7,16 +7,16 @@
         <TextInput
           class="form-title-input"
           v-model="titleText"
-          :attributes="{ placeholder: 'Titulo' }"
+          placeholder="Titulo"
         />
       </header>
 
       <div class="form-content">
-        <TextArea :attributes="{ placeholder: 'Descrição' }" />
+        <TextArea placeholder="Descrição"  />
 
         <footer class="form-footer">
           <div>
-            <strong>Desejo Receber Em</strong>
+            <strong>Desejo receber Em</strong>
           </div>
 
           <div class="form-footer-buttons">
@@ -36,7 +36,7 @@
       <div class="form-letter-tools">
         <SelectFontComponent :data="['Arial', 'Poppins']" label="Fonte" />
 
-        <TextInput label="Tamanho" :attributes="{ type: 'number' }" />
+        <TextInput label="Tamanho" type="number" value="0" />
 
         <div class="letter-tools-grid">
           <ButtonComponent styles="outline">
@@ -147,6 +147,7 @@ strong {
 
     strong {
       margin-bottom: 1rem;
+      font-size: 1.1rem;
     }
     & > :nth-child(1) {
       display: flex;

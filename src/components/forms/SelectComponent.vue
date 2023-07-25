@@ -16,16 +16,6 @@
           {{ item }}
         </option>
       </select>
-
-      <button
-        type="button"
-        class="select-button"
-        :disabled="Boolean(!enableButton)"
-        :data-hidden="Boolean(!icon)"
-        @click="handleClick"
-      >
-        <svg-icon type="mdi" :path="icon" />
-      </button>
     </div>
 
     <div class="message" :data-message="errorMessage"></div>
@@ -34,8 +24,6 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import SvgIcon from '@jamescoyle/vue-icon';
-import { describeError } from '@@shared/inputErrorsMessages';
 
 const selectBoxRef = ref(null);
 const selectRef = ref(null);
@@ -61,12 +49,7 @@ const props = defineProps({
   compareField: Object,
 });
 
-function handleClick() {
-  selectRef.value.type =
-    selectRef.value.type === 'password' ? 'text' : 'password';
-}
-
-function insertAttributesIntoselectElement(attributes) {
+function insertAttributesIntoSelectElement(attributes) {
   for (const attr in attributes) {
     selectRef.value.setAttribute(attr, attributes[attr]);
   }
@@ -78,75 +61,9 @@ function autoFocus(enable) {
   }
 }
 
-function resetMessageError() {
-  if (selectRef.value.required) {
-    return selectRef.value.setCustomValidity(describeError.required());
-  }
-
-  return selectRef.value.setCustomValidity('');
-}
-
-function execCheckValidity(msg = '') {
-  selectRef.value.setCustomValidity(msg);
-
-  if (!selectRef.value.checkValidity()) {
-    selectBoxRef.value.classList.add('error');
-    errorMessage.value = selectRef.value.validationMessage;
-    return;
-  }
-
-  selectBoxRef.value.classList.remove('error');
-  errorMessage.value = '';
-}
-
-function validation() {
-  if (props.compareField) {
-    const compareFieldValue = document.getElementsByName(
-      props.compareField.name,
-    )[0].value;
-
-    let msg;
-
-    if (compareFieldValue !== selectRef.value.value) {
-      msg = describeError.mustBeEquals(props.compareField.label);
-    }
-
-    return execCheckValidity(msg);
-  }
-
-  const validity = selectRef.value.validity;
-
-  if (validity.patternMismatch || validity.typeMismatch) {
-    const msg = describeError.pattern(selectRef.value.dataset.acceptedChars);
-    return execCheckValidity(msg);
-  }
-
-  if (validity.valueMissing) {
-    const msg = describeError.required();
-    return execCheckValidity(msg);
-  }
-
-  if (validity.tooShort) {
-    const msg = describeError.minLength(selectRef.value.minLength);
-    return execCheckValidity(msg);
-  }
-
-  if (validity.tooLong) {
-    const msg = describeError.maxLength(selectRef.value.maxLength);
-    return execCheckValidity(msg);
-  }
-
-  execCheckValidity('');
-}
-
-function handleSelect() {
-  validation();
-}
-
 onMounted(() => {
-  insertAttributesIntoselectElement(props.attributes);
+  insertAttributesIntoSelectElement(props.attributes);
   autoFocus(props.focus);
-  resetMessageError();
 });
 </script>
 

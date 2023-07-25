@@ -51,9 +51,7 @@ function handleLoadError() {
 .large {
   --size: 60px;
 }
-.extra-large {
-  --size: 120px;
-}
+
 .editable {
   --size: 100px;
   --gradient-bf: linear-gradient(

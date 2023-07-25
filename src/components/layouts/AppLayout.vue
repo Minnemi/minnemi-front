@@ -21,7 +21,7 @@ import AppContainer from '@components/wrappers/AppContainer.vue';
 .container-app {
   position: relative;
   display: flex;
-  min-height: 200vh;
+  min-height: 100vh;
 
   & > :nth-child(2) {
     flex: 1;
