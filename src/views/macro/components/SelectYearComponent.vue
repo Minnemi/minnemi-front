@@ -5,11 +5,11 @@
     </div>
 
     <div class="select-options" v-if="isSelectOpen">
-      <div role="option" @click="handleEmitValue(1)">1</div>
-      <div role="option" @click="handleEmitValue(2)">2</div>
-      <div role="option" @click="handleEmitValue(3)">3</div>
-      <div role="option" @click="handleEmitValue(4)">3</div>
-      <div role="option" @click="handleEmitValue(5)">3</div>
+      <div role="option" @click="handleEmitValue(1)">1 ano</div>
+      <div role="option" @click="handleEmitValue(2)">2 anos</div>
+      <div role="option" @click="handleEmitValue(3)">3 anos</div>
+      <div role="option" @click="handleEmitValue(4)">4 anos</div>
+      <div role="option" @click="handleEmitValue(5)">5 anos</div>
     </div>
 
     <IconComponent
