@@ -26,8 +26,9 @@
         <div>
           <TextInput label="Nome" :attributes="{ type: 'text' }" />
           <TextInput label="Sobrenome" :attributes="{ type: 'text' }" />
-        </div>
-        <div>
+
+          <div class="perfil-line-separator"></div>
+
           <TextInput label="Email" :attributes="{ type: 'email' }" />
           <TextInput label="Nova Senha" :attributes="{ type: 'password' }" />
           <TextInput
@@ -134,7 +135,10 @@ import TextInput from '@@forms/TextInput.vue';
     height: 2px;
     background: #a5a7e3;
 
-    margin: 2rem 0;
+    max-width: 80%;
+    width: 100%;
+
+    margin: 2rem auto;
   }
 
   @media (max-width: 400px) {

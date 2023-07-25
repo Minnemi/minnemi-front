@@ -1,7 +1,7 @@
 <template>
   <label class="label">
     <div class="describe">
-      {{ label }} <span v-if="attributes.required">*</span>
+      {{ label }} <span v-if="attributes?.required">*</span>
     </div>
 
     <textarea
