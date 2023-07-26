@@ -2,6 +2,13 @@
   <div role="select" class="select" v-on-click-outside="handleCloseSelect">
     <div @click="handleToggleSelect">
       <div class="select-name">{{ selectTitle }}</div>
+
+      <IconComponent
+        :class="{ 'select-icon--rotate': isSelectOpen }"
+        class="select-icon"
+        :path="mdiChevronDown"
+        :size="25"
+      />
     </div>
 
     <div class="select-options" v-if="isSelectOpen">
@@ -11,14 +18,6 @@
       <div role="option" @click="handleEmitValue(4)">4 anos</div>
       <div role="option" @click="handleEmitValue(5)">5 anos</div>
     </div>
-
-    <IconComponent
-      @click="handleToggleSelect"
-      :class="{ 'select-icon--rotate': isSelectOpen }"
-      class="select-icon"
-      :path="mdiChevronDown"
-      :size="25"
-    />
   </div>
 </template>
 
@@ -54,16 +53,16 @@ function handleEmitValue(value) {
 
 <style lang="scss" scoped>
 .select {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   position: relative;
-  padding: 0.5rem 1.5rem;
+  padding: 0.7rem 1.5rem;
   min-width: 300px;
 
   & > :nth-child(1) {
+    padding: 0rem 0.7rem;
     flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &,
@@ -86,8 +85,6 @@ function handleEmitValue(value) {
   }
 
   &-options {
-    position: absolute;
-
     left: 0;
     right: 0;
     top: 35px;

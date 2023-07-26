@@ -14,19 +14,25 @@
         />
         <img v-else class="sidebar-logo" src="/images/logo.svg" />
       </div>
+
       <div class="sidebar-divisor"></div>
 
-      <ButtonComponentVue fullWidth :styles="sidebarStatus + ' slidebar'">
+      <ButtonComponent fullWidth :styles="sidebarStatus + ' slidebar'">
         <template v-slot:start>
           <IconComponent class="sidebar-icon" :path="mdiEmail" :size="40" />
         </template>
 
         Minhas Cartas
-      </ButtonComponentVue>
+      </ButtonComponent>
     </div>
     <!-- //sidebar footer -->
     <div>
-      <ButtonComponentVue fullWidth :styles="sidebarStatus + ' slidebar'">
+      <ChangeThemeComponent></ChangeThemeComponent>
+      <ButtonComponent
+        fullWidth
+        :styles="sidebarStatus + ' slidebar'"
+        @click="changeTheme()"
+      >
         <template v-slot:start>
           <IconComponent
             class="sidebar-icon"
@@ -36,9 +42,9 @@
         </template>
 
         Alterar Tema
-      </ButtonComponentVue>
+      </ButtonComponent>
 
-      <ButtonComponentVue fullWidth :styles="sidebarStatus + ' slidebar'">
+      <ButtonComponent fullWidth :styles="sidebarStatus + ' slidebar'">
         <template v-slot:start>
           <IconComponent
             class="sidebar-icon"
@@ -48,7 +54,7 @@
         </template>
 
         Logout
-      </ButtonComponentVue>
+      </ButtonComponent>
     </div>
   </aside>
 </template>
@@ -57,7 +63,7 @@
 import { mdiEmail, mdiLogoutVariant, mdiBrightness7 } from '@mdi/js';
 import { ref } from 'vue';
 
-import ButtonComponentVue from '../utils/ButtonComponent.vue';
+import ButtonComponent from '../utils/ButtonComponent.vue';
 import IconComponent from '@@utils/IconComponent.vue';
 
 const isSidebarExpanded = ref(false);
@@ -72,6 +78,10 @@ function closeExpandedSidebar() {
   isSidebarExpanded.value = false;
   sidebarStatus.value = 'text-hidden';
 }
+
+import useTheme from '@hooks/useTheme';
+
+const { changeTheme } = useTheme();
 </script>
 
 <style scoped lang="scss">

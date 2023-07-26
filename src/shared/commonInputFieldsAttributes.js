@@ -30,20 +30,16 @@ const fontSize = {
   type: 'number',
   name: 'font_size',
   value: '16',
-  minLength: 0,
-  maxLength: 25,
+  min: 0,
+  max: 25,
   required: true,
 };
 
 const letterTitle = {
+  ...fullname,
   type: 'text',
   name: 'letter_title',
   placeholder: 'Titulo',
-  minLength: 3,
-  maxLength: 35,
-  required: true,
-  pattern: '[a-zA-ZÀ-ÿ ]+',
-  'data-accepted-chars': patternsDescription.fullname,
 };
 
 const email = {

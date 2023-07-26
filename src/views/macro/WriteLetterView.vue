@@ -123,7 +123,7 @@ import attributes from '@@shared/commonInputFieldsAttributes';
 const titleText = ref('');
 
 function handleSelectYearChange(value) {
-  console.log('chage', value);
+  console.log('change', value);
 }
 </script>
 
@@ -156,14 +156,17 @@ strong {
       flex-direction: column;
       gap: 1rem;
     }
+
     & > :nth-child(2) {
       display: flex;
+      flex-wrap: wrap;
       gap: 1rem;
     }
 
     &-buttons {
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
 
       & > :nth-child(2) {
         display: flex;
@@ -173,6 +176,7 @@ strong {
     }
     &-button {
       min-width: 120px;
+      height: 47px;
     }
   }
 
@@ -225,16 +229,10 @@ strong {
         flex-wrap: wrap;
       }
     }
-
-    &-footer-buttons {
-      flex-wrap: wrap;
-    }
   }
 }
 @media (max-width: 380px) {
   .form-footer-buttons {
-    flex-wrap: wrap;
-
     & > * {
       min-width: 100%;
     }
