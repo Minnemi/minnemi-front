@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 env:
  REGISTRY: docker.io
- IMAGE_NAME: Minnemi
+ IMAGE_NAME: minnemii/minnemi
  
 jobs:
   build:
