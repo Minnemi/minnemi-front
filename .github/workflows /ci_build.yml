@@ -1,9 +1,6 @@
 name: CI DE DEPLOY
 
 on:
-  pull_request:
-    types:
-      - closed
     branches:
       - 'main'
       - 'develop'
