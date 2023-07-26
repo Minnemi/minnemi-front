@@ -1,10 +1,10 @@
-name: CI DE DEPLOY
+name: build
 
 on:
   push:
-    branches:
-      - 'main'
-      - 'develop'
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
 
   workflow_dispatch:
 env:
