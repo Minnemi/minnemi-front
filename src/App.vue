@@ -1,10 +1,10 @@
 <template>
-  <MainContent></MainContent>
+  <DefaultLayout />
 </template>
 
 <script setup>
-import MainContent from './components/MainContent.vue';
-import './styles/main.scss';
+import '@/styles/main.scss';
+import DefaultLayout from '@components/layouts/DefaultLayout.vue';
 </script>
 
-<style lang="scss" scoped></style>
+<style></style>

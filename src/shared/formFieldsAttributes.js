@@ -15,6 +15,22 @@ const username = {
   pattern: '[a-zA-Z0-9_]+',
 };
 
+const fontSize = {
+  type: 'number',
+  name: 'font_size',
+  value: '16',
+  min: 0,
+  max: 25,
+  required: true,
+};
+
+const letterTitle = {
+  ...fullname,
+  type: 'text',
+  name: 'letter_title',
+  placeholder: 'Titulo',
+};
+
 const email = {
   type: 'email',
   name: 'email',
@@ -44,4 +60,6 @@ export default {
   email,
   password,
   confirmPassword,
+  fontSize,
+  letterTitle,
 };
