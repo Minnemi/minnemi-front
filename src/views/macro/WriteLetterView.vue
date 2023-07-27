@@ -109,14 +109,19 @@ import TextArea from '@@forms/ContentInput.vue';
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import SelectComponent from './components/SelectYearComponent.vue';
 import SelectFontComponent from '@components/forms/SelectComponent.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import attributes from '@@shared/formFieldsAttributes';
+import wave from '@@lib/wave';
 
 const titleText = ref('');
 
 function handleSelectYearChange(value) {
   console.log('change', value);
 }
+
+onMounted(() => {
+  new wave(true);
+});
 </script>
 
 <style lang="scss" scoped>
