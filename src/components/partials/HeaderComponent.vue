@@ -23,7 +23,7 @@
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import ProfilePicture from '@components/utils/ProfilePicture.vue';
 import AppContainer from '@components/wrappers/AppContainer.vue';
-import PerfilComponent from './UserprofileComponent.vue';
+import PerfilComponent from './PerfilComponent.vue';
 
 import { ref } from 'vue';
 
