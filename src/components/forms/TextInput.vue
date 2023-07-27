@@ -1,7 +1,8 @@
 <template>
   <label class="label">
     <div class="describe">
-      {{ label }} <span v-if="attributes.required">*</span>
+      {{ label }}
+      <span v-if="!hiddenRequiredMark && attributes.required">*</span>
     </div>
 
     <div ref="inputBoxRef" class="input">
@@ -54,6 +55,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  hiddenRequiredMark: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 function insertAttributesIntoInputElement(attributes) {
@@ -69,7 +74,8 @@ function autoFocus(enable) {
 }
 
 function handleClick() {
-  inputRef.value.type = inputRef.value.type === 'password' ? 'text' : 'password';
+  inputRef.value.type =
+    inputRef.value.type === 'password' ? 'text' : 'password';
 }
 
 onMounted(() => {
