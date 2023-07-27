@@ -44,6 +44,56 @@ export const pt_BR = {
       },
     },
   },
+  appLayout: {
+    footer: {
+      legal: {
+        use: 'Termos de uso',
+        privacy: 'Políticas de privacidade',
+      },
+    },
+    userProfile: {
+      greeting: 'Olá',
+      showProfileButton: 'Ver perfil',
+      editablePicture: 'Alterar',
+      saveChanges: 'Salvar',
+      excludeProfile: 'Excluir perfil',
+    },
+    slideBar: {
+      buttons: {
+        myLetters: 'Minhas cartas',
+        changeTheme: 'Alterar tema',
+        logout: 'Sair da conta',
+      },
+    },
+  },
+  writeLetterPage: {
+    title: 'Escreva sua carta para o futuro',
+    placeholder: {
+      title: 'Título',
+      content: 'Querido eu, hoje gostaria...',
+    },
+    labels: {
+      saveLetterButton: 'Salvar',
+      sendLetterButton: 'Enviar',
+      selectDate: {
+        title: 'Desejo receber em',
+        sulfix: {
+          plural: 'anos',
+          singular: 'ano',
+        },
+      },
+      fontFamily: 'Fonte',
+      fontSize: 'Tamanho',
+      fontStyles: {
+        bold: 'Negrito',
+        italic: 'Itálico',
+        alignJustify: 'Alinhamento justificado',
+        alignLeft: 'Alinhamento a esquerda',
+        alignCenter: 'Alinhamento ao centro',
+        alignRight: 'Alinhamento a direita',
+      },
+    },
+  },
   resetPasswordPage: {
     title: 'Crie uma nova senha',
     description: 'Digite uma nova senha e volte a tela de acesso',
