@@ -25,9 +25,8 @@
         Minhas Cartas
       </ButtonComponent>
     </div>
-    <!-- //sidebar footer -->
+
     <div>
-      <ChangeThemeComponent></ChangeThemeComponent>
       <ButtonComponent
         fullWidth
         :styles="sidebarStatus + ' slidebar'"

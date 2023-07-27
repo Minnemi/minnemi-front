@@ -8,8 +8,6 @@
       <select
         ref="selectRef"
         class="select-field"
-        :data-compare-name="compareField?.name"
-        :data-compare-label="compareField?.label"
         @input="handleSelect"
       >
         <option v-for="(item, index) in data" :key="index" :value="item">
