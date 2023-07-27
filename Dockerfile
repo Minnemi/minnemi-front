@@ -1,3 +1,3 @@
-FROM ubuntu:latest
+FROM centos:7
 COPY . .
 EXPOSE 80
