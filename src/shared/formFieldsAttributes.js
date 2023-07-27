@@ -1,3 +1,4 @@
+// Auth inputs
 const fullname = {
   type: 'text',
   name: 'fullname',
@@ -13,22 +14,6 @@ const username = {
   placeholder: 'ada_lovelace_201',
   name: 'username',
   pattern: '[a-zA-Z0-9_]+',
-};
-
-const fontSize = {
-  type: 'number',
-  name: 'font_size',
-  value: '16',
-  min: 0,
-  max: 25,
-  required: true,
-};
-
-const letterTitle = {
-  ...fullname,
-  type: 'text',
-  name: 'letter_title',
-  placeholder: 'Titulo',
 };
 
 const email = {
@@ -54,6 +39,29 @@ const confirmPassword = {
   name: 'confirmPassword'
 };
 
+// Write letter page
+const fontSize = {
+  type: 'number',
+  name: 'font_size',
+  value: '16',
+  min: 8,
+  max: 48,
+  required: true,
+};
+
+const letterTitle = {
+  ...fullname,
+  type: 'text',
+  name: 'letterTitle',
+};
+
+const letterContent = {
+  ...letterTitle,
+  minLength: 100,
+  maxLength: 1500,
+  name: 'letterContent',
+};
+
 export default {
   fullname,
   username,
@@ -62,4 +70,5 @@ export default {
   confirmPassword,
   fontSize,
   letterTitle,
+  letterContent,
 };
