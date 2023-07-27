@@ -8,12 +8,6 @@
             mode="editable"
             src="https://images.unsplash.com/photo-1685659928694-6300f3eb01f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
           />
-          <!-- <ButtonComponent
-            @click="isPerfilOpen = true"
-            styles="fill rounded small"
-          >
-            Alterar Foto
-          </ButtonComponent> -->
         </div>
       </header>
 
@@ -35,7 +29,7 @@
           />
           <TextInput
             label="Confirme Nova Senha"
-            :attributes="attributes.password"
+            :attributes="attributes.confirmPassword"
             :icon="mdiEye"
             :enableButton="true"
           />
@@ -54,9 +48,7 @@
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import ProfilePicture from '@components/utils/ProfilePicture.vue';
 import TextInput from '@@forms/TextInput.vue';
-
 import attributes from '@@shared/formFieldsAttributes';
-
 import { mdiEye } from '@mdi/js';
 </script>
 
