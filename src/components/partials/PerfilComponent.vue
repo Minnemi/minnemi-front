@@ -77,7 +77,7 @@ import { mdiEye } from '@mdi/js';
     flex-direction: column;
 
     background-color: var(--page-background-color);
-    background-image: url('/public/images/logo-transparent.png');
+    background-image: url('/images/logo-transparent.png');
     background-position: bottom left;
     background-size: 300px;
     background-repeat: no-repeat;
