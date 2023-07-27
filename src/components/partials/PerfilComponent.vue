@@ -2,50 +2,57 @@
   <div class="perfil" @click.self="$emit('close')">
     <div class="perfil-content">
       <header>
-        <strong>Olá, Hugo!</strong>
+        <strong>{{ $t('appLayout.userProfile.greeting') }}, Hugo!</strong>
         <div>
           <ProfilePicture
             mode="editable"
             src="https://images.unsplash.com/photo-1685659928694-6300f3eb01f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
           />
-          <!-- <ButtonComponent
-            @click="isPerfilOpen = true"
-            styles="fill rounded small"
-          >
-            Alterar Foto
-          </ButtonComponent> -->
         </div>
       </header>
 
-      <div class="perfil-line-separator"></div>
+      <hr class="perfil-line-separator" />
 
       <form class="perfil-form">
         <div>
-          <TextInput label="Nome" :attributes="attributes.username" />
-          <TextInput label="Sobrenome" :attributes="attributes.username" />
-
-          <div class="perfil-line-separator"></div>
-
-          <TextInput label="Email" :attributes="attributes.email" />
           <TextInput
-            label="Nova Senha"
+            :label="$t('formsLabels.fullname')"
+            :attributes="attributes.fullname"
+          />
+          <TextInput
+            :label="$t('formsLabels.username')"
+            :attributes="attributes.username"
+          />
+
+          <hr class="perfil-line-separator" />
+
+          <TextInput
+            :label="$t('formsLabels.email')"
+            :attributes="attributes.email"
+          />
+          <TextInput
+            :label="$t('formsLabels.password')"
             :attributes="attributes.password"
             :icon="mdiEye"
             :enableButton="true"
           />
           <TextInput
-            label="Confirme Nova Senha"
-            :attributes="attributes.password"
+            :label="$t('formsLabels.confirmPassword')"
+            :attributes="attributes.confirmPassword"
             :icon="mdiEye"
             :enableButton="true"
           />
         </div>
         <ButtonComponent class="perfil-save-btn" styles="fill large">
-          Salvar
+          {{ $t('appLayout.userProfile.saveChanges') }}
         </ButtonComponent>
       </form>
 
-      <footer><strong>Excluir conta 😥</strong></footer>
+      <footer>
+        <strong>
+          {{ $t('appLayout.userProfile.excludeProfile') }} 😥
+        </strong>
+      </footer>
     </div>
   </div>
 </template>
@@ -54,9 +61,7 @@
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import ProfilePicture from '@components/utils/ProfilePicture.vue';
 import TextInput from '@@forms/TextInput.vue';
-
-import attributes from '@@shared/commonInputFieldsAttributes';
-
+import attributes from '@@shared/formFieldsAttributes';
 import { mdiEye } from '@mdi/js';
 </script>
 
@@ -85,7 +90,7 @@ import { mdiEye } from '@mdi/js';
     flex-direction: column;
 
     background-color: var(--page-background-color);
-    background-image: url('/public/images/logo-transparent.png');
+    background-image: url('/images/logo-transparent.png');
     background-position: bottom left;
     background-size: 300px;
     background-repeat: no-repeat;

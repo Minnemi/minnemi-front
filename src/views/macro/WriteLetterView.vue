@@ -2,32 +2,48 @@
   <div>
     <form action="" class="form">
       <header>
-        <strong>Escreva sua carta para o futuro</strong>
+        <strong>{{ $t('writeLetterPage.title') }}</strong>
 
         <TextInput
           class="form-title-input"
-          v-model="titleText"
-          :attributes="attributes.letterTitle"
+          :hiddenRequiredMark="true"
+          :attributes="{
+            ...attributes.letterTitle,
+            placeholder: $t('writeLetterPage.placeholder.title'),
+          }"
         />
       </header>
 
       <div class="form-content">
-        <TextArea placeholder="Descrição" />
+        <!--
+          ! todo: criar os eventos do component TextArea
+          ! [ ] validação
+          ! [ ] formatação
+         -->
+        <TextArea
+          :hiddenRequiredMark="true"
+          :attributes="{
+            ...attributes.letterContent,
+            placeholder: $t('writeLetterPage.placeholder.content'),
+          }"
+        ></TextArea>
 
         <footer class="form-footer">
           <div>
-            <strong>Desejo receber Em</strong>
+            <strong>
+              {{ $t('writeLetterPage.labels.selectDate.title') }}
+            </strong>
           </div>
 
           <div class="form-footer-buttons">
             <SelectComponent @change="handleSelectYearChange" />
             <div>
-              <ButtonComponent class="form-footer-button" styles="outline"
-                >Salvar</ButtonComponent
-              >
-              <ButtonComponent class="form-footer-button" styles="fill"
-                >Enviar</ButtonComponent
-              >
+              <ButtonComponent class="form-footer-button" styles="outline">
+                {{ $t('writeLetterPage.labels.saveLetterButton') }}
+              </ButtonComponent>
+              <ButtonComponent type="submit" class="form-footer-button" styles="fill">
+                {{ $t('writeLetterPage.labels.sendLetterButton') }}
+              </ButtonComponent>
             </div>
           </div>
         </footer>
@@ -36,7 +52,11 @@
       <div class="form-letter-tools">
         <SelectFontComponent :data="['Arial', 'Poppins']" label="Fonte" />
 
-        <TextInput label="Tamanho" :attributes="attributes.fontSize" />
+        <TextInput
+          :label="$t('writeLetterPage.labels.fontSize')"
+          :hiddenRequiredMark="true"
+          :attributes="attributes.fontSize"
+        />
 
         <div class="letter-tools-grid">
           <ButtonComponent styles="outline">
@@ -103,28 +123,23 @@ import {
   mdiFormatAlignLeft,
   mdiFormatAlignRight,
 } from '@mdi/js';
-
 import IconComponent from '@@utils/IconComponent.vue';
-
 import TextInput from '@@forms/TextInput.vue';
-
 import TextArea from '@@forms/ContentInput.vue';
-
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
-
 import SelectComponent from './components/SelectYearComponent.vue';
-
 import SelectFontComponent from '@components/forms/SelectComponent.vue';
-
-import { ref } from 'vue';
-
-import attributes from '@@shared/commonInputFieldsAttributes';
-
-const titleText = ref('');
+import { onMounted } from 'vue';
+import attributes from '@@shared/formFieldsAttributes';
+import wave from '@@lib/wave';
 
 function handleSelectYearChange(value) {
   console.log('change', value);
 }
+
+onMounted(() => {
+  new wave(true);
+});
 </script>
 
 <style lang="scss" scoped>

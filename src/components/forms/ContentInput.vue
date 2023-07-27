@@ -1,7 +1,8 @@
 <template>
   <label class="label">
     <div class="describe">
-      {{ label }} <span v-if="attributes?.required">*</span>
+      {{ label }}
+      <span v-if="!hiddenRequiredMark && attributes?.required">*</span>
     </div>
 
     <textarea
@@ -15,13 +16,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const textareaRef = ref(null);
 const errorMessage = ref('');
-defineProps({
+const props = defineProps({
   label: String,
   attributes: Object,
+  hiddenRequiredMark: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+function insertAttributesIntoInputElement(attributes) {
+  for (const attr in attributes) {
+    textareaRef.value.setAttribute(attr, attributes[attr]);
+  }
+}
+
+onMounted(() => {
+  insertAttributesIntoInputElement(props.attributes);
 });
 </script>
 
@@ -56,7 +71,8 @@ defineProps({
   &::placeholder {
     color: var(--login-field-color);
   }
-  resize: none;
+
+  resize: vertical;
 }
 
 .message {

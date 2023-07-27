@@ -8,8 +8,6 @@
       <select
         ref="selectRef"
         class="select-field"
-        :data-compare-name="compareField?.name"
-        :data-compare-label="compareField?.label"
         @input="handleSelect"
       >
         <option v-for="(item, index) in data" :key="index" :value="item">
@@ -37,16 +35,7 @@ const props = defineProps({
       return { type: 'text' };
     },
   },
-  icon: {
-    type: String,
-    default: '',
-  },
-  enableButton: {
-    type: Boolean,
-    default: false,
-  },
   focus: Boolean,
-  compareField: Object,
 });
 
 function insertAttributesIntoSelectElement(attributes) {

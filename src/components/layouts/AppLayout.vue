@@ -23,7 +23,7 @@ import FooterComponent from '../partials/FooterComponent.vue';
 .container-app {
   position: relative;
   display: flex;
-  min-height: 100vh; // to select year component don't break sidebar
+  min-height: 100vh;
 
   & > :nth-child(2) {
     flex: 1;

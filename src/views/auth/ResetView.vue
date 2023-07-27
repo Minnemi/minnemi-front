@@ -1,12 +1,12 @@
 <template>
   <WrapperForm
-    title="Crie uma nova senha"
-    description="Digite uma nova senha e volte a tela de acesso"
+    :title="$t('resetPasswordPage.title')"
+    :description="$t('resetPasswordPage.description')"
     @submit.prevent="handleSubmit"
   >
     <section class="fields">
       <TextInput
-        label="Nova senha"
+        :label="$t('formsLabels.password')"
         :attributes="attributes.password"
         :icon="mdiEye"
         :enableButton="true"
@@ -14,20 +14,17 @@
       />
 
       <TextInput
-        label="Confirmar nova senha"
+        :label="$t('formsLabels.confirmPassword')"
         :attributes="attributes.confirmPassword"
         :icon="mdiEye"
         :enableButton="true"
-        :compareField="{
-          label: 'Nova senha',
-          name: attributes.password.name,
-        }"
+        :compareField="attributes.password.name"
       />
     </section>
 
     <nav class="actions">
       <ButtonComponent type="submit" data-submit-form styles="fill font-normal" full-width>
-        Alterar
+        {{ $t('resetPasswordPage.button.submit') }}
       </ButtonComponent>
     </nav>
 
@@ -35,7 +32,10 @@
 
     <nav class="extra-options">
       <RouterLink to="/auth/sign-in" class="link">
-        Lembrou sua senha? <span>Acessar conta</span>
+        {{ $t('resetPasswordPage.redirect.login.first') }}
+        <span>
+          {{ $t('resetPasswordPage.redirect.login.last') }}
+        </span>
       </RouterLink>
     </nav>
   </WrapperForm>
@@ -44,7 +44,7 @@
     <template v-slot:title>
       <div v-if="notifyType === 'error'" class="notifyTitle">
         <svg-icon type="mdi" size="2rem" :path="mdiAlertCircle" />
-        Erro ao tentar resetar senha!
+        {{ $t('resetPasswordPage.errorModal.title') }}
       </div>
     </template>
 
@@ -56,7 +56,9 @@
 
     <template v-slot:extra>
       <ButtonComponent @click="closeNotify">
-        <u>Fechar agora</u>. Fechar em {{ notifyTimer }}s
+        <u>
+          {{ $t('resetPasswordPage.errorModal.close.now') }}
+        </u>. {{ $t('resetPasswordPage.errorModal.close.in') }} {{ notifyTimer }}s
       </ButtonComponent>
     </template>
   </NotifyComponent>
@@ -69,7 +71,7 @@ import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import NotifyComponent from '@@utils/NotifyComponent.vue';
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiEye, mdiAlertCircle } from '@mdi/js';
-import attributes from '@@shared/commonInputFieldsAttributes';
+import attributes from '@@shared/formFieldsAttributes';
 import { ref } from 'vue';
 
 const notifyType = ref('');

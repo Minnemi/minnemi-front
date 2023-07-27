@@ -1,12 +1,14 @@
 <template>
   <footer class="footer">
     <ul>
-      <li>Termos de uso</li>
-      <li>Políticas de privacidade</li>
+      <li>{{ $t('appLayout.footer.legal.use') }}</li>
+      <li>{{ $t('appLayout.footer.legal.privacy') }}</li>
       <li>Minnemi &copy;</li>
     </ul>
   </footer>
 </template>
+
+<script setup></script>
 
 <style lang="scss" scoped>
 .footer {

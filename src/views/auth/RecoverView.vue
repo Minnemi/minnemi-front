@@ -1,13 +1,13 @@
 <template>
   <WrapperForm
-    title="Esqueceu sua senha?"
-    description="Insira seu e-mail para receber o link de alteração"
+    :title="$t('recoverPage.title')"
+    :description="$t('recoverPage.description')"
     styles="expand"
     @submit.prevent="handleSubmit"
   >
     <section class="fields">
       <TextInput
-        label="E-mail"
+        :label="$t('formsLabels.email')"
         :attributes="attributes.email"
         :icon="mdiEmail"
         :focus="true"
@@ -16,7 +16,7 @@
 
     <nav class="actions">
       <ButtonComponent type="submit" data-submit-form styles="fill font-normal" full-width>
-        Enviar
+        {{ $t('recoverPage.button.submit') }}
       </ButtonComponent>
     </nav>
 
@@ -24,7 +24,10 @@
 
     <nav class="extra-options">
       <RouterLink to="/auth/sign-in" class="link">
-        Lembrou sua senha? <span>Acessar conta</span>
+        {{ $t('recoverPage.redirect.login.first') }}
+        <span>
+          {{ $t('recoverPage.redirect.login.last') }}
+        </span>
       </RouterLink>
     </nav>
   </WrapperForm>
@@ -33,29 +36,31 @@
     <template v-slot:title>
       <div v-if="notifyType === 'success'" class="notifyTitle">
         <svg-icon type="mdi" size="2rem" :path="mdiCheckCircle" />
-        E-mail enviado com sucesso!
+        {{ $t('recoverPage.modal.success.title') }}
       </div>
       <div v-if="notifyType === 'error'" class="notifyTitle">
         <svg-icon type="mdi" size="2rem" :path="mdiAlertCircle" />
-        E-mail não enviado!
+        {{ $t('recoverPage.modal.error.title') }}
       </div>
     </template>
 
     <template v-slot:message>
       <span v-if="notifyType === 'success'">
-        E-mail enviado para "{{ notifyEmail }}".
-        Confira sua caixa de entrada e spam.
+        {{ $t('recoverPage.modal.success.description') }} "{{ notifyEmail }}".
+        {{ $t('recoverPage.modal.success.details') }}
       </span>
 
       <span v-if="notifyType === 'error'">
-        Erro ao tentar enviar um e-mail para "{{ notifyEmail }}".<br/>
-        Detalhes: {{ notifyError }}
+        {{ $t('recoverPage.modal.error.description') }} "{{ notifyEmail }}".<br/>
+        {{ $t('recoverPage.modal.error.details') }}: {{ notifyError }}
       </span>
     </template>
 
     <template v-slot:extra>
       <ButtonComponent @click="closeNotify">
-        <u>Fechar agora</u>. Fechar em {{ notifyTimer }}s
+        <u>
+          {{ $t('recoverPage.modal.close.now') }}
+        </u>. {{ $t('recoverPage.modal.close.in') }} {{ notifyTimer }}s
       </ButtonComponent>
     </template>
   </NotifyComponent>
@@ -68,7 +73,7 @@ import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import NotifyComponent from '@@utils/NotifyComponent.vue';
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiEmail, mdiCheckCircle, mdiAlertCircle } from '@mdi/js';
-import attributes from '@@shared/commonInputFieldsAttributes';
+import attributes from '@@shared/formFieldsAttributes';
 import { ref } from 'vue';
 
 const notifyEmail = ref(null);

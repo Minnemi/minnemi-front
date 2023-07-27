@@ -2,12 +2,12 @@
   <header>
     <AppContainer wFull class="header-container">
       <div>
-        <strong>Olá hugo</strong>
+        <strong>{{ $t('appLayout.userProfile.greeting') }}, Hugo</strong>
         <ButtonComponent
           @click="isPerfilOpen = true"
           styles="fill rounded small"
         >
-          Ver Perfil
+          {{ $t('appLayout.userProfile.showProfileButton') }}
         </ButtonComponent>
       </div>
       <ProfilePicture
