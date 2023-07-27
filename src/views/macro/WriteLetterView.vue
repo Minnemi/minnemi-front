@@ -6,7 +6,6 @@
 
         <TextInput
           class="form-title-input"
-          v-model="titleText"
           :hiddenRequiredMark="true"
           :attributes="{
             ...attributes.letterTitle,
@@ -130,11 +129,9 @@ import TextArea from '@@forms/ContentInput.vue';
 import ButtonComponent from '@components/utils/ButtonComponent.vue';
 import SelectComponent from './components/SelectYearComponent.vue';
 import SelectFontComponent from '@components/forms/SelectComponent.vue';
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import attributes from '@@shared/formFieldsAttributes';
 import wave from '@@lib/wave';
-
-const titleText = ref('');
 
 function handleSelectYearChange(value) {
   console.log('change', value);
