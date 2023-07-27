@@ -15,18 +15,19 @@ export default defineConfig({
       '@': fullPath('./src'),
       '@views': fullPath('./src/views'),
       '@components': fullPath('./src/components'),
+      '@hooks': fullPath('./src/hooks'),
       '@@forms': fullPath('./src/components/forms'),
       '@@utils': fullPath('./src/components/utils'),
       '@@lib': fullPath('./src/lib'),
       '@@shared': fullPath('./src/shared'),
       '@@stores': fullPath('./src/stores'),
-    }
+    },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "./src/styles/variables.scss";'
-      }
-    }
-  }
+        additionalData: '@import "./src/styles/variables.scss";',
+      },
+    },
+  },
 });

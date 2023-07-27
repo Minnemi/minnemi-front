@@ -4,24 +4,18 @@
       {{ label }} <span v-if="attributes.required">*</span>
     </div>
 
-    <div ref="inputBoxRef" class="input">
-      <input
-        ref="inputRef"
-        class="input-field"
+    <div ref="selectBoxRef" class="select">
+      <select
+        ref="selectRef"
+        class="select-field"
         :data-compare-name="compareField?.name"
         :data-compare-label="compareField?.label"
-        @input="handleInput"
-      />
-
-      <button
-        type="button"
-        class="input-button"
-        :disabled="Boolean(!enableButton)"
-        :data-hidden="Boolean(!icon)"
-        @click="handleClick"
+        @input="handleSelect"
       >
-        <svg-icon type="mdi" :path="icon" />
-      </button>
+        <option v-for="(item, index) in data" :key="index" :value="item">
+          {{ item }}
+        </option>
+      </select>
     </div>
 
     <div class="message" :data-message="errorMessage"></div>
@@ -30,14 +24,13 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import SvgIcon from '@jamescoyle/vue-icon';
-import { describeError } from '@@shared/inputErrorsMessages';
 
-const inputBoxRef = ref(null);
-const inputRef = ref(null);
+const selectBoxRef = ref(null);
+const selectRef = ref(null);
 const errorMessage = ref('');
 const props = defineProps({
   label: String,
+  data: Array,
   attributes: {
     type: Object,
     default() {
@@ -56,92 +49,21 @@ const props = defineProps({
   compareField: Object,
 });
 
-function handleClick() {
-  inputRef.value.type =
-    inputRef.value.type === 'password' ? 'text' : 'password';
-}
-
-function insertAttributesIntoInputElement(attributes) {
+function insertAttributesIntoSelectElement(attributes) {
   for (const attr in attributes) {
-    inputRef.value.setAttribute(attr, attributes[attr]);
+    selectRef.value.setAttribute(attr, attributes[attr]);
   }
 }
 
 function autoFocus(enable) {
   if (enable) {
-    inputRef.value.focus();
+    selectRef.value.focus();
   }
-}
-
-function resetMessageError() {
-  if (inputRef.value.required) {
-    return inputRef.value.setCustomValidity(describeError.required());
-  }
-
-  return inputRef.value.setCustomValidity('');
-}
-
-function execCheckValidity(msg = '') {
-  inputRef.value.setCustomValidity(msg);
-
-  if (!inputRef.value.checkValidity()) {
-    inputBoxRef.value.classList.add('error');
-    errorMessage.value = inputRef.value.validationMessage;
-    return;
-  }
-
-  inputBoxRef.value.classList.remove('error');
-  errorMessage.value = '';
-}
-
-function validation() {
-  if (props.compareField) {
-    const compareFieldValue = document.getElementsByName(
-      props.compareField.name,
-    )[0].value;
-
-    let msg;
-
-    if (compareFieldValue !== inputRef.value.value) {
-      msg = describeError.mustBeEquals(props.compareField.label);
-    }
-
-    return execCheckValidity(msg);
-  }
-
-  const validity = inputRef.value.validity;
-
-  if (validity.patternMismatch || validity.typeMismatch) {
-    const msg = describeError.pattern(inputRef.value.dataset.acceptedChars);
-    return execCheckValidity(msg);
-  }
-
-  if (validity.valueMissing) {
-    const msg = describeError.required();
-    return execCheckValidity(msg);
-  }
-
-  if (validity.tooShort) {
-    const msg = describeError.minLength(inputRef.value.minLength);
-    return execCheckValidity(msg);
-  }
-
-  if (validity.tooLong) {
-    const msg = describeError.maxLength(inputRef.value.maxLength);
-    return execCheckValidity(msg);
-  }
-
-  execCheckValidity('');
-}
-
-function handleInput() {
-  validation();
 }
 
 onMounted(() => {
-  insertAttributesIntoInputElement(props.attributes);
+  insertAttributesIntoSelectElement(props.attributes);
   autoFocus(props.focus);
-  resetMessageError();
 });
 </script>
 
@@ -160,7 +82,7 @@ onMounted(() => {
   font-weight: 600;
 }
 
-.input {
+.select {
   position: relative;
   display: flex;
   align-items: center;
@@ -176,6 +98,9 @@ onMounted(() => {
   }
 
   &-field {
+    font-size: 1.1rem;
+    font-weight: bold;
+
     margin: 0 2px;
     padding: 0.5rem 1rem;
     width: 100%;
