@@ -1,5 +1,9 @@
 <template>
-  <figure class="figure" :class="mode" data-editable-content="Alterar">
+  <figure
+    class="figure"
+    :class="mode"
+    :data-editable-content="$t('appLayout.userProfile.editablePicture')"
+  >
     <img
       :alt="'Foto de perfil do usuário ' + username"
       :src="src"

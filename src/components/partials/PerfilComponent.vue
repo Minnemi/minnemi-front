@@ -2,7 +2,7 @@
   <div class="perfil" @click.self="$emit('close')">
     <div class="perfil-content">
       <header>
-        <strong>Olá, Hugo!</strong>
+        <strong>{{ $t('appLayout.userProfile.greeting') }}, Hugo!</strong>
         <div>
           <ProfilePicture
             mode="editable"
@@ -11,35 +11,48 @@
         </div>
       </header>
 
-      <div class="perfil-line-separator"></div>
+      <hr class="perfil-line-separator" />
 
       <form class="perfil-form">
         <div>
-          <TextInput label="Nome" :attributes="attributes.username" />
-          <TextInput label="Sobrenome" :attributes="attributes.username" />
-
-          <div class="perfil-line-separator"></div>
-
-          <TextInput label="Email" :attributes="attributes.email" />
           <TextInput
-            label="Nova Senha"
+            :label="$t('formsLabels.fullname')"
+            :attributes="attributes.fullname"
+          />
+          <TextInput
+            :label="$t('formsLabels.username')"
+            :attributes="attributes.username"
+          />
+
+          <hr class="perfil-line-separator" />
+
+          <TextInput
+            :label="$t('formsLabels.email')"
+            :attributes="attributes.email"
+          />
+          <TextInput
+            :label="$t('formsLabels.password')"
             :attributes="attributes.password"
             :icon="mdiEye"
             :enableButton="true"
           />
           <TextInput
-            label="Confirme Nova Senha"
+            :label="$t('formsLabels.confirmPassword')"
             :attributes="attributes.confirmPassword"
             :icon="mdiEye"
             :enableButton="true"
           />
         </div>
         <ButtonComponent class="perfil-save-btn" styles="fill large">
-          Salvar
+          {{ $t('appLayout.userProfile.saveChanges') }}
         </ButtonComponent>
       </form>
 
-      <footer><strong>Excluir conta 😥</strong></footer>
+      <footer>
+        <strong>
+          {{ $t('appLayout.userProfile.excludeProfile') }} 😥
+        </strong>
+      </footer>
     </div>
   </div>
 </template>

@@ -15,14 +15,14 @@
         <img v-else class="sidebar-logo" src="/images/logo.svg" />
       </div>
 
-      <div class="sidebar-divisor"></div>
+      <hr class="sidebar-divisor" />
 
       <ButtonComponent fullWidth :styles="sidebarStatus + ' slidebar'">
         <template v-slot:start>
           <IconComponent class="sidebar-icon" :path="mdiEmail" :size="40" />
         </template>
 
-        Minhas Cartas
+        {{ $t('appLayout.slideBar.buttons.myLetters') }}
       </ButtonComponent>
     </div>
 
@@ -40,7 +40,7 @@
           />
         </template>
 
-        Alterar Tema
+        {{ $t('appLayout.slideBar.buttons.changeTheme') }}
       </ButtonComponent>
 
       <ButtonComponent fullWidth :styles="sidebarStatus + ' slidebar'">
@@ -52,7 +52,7 @@
           />
         </template>
 
-        Logout
+        {{ $t('appLayout.slideBar.buttons.logout') }}
       </ButtonComponent>
     </div>
   </aside>
