@@ -1,4 +1,4 @@
-FROM centos:7
+FROM node:lts-alpine
 # instala um servidor http simples para servir conteúdo estático
 RUN npm install -g http-server
 
