@@ -4,6 +4,5 @@ services:
   front-end:
     image: m1nnemi/front:latest
     restart: always
-    ports: "80:80"
     networks:
       - stack_network
