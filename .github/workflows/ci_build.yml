@@ -3,13 +3,14 @@ name: CI DE DEPLOY
 on:
   push:
     branches: [ "develop" ]
-
   workflow_dispatch:
-
+  
+env:
+    API_URL: ${{ secrets.API_URL }}
+    API_KEY: ${{ secrets.API_KEY }}
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       
@@ -58,6 +59,3 @@ jobs:
           chmod u+x index.sh
           ./index.sh
         
-        env:
-          API_URL: ${{ secrets.API_URL }}
-          API_KEY: ${{ secrets.API_KEY }}     
