@@ -5,7 +5,7 @@ FILE_PATH="docker-compose.yml"
 # Faz a solicitação GET e armazena a resposta em uma variável
 response=$(curl -s -X GET "$URL" -H "X-API-Key: $API_KEY" --insecure)
 
-# Verifica se a stack com nome "ubunto" está criada
+# Verifica se a stack com nome "front" está criada
 if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   # Extrai o valor do campo "Name" resposta usando jq
   name=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Name')
