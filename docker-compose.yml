@@ -4,5 +4,6 @@ services:
   front-end:
     image: m1nnemi/front:latest
     restart: always
-    networks:
-      - stack_network
+
+networks:
+  stack_network:
