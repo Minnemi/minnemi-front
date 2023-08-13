@@ -5,9 +5,6 @@ on:
     branches: [ "develop" ]
   workflow_dispatch:
   
-env:
-    API_URL: ${{ secrets.API_URL }}
-    API_KEY: ${{ secrets.API_KEY }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -53,3 +50,7 @@ jobs:
         run: |
           chmod u+x index.sh
           ./index.sh
+
+env:
+    API_URL: ${{ secrets.API_URL }}
+    API_KEY: ${{ secrets.API_KEY }}    
