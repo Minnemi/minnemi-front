@@ -13,44 +13,86 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
-#      -
-#        name: Set up Docker Buildx
-#        uses: docker/setup-buildx-action@v2
-        
-#      -
-#        name: Docker meta
-#        id: meta
-#        uses: docker/metadata-action@v4
-#        with:
-#          images: m1nnemi/front
-#      -
-#        name: Login to Docker Hub
-#        uses: docker/login-action@v2
-#        with:
-#          username: ${{ secrets.DOCKERHUB_USERNAME }}
-#          password: ${{ secrets.DOCKERHUB_TOKEN }}
-#          
-#      -
-#        name: Build and push
-#        uses: docker/build-push-action@v4
-#        with:
-#          context: .
-#          file: ./Dockerfile
-#          push: true
-#          tags: ${{ secrets.DOCKERHUB_USERNAME }}/front:latest
-
-#      - 
-#        name: Sleep for 30 seconds
-#        run: sleep 30s
-#        shell: bash 
-       
-      - 
-        name: Executar Script Deploy do front para o portainer
+    
+      -
+        name: Set up environment
         run: |
-          URL=$API_URL
-          API_KEY=$API_KEY
+          echo "URL=$API_URL" >> $GITHUB_ENV
+          echo "API_KEY=$API_KEY" >> $GITHUB_ENV
           FILE_PATH="docker-compose.yml"
-          sudo apt-get install jq
+
+      - 
+        name: Run deployment script
+        run: |
           response=$(curl -s -X GET "$URL" -H "X-API-Key: $API_KEY" --insecure)
+          # Verifica se a stack com nome "front" está criada
+          if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
+            # Extrai o valor do campo "Name" resposta usando jq
+            name=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Name')
           
+            # Imprime o nome da stack
+            echo "A Stack chamada $name está criada. Nome: $name"
+          
+            # Obtém o ID da stack
+            id=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Id')
+            
+             # Imprime o ID da stack
+            echo "Obtendo ID da stack: $id"
+            # Monta a URL para a exclusão
+            DELETE_URL="$URL/$id"
+            
+            # Faz a solicitação DELETE usando curl
+            curl -X DELETE "$DELETE_URL" \
+            -H "X-API-Key: $API_KEY" \
+            -F "type=2" \
+            -F "method=file" \
+            -F "file=@$FILE_PATH" \
+            -F "endpointId=2" \
+            -F "Name=front" \
+            --insecure
+          
+            echo "Stack deletada. ID: $id"
+            echo "sleep 30s"
+            sleep 30
+          
+            echo "CRIANDO A STACK"
+          
+            response=$(curl -s -X POST "$URL" \
+            -H "X-API-Key: $API_KEY" \
+            -F "type=2" \
+            -F "method=file" \
+            -F "file=@$FILE_PATH" \
+            -F "endpointId=2" \
+            -F "Name=front" \
+            --insecure)
+          
+            # log
+            echo "Resposta da solicitação POST: $response"
+          
+            # Extrair o valor do campo "Id" da nova stack usando jq
+            id=$(echo "$response" | jq -r '.Id')
+          
+            # Imprimir o valor do Id
+            echo "Nova Stack criada. Id: $id"
+          else
+            echo "Nenhuma Stack da aplicão encontrada..."
+            echo "CRIANDO NOVA STACK"
+          
+            response=$(curl -s -X POST "$URL" \
+            -H "X-API-Key: $API_KEY" \
+            -F "type=2" \
+            -F "method=file" \
+            -F "file=@$FILE_PATH" \
+            -F "endpointId=2" \
+            -F "Name=front" \
+            --insecure)
+          
+            # Imprimir a resposta completa para depuração
+            echo "Resposta da solicitação POST: $response"
+          
+            # Extrair o valor do campo "Id" da nova stack usando jq
+            id=$(echo "$response" | jq -r '.Id')
+          
+            # Imprimir o valor do Id
+            echo "Nova Stack criada. Id: $id"
+          fi
