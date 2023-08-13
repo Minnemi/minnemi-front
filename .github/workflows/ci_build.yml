@@ -55,8 +55,8 @@ jobs:
       - 
         name: Executar Script Deploy do front para o portainer
         run: |
-          apt-get update -y 
-          apt-get install curl
+          sudo apt-get update -y 
+          sudo apt-get install curl
           response=$(curl -s -X GET "$URL" -H "X-API-Key: $API_KEY" --insecure)
           if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
             name=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Name')
