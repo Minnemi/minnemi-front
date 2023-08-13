@@ -6,13 +6,13 @@ FILE_PATH="docker-compose.yml"
 # Faz a solicitação GET e armazena a resposta em uma variável
 response=$(curl -s -X GET "$URL" -H "X-API-Key: $API_KEY" --insecure)
 
-# Verifica se a stack com nome "front" está criada
+# Verifica se a stack com nome "ubunto" está criada
 if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   # Extrai o valor do campo "Name" resposta usando jq
   name=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Name')
 
   # Imprime o nome da stack
-  echo "A Stack chamada $name está criada. Nome: $name"
+  echo "A Stack chamada 'ubunto' está criada. Nome: $name"
 
   # Obtém o ID da stack
   id=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Id')
@@ -29,14 +29,12 @@ if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   -F "method=file" \
   -F "file=@$FILE_PATH" \
   -F "endpointId=2" \
-  -F "Name=front" \
-  --insecure
+  -F "Name=front" 
 
   echo "Stack deletada. ID: $id"
-  echo "sleep 30s"
+  echo "vamos dormir por 30 segundos"
   sleep 30
-
-  echo "CRIANDO A STACK"
+  echo "CRIANDO A STACK $name"
 
   response=$(curl -s -X POST "$URL" \
   -H "X-API-Key: $API_KEY" \
@@ -44,10 +42,9 @@ if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   -F "method=file" \
   -F "file=@$FILE_PATH" \
   -F "endpointId=2" \
-  -F "Name=front" \
-  --insecure)
+  -F "Name=front" )
 
-  # log
+  # Imprimir a resposta completa para depuração
   echo "Resposta da solicitação POST: $response"
 
   # Extrair o valor do campo "Id" da nova stack usando jq
@@ -56,8 +53,8 @@ if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   # Imprimir o valor do Id
   echo "Nova Stack criada. Id: $id"
 else
-  echo "Nenhuma Stack da aplicão encontrada..."
-  echo "CRIANDO NOVA STACK"
+  echo "Nenhuma Stack da aplicão $name encontrada."
+  echo "CRIANDO A NOVA  STACK $name"
 
   response=$(curl -s -X POST "$URL" \
   -H "X-API-Key: $API_KEY" \
@@ -65,8 +62,7 @@ else
   -F "method=file" \
   -F "file=@$FILE_PATH" \
   -F "endpointId=2" \
-  -F "Name=front" \
-  --insecure)
+  -F "Name=front" )
 
   # Imprimir a resposta completa para depuração
   echo "Resposta da solicitação POST: $response"
