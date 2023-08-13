@@ -17,7 +17,7 @@ if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   # Obtém o ID da stack
   id=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Id')
   
-   # Imprime o ID da stack
+  # Imprime o ID da stack
   echo "Obtendo ID da stack: $id"
   # Monta a URL para a exclusão
   DELETE_URL="$URL/$id"
@@ -53,8 +53,8 @@ if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   # Imprimir o valor do Id
   echo "Nova Stack criada. Id: $id"
 else
-  echo "Nenhuma Stack da aplicão $name encontrada."
-  echo "CRIANDO A NOVA  STACK $name"
+  echo "Nenhuma Stack da aplicão encontrada."
+  echo "CRIANDO NOVA STACK "
 
   response=$(curl -s -X POST "$URL" \
   -H "X-API-Key: $API_KEY" \
