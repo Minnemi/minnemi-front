@@ -41,16 +41,15 @@ jobs:
 #        name: Sleep for 10 seconds
 #        run: sleep 10s
 #        shell: bash 
-      - 
-        name: docker-compose
+      - name: Definir variáveis
         run: |
-            FILE_PATH="docker-compose.yml"
-      - 
-        name: Executar Script | deploy for portainer and VPC
+          # Definir variáveis
+          FILE_PATH="docker-compose.yml"
+      - name: Executar Script
         run: |
           chmod u+x index.sh
           ./index.sh
-
-env:
-    API_URL: ${{ secrets.API_URL }}
-    API_KEY: ${{ secrets.API_KEY }}    
+      
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          API_KEY: ${{ secrets.API_KEY }}
