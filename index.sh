@@ -11,7 +11,7 @@ if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   name=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Name')
 
   # Imprime o nome da stack
-  echo "A Stack chamada 'ubunto' está criada. Nome: $name"
+  echo "A Stack chamada $name está criada. Nome: $name"
 
   # Obtém o ID da stack
   id=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Id')
@@ -32,8 +32,9 @@ if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   --insecure
 
   echo "Stack deletada. ID: $id"
-  echo "vamos dormir por 30 segundos"
+  echo "sleep 30s"
   sleep 30
+
   echo "CRIANDO A STACK"
 
   response=$(curl -s -X POST "$URL" \
@@ -45,7 +46,7 @@ if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   -F "Name=front" \
   --insecure)
 
-  # Imprimir a resposta completa para depuração
+  # log
   echo "Resposta da solicitação POST: $response"
 
   # Extrair o valor do campo "Id" da nova stack usando jq
@@ -54,8 +55,8 @@ if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   # Imprimir o valor do Id
   echo "Nova Stack criada. Id: $id"
 else
-  echo "Nenhuma Stack da aplicão encontrada."
-  echo "CRIANDO A NOVA  STACK"
+  echo "Nenhuma Stack da aplicão encontrada..."
+  echo "CRIANDO NOVA STACK"
 
   response=$(curl -s -X POST "$URL" \
   -H "X-API-Key: $API_KEY" \
