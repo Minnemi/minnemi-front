@@ -38,3 +38,26 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/front:latest
+
+      - 
+        name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash 
+       
+      - 
+        name: Deploy do front para o portainer
+        run: |
+          # Definindo variáveis
+          URL=$API_URL
+          API_KEY=$API_KEY
+          FILE_PATH="docker-compose.yml"
+    
+      - 
+        name: Executar Script
+        run: |
+          chmod u+x index.sh
+          ./index.sh
+        
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          API_KEY: ${{ secrets.API_KEY }}     
