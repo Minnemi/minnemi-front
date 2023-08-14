@@ -12,7 +12,7 @@ if echo "$response" | jq -e '.[] | select(.Name == "front")' > /dev/null; then
   name=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Name')
 
   # Imprime o nome da stack
-  echo "A Stack chamada 'ubunto' está criada. Nome: $name"
+  echo "A Stack chamada $name está criada. Nome: $name"
 
   # Obtém o ID da stack
   id=$(echo "$response" | jq -r '.[] | select(.Name == "front") | .Id')
