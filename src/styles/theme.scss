@@ -23,10 +23,6 @@
   --indigo-700: #0D0E2B;
 }
 
-[data-theme="light"] {
-  @include theme-light;
-}
-
 [data-theme="dark"] {
   @include theme-dark;
   color-scheme: dark;

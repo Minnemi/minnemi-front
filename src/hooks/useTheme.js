@@ -6,7 +6,7 @@ export default function useTheme() {
 
   const state = reactive({
     themeSelected: null,
-    themes: ['minnemi', 'light', 'dark'],
+    themes: ['minnemi', 'dark'],
   });
 
   const changeTheme = () => {
