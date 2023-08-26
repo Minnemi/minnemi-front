@@ -38,15 +38,15 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/front:latest
       - 
-        name: Sleep for 15 seconds
-        run: sleep 15s
+        name: Sleep for 6 seconds
+        run: sleep 6s
         shell: bash 
-
-      - name: Executar Script
-        run: |
-          chmod u+x index.sh
-          ./index.sh
-      
+        
+      -
+        name: deploy
+        uses: Hugollemos/composito@v1
         env:
           API_URL: ${{ secrets.API_URL }}
           API_KEY: ${{ secrets.API_KEY }}
+          FILE_PATH: "./docker-compose.yml"
+          STACK_NAME: front
