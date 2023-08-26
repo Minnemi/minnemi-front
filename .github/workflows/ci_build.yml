@@ -4,6 +4,11 @@ on:
   push:
     branches: [ "develop" ]
   workflow_dispatch:
+env:
+  API_URL: ${{ secrets.API_URL }}
+  API_KEY: ${{ secrets.API_KEY }}
+  FILE_PATH: "./docker-compose.yml"
+  STACK_NAME: front
   
 jobs:
   build:
@@ -45,8 +50,4 @@ jobs:
       -
         name: deploy
         uses: Hugollemos/composito@v1
-        env:
-          API_URL: ${{ secrets.API_URL }}
-          API_KEY: ${{ secrets.API_KEY }}
-          FILE_PATH: "./docker-compose.yml"
-          STACK_NAME: front
+        
