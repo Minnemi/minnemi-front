@@ -24,6 +24,7 @@
         v-for="(value, index) in listOptions"
         :key="index"
         role="option"
+        class="select-option"
         @click="handleEmitValue(value)"
       >
         {{ value }}
@@ -51,7 +52,7 @@ const plural = t('writeLetterPage.labels.selectDate.sulfix.plural');
 const emit = defineEmits(['change']);
 const isSelectOpen = ref(false);
 const selectedValue = ref(1);
-const listOptions = [1, 2, 3, 4, 5];
+const listOptions = [1, 2, 3, 4, 5, 10];
 
 function handleToggleSelect() {
   isSelectOpen.value = !isSelectOpen.value;
@@ -102,10 +103,17 @@ function handleEmitValue(value) {
     cursor: pointer;
   }
 
+  &-option {
+    &:hover {
+      background: var(--indigo-500);
+    }
+  }
+
   &-options {
+    position: absolute;
     left: 0;
     right: 0;
-    top: 35px;
+    top: -291px;
     margin-top: 0.6rem;
   }
   &-name {

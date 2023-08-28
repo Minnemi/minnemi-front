@@ -45,6 +45,14 @@
 
       <ButtonComponent fullWidth :styles="sidebarStatus + ' slidebar'">
         <template v-slot:start>
+          <IconComponent class="sidebar-icon" :path="mdiHelp" :size="40" />
+        </template>
+
+        FAQ
+      </ButtonComponent>
+
+      <ButtonComponent fullWidth :styles="sidebarStatus + ' slidebar'">
+        <template v-slot:start>
           <IconComponent
             class="sidebar-icon"
             :path="mdiLogoutVariant"
@@ -59,7 +67,7 @@
 </template>
 
 <script setup>
-import { mdiEmail, mdiLogoutVariant, mdiBrightness7 } from '@mdi/js';
+import { mdiEmail, mdiLogoutVariant, mdiBrightness7, mdiHelp } from '@mdi/js';
 import { ref } from 'vue';
 
 import ButtonComponent from '../utils/ButtonComponent.vue';
@@ -85,7 +93,7 @@ const { changeTheme } = useTheme();
 
 <style scoped lang="scss">
 .sidebar {
-  position: sticky;
+  position: fixed;
   top: 0;
   display: flex;
   flex-direction: column;
@@ -95,6 +103,8 @@ const { changeTheme } = useTheme();
   min-height: 100vh;
   height: 100vh;
   padding: 1rem 1rem;
+
+  z-index: 1000;
 
   background: var(--elements-background-color);
   border-right: 1px solid var(--border-color);

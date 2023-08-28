@@ -41,7 +41,11 @@
               <ButtonComponent class="form-footer-button" styles="outline">
                 {{ $t('writeLetterPage.labels.saveLetterButton') }}
               </ButtonComponent>
-              <ButtonComponent type="submit" class="form-footer-button" styles="fill">
+              <ButtonComponent
+                type="submit"
+                class="form-footer-button"
+                styles="fill"
+              >
                 {{ $t('writeLetterPage.labels.sendLetterButton') }}
               </ButtonComponent>
             </div>

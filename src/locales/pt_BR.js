@@ -7,21 +7,23 @@ export const pt_BR = {
     confirmPassword: 'Confirmar senha',
   },
   errors: {
-    forms:  {
+    forms: {
       requiredField: 'Este campo é obrigatório ser preenchido.',
       fullname: {
         length: {
           min: 'Este campo deve conter no mínimo 3 caracteres.',
           max: 'Este campo deve conter no máximo 35 caracteres.',
         },
-        pattern: 'Este campo deve conter caracteres minúsculos, maiúsculos e letras com acentos',
+        pattern:
+          'Este campo deve conter caracteres minúsculos, maiúsculos e letras com acentos',
       },
       username: {
         length: {
           min: 'Este campo deve conter no mínimo 3 caracteres.',
           max: 'Este campo deve conter no máximo 35 caracteres.',
         },
-        pattern: 'Este campo deve conter caracteres minúsculos, maiúsculos e números, use "_" ao invés de espaço em branco " "',
+        pattern:
+          'Este campo deve conter caracteres minúsculos, maiúsculos e números, use "_" ao invés de espaço em branco " "',
       },
       email: {
         length: {
@@ -33,13 +35,15 @@ export const pt_BR = {
         length: {
           min: 'Este campo deve conter no mínimo 8 caracteres.',
         },
-        pattern: 'Este campo deve conter caracteres minúsculos, maiúsculos, números e símbolos com no mínimo 8 caracteres',
+        pattern:
+          'Este campo deve conter caracteres minúsculos, maiúsculos, números e símbolos com no mínimo 8 caracteres',
       },
       confirmPassword: {
         length: {
           min: 'Este campo deve conter no mínimo 8 caracteres.',
         },
-        pattern: 'Este campo deve conter caracteres minúsculos, maiúsculos, números e símbolos com no mínimo 8 caracteres',
+        pattern:
+          'Este campo deve conter caracteres minúsculos, maiúsculos, números e símbolos com no mínimo 8 caracteres',
         equals: 'Este campo deve conter o mesmo valor do campo Senha.',
       },
     },
@@ -76,7 +80,7 @@ export const pt_BR = {
       saveLetterButton: 'Salvar',
       sendLetterButton: 'Enviar',
       selectDate: {
-        title: 'Desejo receber em',
+        title: 'Desejo receber em: ',
         sulfix: {
           plural: 'anos',
           singular: 'ano',
