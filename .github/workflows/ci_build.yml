@@ -44,7 +44,7 @@ jobs:
         
       -
         name: deploy
-        uses: Hugollemos/portainer_stack_deploy@v1
+        uses: Hugollemos/portainer_deploy@v1
         env:
           API_URL: ${{ secrets.API_URL }}
           API_KEY: ${{ secrets.API_KEY }}
