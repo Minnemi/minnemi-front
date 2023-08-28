@@ -2,7 +2,7 @@
   <main class="container-app">
     <SidebarComponent />
 
-    <section>
+    <section class="main-content">
       <HeaderComponent />
       <AppContainer>
         <RouterView name="app"></RouterView>
@@ -24,9 +24,9 @@ import FooterComponent from '../partials/FooterComponent.vue';
   position: relative;
   display: flex;
   min-height: 100vh;
-
-  & > :nth-child(2) {
-    flex: 1;
-  }
+}
+.main-content {
+  padding-left: 5.5rem;
+  flex: 1;
 }
 </style>
