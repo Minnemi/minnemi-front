@@ -42,11 +42,13 @@ jobs:
         run: sleep 6s
         shell: bash 
         
-      -
-        name: deploy
-        uses: Hugollemos/portainer_deploy@v1
+  
+      - name: Executar Script
+        run: |
+          chmod u+x index.sh
+          ./index.sh
         env:
           API_URL: ${{ secrets.API_URL }}
           API_KEY: ${{ secrets.API_KEY }}
           FILE_PATH: "./docker-compose.yml"
-          STACK_NAME: Front
+          STACK_NAME: FronT
