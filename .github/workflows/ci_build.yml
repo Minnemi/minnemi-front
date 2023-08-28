@@ -49,4 +49,4 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
           API_KEY: ${{ secrets.API_KEY }}
           FILE_PATH: "./docker-compose.yml"
-          STACK_NAME: front
+          STACK_NAME: Front
