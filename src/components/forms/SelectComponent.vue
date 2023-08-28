@@ -1,85 +1,57 @@
 <template>
   <label class="label">
     <div class="describe">
-      {{ label }}
-      <span v-if="!hiddenRequiredMark && attributes.required">*</span>
+      {{ label }} <span v-if="attributes.required">*</span>
     </div>
 
-    <div ref="inputBoxRef" class="input">
-      <input
-        ref="inputRef"
-        class="input-field"
-        :data-compare-label="compareField"
-        @input="handleInput"
-      />
-
-      <button
-        type="button"
-        class="input-button"
-        :disabled="Boolean(!enableButton)"
-        :data-hidden="Boolean(!icon)"
-        @click="handleClick"
+    <div ref="selectBoxRef" class="select">
+      <select
+        ref="selectRef"
+        class="select-field"
+        @input="handleSelect"
       >
-        <svg-icon type="mdi" :path="icon" />
-      </button>
+        <option v-for="(item, index) in data" :key="index" :value="item">
+          {{ item }}
+        </option>
+      </select>
     </div>
 
-    <div class="message input-error-box"></div>
+    <div class="message" :data-message="errorMessage"></div>
   </label>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import SvgIcon from '@jamescoyle/vue-icon';
 
-const inputBoxRef = ref(null);
-const inputRef = ref(null);
+const selectBoxRef = ref(null);
+const selectRef = ref(null);
+const errorMessage = ref('');
 const props = defineProps({
   label: String,
+  data: Array,
   attributes: {
     type: Object,
     default() {
       return { type: 'text' };
     },
   },
-  icon: {
-    type: String,
-    default: '',
-  },
-  enableButton: {
-    type: Boolean,
-    default: false,
-  },
   focus: Boolean,
-  compareField: {
-    type: String,
-    default: '',
-  },
-  hiddenRequiredMark: {
-    type: Boolean,
-    default: false,
-  },
 });
 
-function insertAttributesIntoInputElement(attributes) {
+function insertAttributesIntoSelectElement(attributes) {
   for (const attr in attributes) {
-    inputRef.value.setAttribute(attr, attributes[attr]);
+    selectRef.value.setAttribute(attr, attributes[attr]);
   }
 }
 
 function autoFocus(enable) {
   if (enable) {
-    inputRef.value.focus();
+    selectRef.value.focus();
   }
 }
 
-function handleClick() {
-  inputRef.value.type =
-    inputRef.value.type === 'password' ? 'text' : 'password';
-}
-
 onMounted(() => {
-  insertAttributesIntoInputElement(props.attributes);
+  insertAttributesIntoSelectElement(props.attributes);
   autoFocus(props.focus);
 });
 </script>
@@ -99,7 +71,7 @@ onMounted(() => {
   font-weight: 600;
 }
 
-.input {
+.select {
   position: relative;
   display: flex;
   align-items: center;
@@ -115,6 +87,9 @@ onMounted(() => {
   }
 
   &-field {
+    font-size: 1.1rem;
+    font-weight: bold;
+
     margin: 0 2px;
     padding: 0.5rem 1rem;
     width: 100%;
@@ -161,14 +136,6 @@ onMounted(() => {
         border-color: var(--login-field-border-color-active);
         background-color: var(--login-field-background-color-active);
       }
-    }
-  }
-
-  &.error {
-    border-color: var(--red-200);
-
-    ~ .message {
-      display: block;
     }
   }
 }

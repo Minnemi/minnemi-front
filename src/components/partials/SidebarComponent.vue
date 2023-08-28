@@ -1,5 +1,5 @@
 <template>
-  <div
+  <aside
     class="sidebar"
     :class="{ 'sidebar--expanded': isSidebarExpanded }"
     @mouseenter="expandSidebar()"
@@ -14,153 +14,94 @@
         />
         <img v-else class="sidebar-logo" src="/images/logo.svg" />
       </div>
-      <div class="sidebar-divisor"></div>
 
-      <ul v-if="!isSidebarExpanded">
-        <li>
-          <IconComponent class="sidebar-icon" :path="mdiEmail" :size="40" />
-        </li>
-      </ul>
+      <hr class="sidebar-divisor" />
 
-      <ul v-else>
-        <li>
+      <ButtonComponent fullWidth :styles="sidebarStatus + ' slidebar'">
+        <template v-slot:start>
           <IconComponent class="sidebar-icon" :path="mdiEmail" :size="40" />
-          <span>Minhas Cartas</span>
-        </li>
-      </ul>
+        </template>
+
+        {{ $t('appLayout.slideBar.buttons.myLetters') }}
+      </ButtonComponent>
     </div>
-    <!-- //sidebar footer -->
+
     <div>
-      <ul v-if="!isSidebarExpanded">
-        <li>
+      <ButtonComponent
+        fullWidth
+        :styles="sidebarStatus + ' slidebar'"
+        @click="changeTheme()"
+      >
+        <template v-slot:start>
           <IconComponent
             class="sidebar-icon"
             :path="mdiBrightness7"
             :size="40"
           />
-        </li>
-        <li>
+        </template>
+
+        {{ $t('appLayout.slideBar.buttons.changeTheme') }}
+      </ButtonComponent>
+
+      <ButtonComponent fullWidth :styles="sidebarStatus + ' slidebar'">
+        <template v-slot:start>
           <IconComponent
             class="sidebar-icon"
             :path="mdiLogoutVariant"
             :size="40"
           />
-        </li>
-      </ul>
+        </template>
 
-      <ul v-else>
-        <li>
-          <IconComponent
-            class="sidebar-icon"
-            :path="mdiBrightness7"
-            :size="40"
-          />
-          <span>Alterar Tema</span>
-        </li>
-        <li>
-          <IconComponent
-            class="sidebar-icon"
-            :path="mdiLogoutVariant"
-            :size="40"
-          />
-
-          <span>Sair</span>
-        </li>
-      </ul>
+        {{ $t('appLayout.slideBar.buttons.logout') }}
+      </ButtonComponent>
     </div>
-  </div>
+  </aside>
 </template>
 
 <script setup>
 import { mdiEmail, mdiLogoutVariant, mdiBrightness7 } from '@mdi/js';
 import { ref } from 'vue';
 
+import ButtonComponent from '../utils/ButtonComponent.vue';
 import IconComponent from '@@utils/IconComponent.vue';
 
 const isSidebarExpanded = ref(false);
+const sidebarStatus = ref('text-hidden');
 
 function expandSidebar() {
   isSidebarExpanded.value = true;
+  sidebarStatus.value = '';
 }
 
 function closeExpandedSidebar() {
   isSidebarExpanded.value = false;
+  sidebarStatus.value = 'text-hidden';
 }
+
+import useTheme from '@hooks/useTheme';
+
+const { changeTheme } = useTheme();
 </script>
 
 <style scoped lang="scss">
 .sidebar {
-  position: fixed;
+  position: sticky;
   top: 0;
-  bottom: 0;
-  left: 0;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   width: 5.5rem;
+  min-height: 100vh;
+  height: 100vh;
   padding: 1rem 1rem;
 
-  background: white;
+  background: var(--elements-background-color);
+  border-right: 1px solid var(--border-color);
 
   overflow: hidden;
 
-  transition: all 1s ease;
-
-  &-icon {
-    color: var(--red-200);
-  }
-
-  ul {
-    margin-top: 1.5rem;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-
-    gap: 10px;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
-
-    padding: 0.4rem 0.4rem;
-
-    font-weight: 600;
-
-    border-radius: 10px;
-    box-sizing: border-box;
-
-    cursor: pointer;
-
-    span {
-      font-weight: 500;
-      color: var(--red-200);
-    }
-  }
-
-  &-icon {
-    width: 40px;
-    height: 40px;
-    max-width: 40px;
-    max-height: 40px;
-  }
-  li:hover &-icon {
-    color: white;
-  }
-  li:hover {
-    background: var(--red-200);
-    span {
-      color: white;
-    }
-  }
+  transition: all 0.3s ease;
 
   &-logo-container {
     display: flex;
@@ -185,10 +126,12 @@ function closeExpandedSidebar() {
     background-color: #a5a7e3;
 
     border-radius: 1px;
+
+    margin-bottom: 1rem;
   }
 
   &--expanded {
-    min-width: 15rem;
+    width: 15rem;
     overflow: visible;
   }
 }

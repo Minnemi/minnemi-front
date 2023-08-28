@@ -1,23 +1,42 @@
 <template>
   <label class="label">
     <div class="describe">
-      {{ label }} <span v-if="attributes.required">*</span>
+      {{ label }}
+      <span v-if="!hiddenRequiredMark && attributes?.required">*</span>
     </div>
 
-    <textarea ref="textareaRef" class="textarea" @input="handleInput"></textarea>
+    <textarea
+      ref="textareaRef"
+      class="textarea"
+      @input="handleInput"
+    ></textarea>
 
     <div class="message" :data-message="errorMessage"></div>
   </label>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const textareaRef = ref(null);
 const errorMessage = ref('');
-defineProps({
+const props = defineProps({
   label: String,
   attributes: Object,
+  hiddenRequiredMark: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+function insertAttributesIntoInputElement(attributes) {
+  for (const attr in attributes) {
+    textareaRef.value.setAttribute(attr, attributes[attr]);
+  }
+}
+
+onMounted(() => {
+  insertAttributesIntoInputElement(props.attributes);
 });
 </script>
 
@@ -27,7 +46,7 @@ defineProps({
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  gap: .5rem;
+  gap: 0.5rem;
   color: var(--text-principal);
 }
 
@@ -52,13 +71,15 @@ defineProps({
   &::placeholder {
     color: var(--login-field-color);
   }
+
+  resize: vertical;
 }
 
 .message {
   display: none;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   width: 100%;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: var(--red-200);
 
   &::after {

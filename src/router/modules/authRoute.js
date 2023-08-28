@@ -34,8 +34,8 @@ const signRoute = createRoute(
 
 const authRoute = createRoute(
   '/auth',
-  import('@views/auth/AuthView.vue'),
-  'app',
+  import('@components/layouts/AuthLayout.vue'),
+  'default',
   {
     children: [resetRoute, recoverRoute, registerRoute, signRoute],
     redirect: '/auth/sign-in',

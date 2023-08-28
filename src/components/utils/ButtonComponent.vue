@@ -2,7 +2,7 @@
   <button ref="button" :type="type || 'button'" class="button" :class="styles">
     <slot name="start"></slot>
 
-    <span class="text">
+    <span class="text" v-if="$slots.default">
       <slot></slot>
     </span>
 
@@ -47,9 +47,9 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .5rem;
+  gap: 0.5rem;
 
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   width: min-content;
   max-width: 100%;
   font-weight: 600;
@@ -60,7 +60,7 @@ onMounted(() => {
   border: 1px solid transparent;
   overflow: hidden;
 
-  transition: background-color .2s ease, border-color .2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 
   &:disabled {
     cursor: not-allowed;
@@ -87,14 +87,31 @@ onMounted(() => {
   }
 }
 
+.slidebar {
+  color: var(--red-200);
+  width: 100%;
+
+  justify-content: flex-start;
+
+  &:hover {
+    color: var(--light-100);
+    background-color: var(--red-200);
+
+    svg {
+      fill: var(--light-100) !important;
+      color: white !important;
+    }
+  }
+}
+
 .small {
-  padding: .25rem 1rem;
-  font-size: .75rem;
+  padding: 0.25rem 1rem;
+  font-size: 0.75rem;
 }
 
 .font {
   &-small {
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 
   &-normal {

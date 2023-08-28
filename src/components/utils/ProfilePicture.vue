@@ -2,7 +2,7 @@
   <figure
     class="figure"
     :class="mode"
-    data-editable-content="Alterar"
+    :data-editable-content="$t('appLayout.userProfile.editablePicture')"
   >
     <img
       :alt="'Foto de perfil do usuário ' + username"
@@ -18,11 +18,11 @@ defineProps({
   src: String,
   username: {
     type: String,
-    default: 'anônimo'
+    default: 'anônimo',
   },
   mode: {
     type: String,
-    default: 'normal'
+    default: 'normal',
   },
 });
 
@@ -42,15 +42,33 @@ function handleLoadError() {
   border: 2px solid var(--border-color);
   border-radius: 50%;
   overflow: hidden;
-  background: var(--default-user-picture) var(--elements-background-color) no-repeat;
+  background: var(--default-user-picture) var(--elements-background-color)
+    no-repeat;
   background-size: cover;
-  transition: width .2s, height .2s;
+  transition: width 0.2s, height 0.2s;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.large {
+  --size: 60px;
 }
 
 .editable {
   --size: 100px;
-  --gradient-bf: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .7) 50%);
-  --gradient-af: linear-gradient(to bottom, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, .75) 55%, rgba(0, 0, 0, 1) 100%);
+  --gradient-bf: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.7) 50%
+  );
+  --gradient-af: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.75) 55%,
+    rgba(0, 0, 0, 1) 100%
+  );
   cursor: pointer;
 
   &::before,
@@ -65,9 +83,9 @@ function handleLoadError() {
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: .75rem;
+    padding: 0.75rem;
     color: var(--gray-100);
-    transition: top .2s;
+    transition: top 0.2s;
   }
 
   &::before {
